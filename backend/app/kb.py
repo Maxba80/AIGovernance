@@ -52,3 +52,74 @@ def summary() -> dict:
         "sources": [{"id": s["id"], "title": s["title"], "version": s.get("version"), "status": s.get("status"),
                      "verification": s.get("verification")} for s in sources],
     }
+
+
+FRAMEWORK_OF = {"AIA": "eu-ai-act", "GDPR": "gdpr", "ISO42001": "iso-42001", "NIST": "nist-ai-rmf"}
+
+
+def framework_of(ref: str) -> str:
+    return FRAMEWORK_OF.get(ref.split("-")[0], "other")
+
+
+@functools.lru_cache(maxsize=1)
+def ai_act() -> dict:
+    return _load("frameworks/eu_ai_act/articles.json")
+
+
+@functools.lru_cache(maxsize=1)
+def ai_act_overlay() -> dict:
+    return _load("frameworks/eu_ai_act/classification_roles_timeline.json")
+
+
+@functools.lru_cache(maxsize=1)
+def gdpr_index() -> list[dict]:
+    return _load("frameworks/gdpr/ai_relevant_articles.json")["articles"]
+
+
+@functools.lru_cache(maxsize=1)
+def nist_core() -> list[dict]:
+    return _load("frameworks/nist_ai_rmf/core.json")["subcategories"]
+
+
+@functools.lru_cache(maxsize=1)
+def requirements() -> dict[str, dict]:
+    """Every requirement the app can reference: ref -> {ref, framework, title}."""
+    out: dict[str, dict] = {}
+    a = ai_act()
+    for x in a["articles"]:
+        out[x["id"]] = {"ref": x["id"], "framework": "eu-ai-act", "title": x.get("title_as_amended") or x["title"]}
+    for x in a["annexes"]:
+        out[x["id"]] = {"ref": x["id"], "framework": "eu-ai-act", "title": x["title"]}
+    for x in _load("frameworks/gdpr/articles.json")["articles"]:
+        out[x["id"]] = {"ref": x["id"], "framework": "gdpr", "title": x["title"]}
+    iso = iso_requirements()
+    for x in iso["clauses"] + iso["annex_a_controls"]:
+        out[x["id"]] = {"ref": x["id"], "framework": "iso-42001", "title": x["title"]}
+    for x in nist_core():
+        out[x["id"]] = {"ref": x["id"], "framework": "nist-ai-rmf", "title": x["text"]}
+    return out
+
+
+@functools.lru_cache(maxsize=1)
+def mit_subdomains() -> list[dict]:
+    d = _load("risk-taxonomy/mit_ai_risk_taxonomies.json")
+    groups = {g["id"]: g["name"] for g in d["groups"]}
+    links = {m["risk"]: m["mitigating_objectives"] for m in _load("crosswalks/risk/mit_subdomain_to_control_objectives.json")["mappings"]}
+    out = []
+    for e in d["entries"]:
+        if e["id"].startswith("mit-ai-risk-subdomain-"):
+            part = e.get("isPartOf")
+            part = part[0] if isinstance(part, list) and part else part
+            out.append({"id": e["id"], "name": e["name"], "description": e.get("description"), "domain": groups.get(part, ""),
+                        "mitigating_objectives": links.get(e["id"], [])})
+    return out
+
+
+@functools.lru_cache(maxsize=1)
+def agentic_risks() -> list[dict]:
+    import re
+    out = []
+    for e in _load("risk-taxonomy/owasp_agentic_top10_2026.json")["entries"]:
+        m = re.match(r"(ASI\d+)(?::\d+)?\s+(.*)", e["name"])
+        out.append({"id": m.group(1) if m else e["id"], "name": m.group(2) if m else e["name"], "description": e.get("description")})
+    return out

@@ -5,7 +5,7 @@ import logging
 from fastapi import Depends, FastAPI
 
 from . import audit, config, db, kb, security
-from .routers import auth, documents, settings, workspaces
+from .routers import auth, documents, settings, systems, workspaces
 
 log = logging.getLogger("api")
 
@@ -41,6 +41,7 @@ app.include_router(auth.router)
 app.include_router(workspaces.router)
 app.include_router(documents.router)
 app.include_router(settings.router)
+app.include_router(systems.router)
 
 
 @app.get("/api/health")
@@ -53,6 +54,16 @@ def health():
 @app.get("/api/kb/summary", dependencies=[Depends(security.current_user)])
 def kb_summary():
     return kb.summary()
+
+
+@app.get("/api/kb/requirements", dependencies=[Depends(security.current_user)])
+def kb_requirements(framework: str | None = None):
+    return [r for r in kb.requirements().values() if not framework or r["framework"] == framework]
+
+
+@app.get("/api/kb/agentic-risks", dependencies=[Depends(security.current_user)])
+def kb_agentic_risks():
+    return kb.agentic_risks()
 
 
 @app.get("/api/audit", dependencies=[Depends(security.current_user)])

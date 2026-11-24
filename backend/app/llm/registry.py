@@ -8,8 +8,13 @@ from .base import LLMError, Provider
 from .openai_compat import OpenAICompatibleProvider
 
 AGENT_ROLES = [
-    {"id": "ingestion", "label": "Ingestion & Evidence Agent",
-     "description": "Classifies uploaded documents and links them to control objectives. A light or local model is usually enough."},
+    {"id": "orchestrator", "label": "Orchestrator", "description": "Plans the assessment and writes the final synthesis. Use a strong reasoning model."},
+    {"id": "ingestion", "label": "Ingestion & Evidence Agent", "description": "Classifies uploaded documents and links them to control objectives. A light or local model is usually enough."},
+    {"id": "eu_ai_act", "label": "EU AI Act Specialist", "description": "Risk classification and obligations under Regulation (EU) 2024/1689. Use a strong reasoning model."},
+    {"id": "gdpr", "label": "Data Protection & GDPR Specialist", "description": "DPIA need, legal basis, Art. 22 and transfers."},
+    {"id": "iso_42001", "label": "ISO/IEC 42001 Auditor", "description": "Gap analysis against clauses and Annex A controls."},
+    {"id": "nist", "label": "NIST AI RMF Specialist", "description": "Maturity across Govern, Map, Measure, Manage."},
+    {"id": "crosswalk", "label": "Crosswalk & Risk Engine", "description": "Identifies risks from the MIT taxonomy and scores them. Cross-framework propagation itself is rule-based, not a model."},
 ]
 
 PRESETS = [

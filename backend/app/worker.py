@@ -25,7 +25,18 @@ def finish(job_id, status: str, error: str | None = None) -> None:
 
 
 def run(job: dict) -> None:
-    wid, doc_id = str(job["workspace_id"]), str(job["document_id"])
+    wid = str(job["workspace_id"])
+    if job["kind"] in ("assessment", "assessment_resume"):
+        from .orchestrator import graph
+        try:
+            graph.execute(wid, str(job["run_id"]), resume=job["payload"] if job["kind"] == "assessment_resume" and job["attempts"] == 1 else None,
+                          continue_from_checkpoint=job["attempts"] > 1)
+            finish(job["id"], "done")
+        except Exception as e:  # the run itself is already marked failed and audited
+            log.exception("assessment job %s failed", job["id"])
+            finish(job["id"], "failed", str(e))
+        return
+    doc_id = str(job["document_id"])
     try:
         pipeline.process_document(wid, doc_id, str(job["id"]), embed_only=job["kind"] == "reindex")
         finish(job["id"], "done")
@@ -52,6 +63,8 @@ def main() -> None:
     db.migrate()
     with db.tx() as c:  # jobs interrupted by a restart go back to the queue
         c.execute("UPDATE jobs SET status = 'queued' WHERE status = 'running'")
+    from .orchestrator import graph
+    graph.setup()  # LangGraph checkpoint tables
     log.info("worker ready")
     while True:
         job = claim()

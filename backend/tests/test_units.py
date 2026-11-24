@@ -61,3 +61,23 @@ def test_extract_json_from_fenced_or_chatty_output():
         a: int
     assert M.model_validate_json(extract_json('```json\n{"a": 1}\n```')).a == 1
     assert M.model_validate_json(extract_json('Sure! Here it is: {"a": 2} Hope it helps')).a == 2
+
+
+def test_findings_validation_protects_accuracy(monkeypatch):
+    from app import kb
+    from app.agents import common
+    monkeypatch.setattr(kb, "framework_of", lambda ref: "eu-ai-act")
+    passages = [{"n": 1, "document_id": "d1", "filename": "p.pdf", "page": 2, "section": "S", "text": "Data sets must meet   quality requirements."}]
+    F, E = common.Finding, common.EvidenceRef
+    kept, dropped = common.validate_findings([
+        F(requirement_ref="R1", status="partial", rationale="ok", evidence=[E(passage=1, quote="data sets must meet quality requirements")]),
+        F(requirement_ref="R2", status="compliant", rationale="claims", evidence=[E(passage=1, quote="not in the text")]),
+        F(requirement_ref="R3", status="gap", rationale="nothing", evidence=[]),
+        F(requirement_ref="R9", status="gap", rationale="unknown id", evidence=[]),
+        F(requirement_ref="R1", status="gap", rationale="duplicate", evidence=[]),
+    ], {"R1", "R2", "R3"}, passages)
+    by = {k["requirement_ref"]: k for k in kept}
+    assert by["R1"]["status"] == "partial" and by["R1"]["evidence"][0]["quote_verified"] and by["R1"]["evidence"][0]["page"] == 2
+    assert by["R2"]["status"] == "insufficient_evidence" and "Downgraded" in by["R2"]["rationale"]
+    assert by["R3"]["status"] == "gap"  # a gap needs no quote
+    assert {d["requirement_ref"] for d in dropped} == {"R9", "R1"}

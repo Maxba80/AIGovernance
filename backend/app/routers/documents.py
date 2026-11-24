@@ -4,6 +4,7 @@ import os
 
 from fastapi import APIRouter, Depends, File, HTTPException, Response, UploadFile
 from fastapi.responses import JSONResponse
+from psycopg.types.json import Jsonb
 from pydantic import BaseModel, Field
 
 from .. import audit, config, db, kb, security
@@ -190,6 +191,7 @@ def approvals(status: str | None = "pending", wid: str = Depends(require_workspa
 class Decision(BaseModel):
     decision: str
     comment: str | None = None
+    override_class: str | None = None
 
 
 @router.post("/approvals/{approval_id}/decide")
@@ -208,12 +210,35 @@ def decide(approval_id: str, body: Decision, wid: str = Depends(require_workspac
             raise HTTPException(409, f"Already {a['status']}")
         a = c.execute("UPDATE approvals SET status = %s, decided_by = %s, decided_at = now(), comment = %s WHERE id = %s RETURNING *",
                       (status, user["email"], body.comment, approval_id)).fetchone()
+        extra = {}
         if a["kind"] == "evidence_tag" and a["payload"].get("tag_id"):
             c.execute("UPDATE evidence_tags SET status = %s WHERE id = %s", (status, a["payload"]["tag_id"]))
+        elif a["kind"] == "risk_classification":
+            from ..agents.specialists import RISK_CLASSES
+            final = body.override_class or a["payload"]["proposed_class"]
+            if final not in RISK_CLASSES:
+                raise HTTPException(422, f"override_class must be one of {', '.join(RISK_CLASSES)}")
+            if status == "approved":
+                c.execute("UPDATE ai_systems SET risk_class = %s, risk_class_status = 'approved', risk_class_rationale = %s, updated_at = now() WHERE id = %s",
+                          (final, a["payload"].get("rationale") if final == a["payload"]["proposed_class"] else body.comment, a["payload"]["system_id"]))
+            else:
+                c.execute("UPDATE ai_systems SET risk_class = NULL, risk_class_status = 'none', risk_class_rationale = NULL WHERE id = %s AND risk_class_status = 'proposed'",
+                          (a["payload"]["system_id"],))
+            # resume the paused orchestrator with the reviewer's decision
+            c.execute("INSERT INTO jobs (workspace_id, kind, run_id, agent, payload) VALUES (%s, 'assessment_resume', %s, 'Orchestrator', %s)",
+                      (wid, a["payload"]["run_id"], Jsonb({"decision": body.decision, "override_class": body.override_class if status == "approved" else None,
+                                                           "by": user["email"], "comment": body.comment})))
+            c.execute("UPDATE runs SET status = 'queued', pending_approval_id = NULL WHERE id = %s", (a["payload"]["run_id"],))
+            extra = {"proposed_class": a["payload"]["proposed_class"], "final_class": final if status == "approved" else None, "run_id": a["payload"]["run_id"]}
+        elif a["kind"] == "assessment_findings":
+            n = c.execute("UPDATE findings SET review_status = %s, reviewed_by = %s WHERE id = ANY(%s::uuid[]) AND review_status = 'proposed'",
+                          (status, user["email"], a["payload"]["finding_ids"])).rowcount
+            extra = {"framework": a["payload"]["framework"], "findings_updated": n, "run_id": a["payload"]["run_id"]}
         audit.record(c, actor=user["email"], actor_type="user", action=f"approval.{status}", workspace_id=wid, entity_type="approval",
                      entity_id=approval_id, summary=a["title"], model=a["model"], sources=a["sources"],
                      payload={"kind": a["kind"], "decision": status, "comment": body.comment, "proposed_by": a["agent"],
-                              "confidence": a["confidence"], **{k: a["payload"].get(k) for k in ("cco_id", "document_id", "tag_id", "requirements")}})
+                              "confidence": a["confidence"], **extra,
+                              **{k: a["payload"].get(k) for k in ("cco_id", "document_id", "tag_id", "requirements", "system_id") if a["payload"].get(k) is not None}})
     return a
 
 
@@ -223,7 +248,7 @@ def jobs(active: bool = False, wid: str = Depends(require_workspace)):
         sql = """SELECT j.id, j.kind, j.document_id, d.filename, j.status, COALESCE(d.status, j.stage) AS stage,
                         CASE WHEN j.status = 'done' THEN 100 ELSE COALESCE(d.progress, j.progress) END AS progress,
                         j.agent, d.embedding_model AS model, j.started_at, j.finished_at, j.error
-                 FROM jobs j LEFT JOIN documents d ON d.id = j.document_id WHERE j.workspace_id = %s"""
+                 FROM jobs j LEFT JOIN documents d ON d.id = j.document_id WHERE j.workspace_id = %s AND j.kind IN ('ingest', 'reindex')"""
         if active:
             sql += " AND j.status IN ('queued', 'running')"
         return c.execute(sql + " ORDER BY j.created_at DESC LIMIT 100", (wid,)).fetchall()

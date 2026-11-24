@@ -34,6 +34,54 @@ def classify(user: str) -> dict:
     ]}
 
 
+def _passage_with(user: str, needle: str):
+    ps = re.findall(r"\[passage (\d+) \|[^\]]*\]\n(.*?)(?=\n\n\[passage |\Z)", user, flags=re.S)
+    for n, t in ps:
+        if needle in t.lower():
+            sentence = next((x for x in re.split(r"(?<=[.!?])\s+", t) if needle in x.lower()), t[:100])
+            return int(n), sentence.strip()[:300]
+    return (int(ps[0][0]), ps[0][1][:80]) if ps else (1, "no passages")
+
+
+def respond(system: str, user: str) -> str:
+    """Canned, deliberately imperfect answers per agent, to exercise validation."""
+    if "Ingestion & Evidence Agent" in system:
+        return json.dumps(classify(user))
+    n, q = _passage_with(user, "data quality")
+    if "EU AI Act Specialist of an AI governance tool. Classify" in system:
+        return json.dumps({"in_scope": True, "org_role": "deployer", "risk_class": "high-risk-annex-iii", "annex_iii_point": "4(a) recruitment or selection",
+                           "prohibited_practice": None, "art6_3_derogation": {"applies": False, "reason": "The system profiles natural persons."},
+                           "transparency_obligations": ["Art. 50(1)"], "gpai": False, "confidence": 0.82, "rationale": "Used to screen job applicants.",
+                           "decision_path": [{"step": 2, "question": "Prohibited practice?", "answer": "No", "basis": ["AIA-Art.5", "AIA-Art.999"]},
+                                             {"step": 4, "question": "Annex III area?", "answer": "Yes, employment", "basis": ["AIA-Annex.III"]}],
+                           "missing_information": ["Whether the vendor is established in the EU"]})
+    if "EU AI Act Specialist. The system below has been classified" in system:
+        return json.dumps({"summary": "Deployer obligations partly evidenced.", "findings": [
+            {"requirement_ref": "AIA-Art.26", "status": "partial", "rationale": "Data quality is addressed.", "evidence": [{"passage": n, "quote": q}]},
+            {"requirement_ref": "AIA-Art.27", "status": "compliant", "rationale": "Claims a FRIA exists.", "evidence": [{"passage": n, "quote": "a fundamental rights impact assessment was completed"}]},
+            {"requirement_ref": "AIA-Art.4", "status": "gap", "rationale": "No training evidence.", "evidence": []},
+            {"requirement_ref": "AIA-Art.1234", "status": "gap", "rationale": "Invalid id.", "evidence": []}]})
+    if "GDPR Specialist" in system:
+        return json.dumps({"personal_data": True, "legal_basis": None, "dpia_required": True, "dpia_rationale": "Systematic evaluation of candidates.",
+                           "automated_decision_art22": True, "transfers_outside_eu": False, "summary": "DPIA needed.", "findings": [
+                               {"requirement_ref": "GDPR-Art.35", "status": "gap", "rationale": "No DPIA in the evidence.", "evidence": []},
+                               {"requirement_ref": "GDPR-Art.5", "status": "partial", "rationale": "Accuracy addressed through data quality.", "evidence": [{"passage": n, "quote": q}]}]})
+    if "ISO/IEC 42001 Auditor" in system:
+        return json.dumps({"summary": "Data controls partly in place.", "findings": [
+            {"requirement_ref": "ISO42001-A.7.4", "status": "partial", "rationale": "Quality requirements documented.", "evidence": [{"passage": n, "quote": q}]},
+            {"requirement_ref": "ISO42001-6.1.2", "status": "gap", "rationale": "No risk assessment method.", "evidence": []}]})
+    if "NIST AI RMF Specialist" in system:
+        return json.dumps({"maturity": {"GOVERN": 2, "MAP": 1, "MEASURE": 0, "MANAGE": 1}, "summary": "Early maturity.", "findings": [
+            {"requirement_ref": "NIST-MAP-2.3", "status": "partial", "rationale": "Data considerations documented.", "evidence": [{"passage": n, "quote": q}]}]})
+    if "Crosswalk & Risk Engine" in system:
+        return json.dumps({"risks": [{"risk_id": "mit-ai-risk-subdomain-1.1", "likelihood": 4, "severity": 4, "rationale": "Screening can discriminate."},
+                                     {"risk_id": "mit-ai-risk-subdomain-2.1", "likelihood": 3, "severity": 4, "rationale": "Candidate data."},
+                                     {"risk_id": "mit-ai-risk-subdomain-99.9", "likelihood": 5, "severity": 5, "rationale": "Invalid id."}]})
+    if "You are the Orchestrator" in system:
+        return "The system is high-risk under Annex III. Main gaps: DPIA and AI literacy. All findings were proposed by AI agents and need human review."
+    return "ready"
+
+
 class H(BaseHTTPRequestHandler):
     def log_message(self, *a):
         pass
@@ -60,7 +108,7 @@ class H(BaseHTTPRequestHandler):
         if self.path.endswith("/chat/completions"):
             system = req["messages"][0]["content"]
             user = req["messages"][-1]["content"]
-            content = json.dumps(classify(user)) if "Ingestion & Evidence Agent" in system else "ready"
+            content = respond(system, user)
             return self._send({"id": "x", "object": "chat.completion", "model": req["model"],
                                "choices": [{"index": 0, "message": {"role": "assistant", "content": content}, "finish_reason": "stop"}],
                                "usage": {"prompt_tokens": 10, "completion_tokens": 5, "total_tokens": 15}})

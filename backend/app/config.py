@@ -1,7 +1,7 @@
 """Runtime configuration, read once from environment variables (see .env.example)."""
 import os
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql://aigov:aigov@localhost:5432/aigov")
 SECRET_KEY = os.environ.get("SECRET_KEY", "")
 ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL", "admin@example.com")
