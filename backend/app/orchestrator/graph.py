@@ -35,7 +35,7 @@ STEPS = [
 ]
 AGENT_OF = {k: a for k, a, _ in STEPS}
 FRAMEWORK_NAMES = {"eu-ai-act": "EU AI Act", "gdpr": "GDPR", "iso-42001": "ISO/IEC 42001", "nist-ai-rmf": "NIST AI RMF"}
-MAX_INFERRED = 40
+MAX_INFERRED = 15  # inferred findings are suggestions to review: keep them few
 
 
 class RunStopped(Exception):
@@ -202,16 +202,26 @@ def n_crosswalk(state: State) -> dict:
         with db.tx(wid) as c:
             found = c.execute("SELECT requirement_ref, framework, status FROM findings WHERE run_id = %s AND origin = 'agent'", (run_id,)).fetchall()
         have = {f["requirement_ref"] for f in found}
-        order = {"gap": 0, "partial": 1, "compliant": 2}
-        inferred: dict[str, tuple] = {}
+        order = {"gap": 0, "partial": 1}  # only problems propagate; a "compliant" elsewhere is not inferred
+        # candidates per source finding, then round-robin so no single finding uses up the whole allowance
+        per_source: list[list[tuple]] = []
         for f in sorted((f for f in found if f["status"] in order), key=lambda f: order[f["status"]]):
+            mine, seen_refs = [], set()
             for cco in kb.control_objectives():
                 primary = [r["ref"] for r in cco["requirements"] if r["strength"] == "primary"]
-                if f["requirement_ref"] not in primary:
-                    continue
-                for ref in primary:
-                    if ref not in have and ref not in inferred and kb.framework_of(ref) != f["framework"] and len(inferred) < MAX_INFERRED:
-                        inferred[ref] = (f, cco)
+                if f["requirement_ref"] in primary:
+                    for ref in primary:
+                        if ref not in have and ref not in seen_refs and kb.framework_of(ref) != f["framework"]:
+                            seen_refs.add(ref)
+                            mine.append((ref, f, cco))
+            per_source.append(mine)
+        inferred: dict[str, tuple] = {}
+        depth = 0
+        while len(inferred) < MAX_INFERRED and any(depth < len(m) for m in per_source):
+            for mine in per_source:
+                if depth < len(mine) and len(inferred) < MAX_INFERRED and mine[depth][0] not in inferred:
+                    inferred[mine[depth][0]] = (mine[depth][1], mine[depth][2])
+            depth += 1
         with db.tx(wid) as c:
             c.execute("DELETE FROM findings WHERE run_id = %s AND origin = 'crosswalk'", (run_id,))
             for ref, (src, cco) in inferred.items():

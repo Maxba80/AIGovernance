@@ -67,7 +67,7 @@ Rules the agents cannot bypass (enforced in code, not in the prompt):
 - a finding must reference a requirement that exists in the knowledge base, or it is dropped;
 - a quote must be found verbatim in the cited passage, or it is flagged;
 - "compliant" or "partial" without a verified quote is downgraded to "insufficient evidence";
-- findings inferred through a shared control objective are labelled as inferred and name their origin.
+- findings inferred through a shared control objective are labelled as inferred and name their origin; only gaps and partial findings are propagated, at most 15 per run.
 
 Each agent can use a different model (Settings → Model routing). A paused run is checkpointed in PostgreSQL and survives restarts.
 

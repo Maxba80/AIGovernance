@@ -1,5 +1,5 @@
 """End-to-end check of Milestone 2 (inventory, orchestrator, findings, compliance).
-Run after e2e.py on the same stack (it reuses the 'Fake local' provider and the policy document).
+Run after e2e.py on the same stack (it reuses the 'Fake local' provider). Repeatable: each execution uses a new workspace.
 
 Usage: python e2e_m2.py <api_base_url> <admin_email> <admin_password>
 """
@@ -47,11 +47,34 @@ def wait_run(wid, run_id, until, timeout=120):
 
 
 TOKEN = call("POST", "/api/auth/login", {"email": EMAIL, "password": PASSWORD})["access_token"]
-A = call("GET", "/api/workspaces")[0]["id"]
 roles = [r["id"] for r in call("GET", "/api/settings/llm")["agent_roles"]]
 ok("seven agent roles", roles == ["orchestrator", "ingestion", "eu_ai_act", "gdpr", "iso_42001", "nist", "crosswalk"], str(roles))
-docs = call("GET", f"/api/workspaces/{A}/documents")
-policy = next(d for d in docs if d["filename"] == "Data Governance Policy.md")
+
+# a fresh workspace per execution, so the test can be repeated on the same stack
+import uuid
+A = call("POST", "/api/workspaces", {"name": f"M2 test {uuid.uuid4().hex[:8]}"})["id"]
+POLICY = b"""# Data Governance Policy
+
+## 2. Data quality
+Training, validation and testing data sets must meet documented data quality requirements before use.
+
+## 3. Human oversight
+Operators can stop any AI system at any time.
+"""
+boundary = uuid.uuid4().hex
+body = (f"--{boundary}\r\nContent-Disposition: form-data; name=\"files\"; filename=\"Data Governance Policy.md\"\r\n"
+        "Content-Type: text/markdown\r\n\r\n").encode() + POLICY + f"\r\n--{boundary}--\r\n".encode()
+req = urllib.request.Request(BASE + f"/api/workspaces/{A}/documents", data=body, method="POST",
+                             headers={"Authorization": f"Bearer {TOKEN}", "Content-Type": f"multipart/form-data; boundary={boundary}"})
+policy = json.loads(urllib.request.urlopen(req, timeout=60).read())[0]
+for _ in range(90):
+    policy = call("GET", f"/api/workspaces/{A}/documents/{policy['id']}")
+    if policy["status"] in ("ready", "failed"):
+        break
+    time.sleep(1)
+ok("policy ingested in the new workspace", policy["status"] == "ready" and any(t["cco_id"] == "CCO-07" for t in policy["tags"]), str(policy)[:300])
+tag_approval = next(a for a in call("GET", f"/api/workspaces/{A}/approvals?status=pending") if a["payload"].get("cco_id") == "CCO-07")
+call("POST", f"/api/workspaces/{A}/approvals/{tag_approval['id']}/decide", {"decision": "approve"})
 
 print("inventory")
 ok("kb lookups", len(call("GET", "/api/kb/agentic-risks")) == 10 and len(call("GET", "/api/kb/requirements?framework=iso-42001")) == 65)
@@ -64,7 +87,7 @@ agent = call("POST", f"/api/workspaces/{A}/systems", {"kind": "agent", "name": "
                             "kill_switch": "Feature flag", "agentic_risks": ["ASI01", "ASI02"]}})
 ok("system and agent card stored", sysm["risk_class"] is None and sysm["risk_class_status"] == "none" and agent["agent_card"]["tools"][0]["write_access"] is True
    and agent["agent_card"]["autonomy_level"] == 3)
-ok("listed", len(call("GET", f"/api/workspaces/{A}/systems")) >= 2)
+ok("listed", len(call("GET", f"/api/workspaces/{A}/systems")) == 2)
 
 print("orchestrated assessment")
 run = call("POST", f"/api/workspaces/{A}/systems/{sysm['id']}/assess")
@@ -103,7 +126,7 @@ ok("verified quote keeps its status with citation", by["AIA-Art.26"]["status"] =
 ok("unverifiable 'compliant' claim downgraded", by["AIA-Art.27"]["status"] == "insufficient_evidence" and "Downgraded" in by["AIA-Art.27"]["rationale"])
 ok("titles and review state", by["GDPR-Art.35"]["requirement_title"] == "Data protection impact assessment" and all(f["review_status"] == "proposed" for f in fs))
 inferred = [f for f in fs if f["origin"] == "crosswalk"]
-ok("crosswalk infers findings in other frameworks, clearly marked", len(inferred) > 3 and all(f["via"] and f["rationale"].startswith("Inferred") for f in inferred)
+ok("crosswalk infers a limited number of findings in other frameworks, clearly marked", 3 < len(inferred) <= 15 and all(f["via"] and f["rationale"].startswith("Inferred") for f in inferred)
    and all(f["requirement_ref"] not in by for f in inferred), f"{len(inferred)} inferred")
 via_iso = [f for f in inferred if "ISO42001-A.7.4" in f["via"]]
 ok("ISO data-quality finding propagates to AI Act Art. 10 via CCO", any(f["requirement_ref"] == "AIA-Art.10" for f in inferred), str([(f["requirement_ref"], f["via"]) for f in inferred][:8]))
@@ -120,7 +143,7 @@ before = call("GET", f"/api/workspaces/{A}/compliance")
 fw = {f["id"]: f for f in before["frameworks"]}
 ok("unapproved findings do not count", all(f["gap"] == 0 and f["partial"] == 0 for f in fw.values()), str(fw))
 cco7 = next(o for o in before["objectives"] if o["id"] == "CCO-07")
-ok("approved evidence marks linked requirements in every framework", cco7["approved_evidence"] >= 1
+ok("approved evidence marks linked requirements in every framework", cco7["approved_evidence"] == 1
    and {r["framework"] for r in cco7["requirements"] if r["status"] == "evidence_present"} == {"eu-ai-act", "gdpr", "iso-42001", "nist-ai-rmf"})
 pend = [a for a in call("GET", f"/api/workspaces/{A}/approvals?status=pending") if a["kind"] == "assessment_findings" and a["payload"]["run_id"] == run["id"]]
 ok("one findings approval per framework", {a["payload"]["framework"] for a in pend} == {"eu-ai-act", "gdpr", "iso-42001", "nist-ai-rmf"})
