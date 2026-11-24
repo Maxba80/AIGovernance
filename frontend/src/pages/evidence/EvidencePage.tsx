@@ -16,7 +16,8 @@ type TabId = 'documents' | 'approvals';
 function EvidenceContent({ workspace }: { workspace: Workspace }) {
   const [params, setParams] = useSearchParams();
   const tab: TabId = params.get('tab') === 'approvals' ? 'approvals' : 'documents';
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  // Deep link from the Compliance Graph: /evidence?doc=<id> opens that document.
+  const [selectedId, setSelectedId] = useState<string | null>(() => params.get('doc'));
 
   const documents = useQuery({
     queryKey: qk.documents(workspace.id),

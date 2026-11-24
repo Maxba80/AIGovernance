@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient, type UseQueryResult } from '@tanstack/react-query';
-import { ArrowRight, Check, ChevronDown, ChevronRight, ClipboardCheck, PauseCircle, X } from 'lucide-react';
+import { AlertTriangle, ArrowRight, Check, ChevronDown, ChevronRight, ClipboardCheck, PauseCircle, X } from 'lucide-react';
 import { api, errorMessage, qk, type Approval, type RiskClass } from '../../lib/api';
 import { formatDateTime, formatPercent, humanize } from '../../lib/format';
 import {
@@ -36,6 +36,7 @@ const KIND_LABELS: Record<string, string> = {
   evidence_tag: 'Evidence tag',
   risk_classification: 'Risk classification',
   assessment_findings: 'Assessment findings',
+  assessment_document: 'Assessment document',
 };
 
 interface ApprovalCardProps {
@@ -219,6 +220,80 @@ function FindingsBody({ workspaceId, approval, inline }: ClassificationBodyProps
   );
 }
 
+// ---------- assessment_document ----------
+
+function DocumentBody({ workspaceId, approval, inline }: ClassificationBodyProps) {
+  const p = approval.payload ?? {};
+  const assessmentId = asString(p.assessment_id);
+  const systemId = asString(p.system_id);
+  const systemName = useSystemName(workspaceId, systemId);
+  const type = asString(p.type);
+  const version = asNumber(p.version);
+  const total = asNumber(p.sections_total);
+  const empty = asNumber(p.sections_empty) ?? 0;
+  const unsupported = asNumber(p.sections_unsupported) ?? 0;
+
+  return (
+    <div className="mt-3 space-y-3">
+      <dl className="grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-3">
+        <div className="min-w-0">
+          <dt className="text-xs text-muted">Type</dt>
+          <dd className="mt-0.5 font-mono text-xs text-fg [overflow-wrap:anywhere]">{type ?? '—'}</dd>
+        </div>
+        <div className="min-w-0">
+          <dt className="text-xs text-muted">Version</dt>
+          <dd className="mt-0.5 text-sm font-medium tabular-nums text-fg">{version != null ? `v${version}` : '—'}</dd>
+        </div>
+        <div className="min-w-0">
+          <dt className="text-xs text-muted">System</dt>
+          <dd className="mt-0.5 text-sm font-medium text-fg [overflow-wrap:anywhere]">
+            {systemId && !inline ? (
+              <Link to={`/inventory/${encodeURIComponent(systemId)}`} className="hover:text-accent-text hover:underline">
+                {systemName ?? 'Open the system'}
+              </Link>
+            ) : (
+              (systemName ?? '—')
+            )}
+          </dd>
+        </div>
+      </dl>
+
+      <div>
+        <Label>Sections</Label>
+        <div className="mt-1 flex flex-wrap gap-1.5">
+          <Badge tone="grey">{total != null ? `${total} in total` : 'Total not recorded'}</Badge>
+          <Badge tone={empty > 0 ? 'amber' : 'grey'} withDot>
+            {empty} empty
+          </Badge>
+          <Badge tone={unsupported > 0 ? 'red' : 'grey'} withDot>
+            {unsupported} unsupported
+          </Badge>
+        </div>
+      </div>
+
+      {(empty > 0 || unsupported > 0) && (
+        <Notice tone="warning">
+          <div className="flex items-start gap-2">
+            <AlertTriangle className="mt-px h-4 w-4 shrink-0" />
+            <div>
+              <span className="font-medium">This document is not complete.</span>{' '}
+              {empty > 0 && `${empty} section${empty === 1 ? ' is' : 's are'} empty. `}
+              {unsupported > 0 && `${unsupported} AI-written section${unsupported === 1 ? ' has' : 's have'} no verified source behind ${unsupported === 1 ? 'it' : 'them'}. `}
+              Read it before approving — approval fixes the text with a content hash.
+            </div>
+          </div>
+        </Notice>
+      )}
+
+      {assessmentId && !inline && (
+        <Link to={`/assessments/${encodeURIComponent(assessmentId)}`} className="inline-flex items-center gap-1 text-xs font-medium text-accent-text hover:underline">
+          Open the document <ArrowRight className="h-3 w-3" />
+        </Link>
+      )}
+    </div>
+  );
+}
+
 // ---------- Card ----------
 
 export function ApprovalCard({ workspaceId, approval, onOpenDocument, inline }: ApprovalCardProps) {
@@ -230,7 +305,8 @@ export function ApprovalCard({ workspaceId, approval, onOpenDocument, inline }: 
 
   const isClassification = approval.kind === 'risk_classification';
   const isFindings = approval.kind === 'assessment_findings';
-  const isKnown = isClassification || isFindings || approval.kind === 'evidence_tag';
+  const isDocument = approval.kind === 'assessment_document';
+  const isKnown = isClassification || isFindings || isDocument || approval.kind === 'evidence_tag';
   const proposedClass = isClassification ? asString(approval.payload?.proposed_class) : null;
 
   const decide = useMutation({
@@ -274,6 +350,7 @@ export function ApprovalCard({ workspaceId, approval, onOpenDocument, inline }: 
 
       {isClassification && <ClassificationBody workspaceId={workspaceId} approval={approval} inline={inline} />}
       {isFindings && <FindingsBody workspaceId={workspaceId} approval={approval} inline={inline} />}
+      {isDocument && <DocumentBody workspaceId={workspaceId} approval={approval} inline={inline} />}
 
       <dl className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-xs">
         <div className="flex gap-1.5">
@@ -284,7 +361,7 @@ export function ApprovalCard({ workspaceId, approval, onOpenDocument, inline }: 
           <dt className="text-muted">Model</dt>
           <dd className="break-all font-mono text-fg">{approval.model ?? '—'}</dd>
         </div>
-        {!isClassification && (
+        {!isClassification && !isDocument && (
           <div className="flex gap-1.5">
             <dt className="text-muted">Confidence</dt>
             <dd className="font-medium tabular-nums text-fg">{formatPercent(approval.confidence)}</dd>
@@ -306,8 +383,8 @@ export function ApprovalCard({ workspaceId, approval, onOpenDocument, inline }: 
         </div>
       )}
 
-      {/* Findings sets cite their sources per finding, so an empty list here is not a missing citation. */}
-      {(hasSources || !isFindings) && (
+      {/* Findings sets and documents cite their sources per finding / per section, so an empty list here is not a missing citation. */}
+      {(hasSources || (!isFindings && !isDocument)) && (
         <div className="mt-3">
           <div className="mb-1.5 flex items-center justify-between">
             <span className="text-xs font-medium text-muted">Sources</span>

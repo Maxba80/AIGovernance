@@ -13,6 +13,7 @@ import { Card } from '../../components/ui/Card';
 import { EmptyState, ErrorState, Notice, SkeletonRows } from '../../components/ui/Feedback';
 import { useToast } from '../../components/ui/Toast';
 import { WorkspaceGate } from '../../components/WorkspaceGate';
+import { AssessmentsSection } from '../assessments/AssessmentsSection';
 import { FindingsSection } from './FindingsSection';
 import { ClassificationSection, GdprSection, NistSection } from './ResultSections';
 import { RisksSection } from './RisksSection';
@@ -225,6 +226,11 @@ function SystemDetail({ workspace, systemId }: { workspace: Workspace; systemId:
 
         <FindingsSection workspaceId={wid} systemId={systemId} runId={viewingLatest || !run ? null : run.id} active={viewedActive} />
         <RisksSection workspaceId={wid} systemId={systemId} runId={run?.id ?? null} active={viewedActive} />
+        <AssessmentsSection
+          workspaceId={wid}
+          systemId={systemId}
+          description="Assisted assessment documents for this entry (FRIA, Annex IV, DPIA, RoPA, LIA, Art. 22, TIA): an agent drafts from the evidence, you edit, a human approves."
+        />
       </div>
 
       <SystemFormPanel workspaceId={wid} open={editOpen} kind={s.kind} system={s} onClose={() => setEditOpen(false)} />

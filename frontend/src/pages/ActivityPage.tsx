@@ -1,8 +1,8 @@
 import { Fragment, useState, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
-import { ChevronDown, ChevronRight, Cpu, PlayCircle, RefreshCw, ScrollText, ShieldAlert, ShieldCheck } from 'lucide-react';
-import { api, qk, type ActorType, type AuditEntry, type AssessmentRun, type AuditPage, type Job } from '../lib/api';
+import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
+import { ChevronDown, ChevronRight, Cpu, Download, PlayCircle, RefreshCw, ScrollText, ShieldAlert, ShieldCheck } from 'lucide-react';
+import { api, errorMessage, qk, saveBlob, type ActorType, type AuditEntry, type AssessmentRun, type AuditPage, type Job } from '../lib/api';
 import { cn, formatDate, formatDateTime, formatNumber, formatTime, humanize } from '../lib/format';
 import { useWorkspace } from '../lib/workspace';
 import { SourceList } from '../components/AiBadge';
@@ -12,6 +12,7 @@ import { Button } from '../components/ui/Button';
 import { Card, CardHeader, PageHeader } from '../components/ui/Card';
 import { CopyValue, HashChip } from '../components/ui/Copy';
 import { EmptyState, ErrorState, Notice, ProgressBar, SkeletonRows } from '../components/ui/Feedback';
+import { useToast } from '../components/ui/Toast';
 
 const PAGE_SIZE = 100;
 
@@ -367,6 +368,32 @@ function AuditRow({ entry, open, onToggle }: { entry: AuditEntry; open: boolean;
 
 type Scope = 'workspace' | 'all';
 
+/** Downloads the whole trail as NDJSON (oldest first; the last line is the chain verification). */
+function ExportButton() {
+  const toast = useToast();
+  const exportTrail = useMutation({
+    mutationFn: api.auditExport,
+    onSuccess: (blob) => {
+      const d = new Date();
+      const pad = (n: number) => String(n).padStart(2, '0');
+      saveBlob(blob, `audit-trail-${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}.ndjson`);
+      toast.success('Audit trail exported');
+    },
+    onError: (err) => toast.error(`Could not export the audit trail: ${errorMessage(err)}`),
+  });
+  return (
+    <Button
+      size="sm"
+      icon={<Download className="h-3.5 w-3.5" />}
+      loading={exportTrail.isPending}
+      onClick={() => exportTrail.mutate()}
+      title="Download every entry as NDJSON, one per line, oldest first. The last line is the result of the chain verification."
+    >
+      Export audit trail
+    </Button>
+  );
+}
+
 function AuditTrail() {
   const { current } = useWorkspace();
   const [scope, setScope] = useState<Scope>('workspace');
@@ -438,6 +465,7 @@ function AuditTrail() {
             >
               Refresh
             </Button>
+            <ExportButton />
           </>
         }
       />

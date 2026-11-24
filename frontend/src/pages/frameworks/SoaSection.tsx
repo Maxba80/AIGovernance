@@ -102,40 +102,38 @@ function SoaTableRow({ workspaceId, row, onDirtyChange }: SoaTableRowProps) {
             aria-label={`${row.control_id} justification`}
             aria-invalid={!!localError}
             placeholder={draft.applicable ? 'Why it applies (optional)' : 'Why it is excluded (required)'}
-            className={`min-w-[180px] text-xs ${!draft.applicable && missingJustification ? 'border-amber-400' : ''}`}
+            className={`min-w-[160px] text-xs ${!draft.applicable && missingJustification ? 'border-amber-400' : ''}`}
           />
         </td>
         <td className="td align-top">
-          <Select
-            value={draft.implementation_status}
-            onChange={(e) => set('implementation_status', e.target.value as ImplementationStatus)}
-            aria-label={`${row.control_id} implementation status`}
-            disabled={!draft.applicable}
-            className="h-8 w-[130px] text-xs"
-          >
-            {IMPLEMENTATION_STATUSES.map((s) => (
-              <option key={s} value={s}>
-                {IMPLEMENTATION_LABELS[s]}
-              </option>
-            ))}
-          </Select>
+          <div className="flex w-[140px] flex-col gap-1.5">
+            <Select
+              value={draft.implementation_status}
+              onChange={(e) => set('implementation_status', e.target.value as ImplementationStatus)}
+              aria-label={`${row.control_id} implementation status`}
+              disabled={!draft.applicable}
+              className="h-8 text-xs"
+            >
+              {IMPLEMENTATION_STATUSES.map((s) => (
+                <option key={s} value={s}>
+                  {IMPLEMENTATION_LABELS[s]}
+                </option>
+              ))}
+            </Select>
+            <Input value={draft.owner} onChange={(e) => set('owner', e.target.value)} aria-label={`${row.control_id} owner`} placeholder="Owner" className="h-8 text-xs" />
+          </div>
         </td>
         <td className="td align-top">
-          <Input value={draft.owner} onChange={(e) => set('owner', e.target.value)} aria-label={`${row.control_id} owner`} placeholder="Owner" className="h-8 w-[120px] text-xs" />
-        </td>
-        <td className="td align-top">
-          <Textarea rows={2} value={draft.notes} onChange={(e) => set('notes', e.target.value)} aria-label={`${row.control_id} notes`} placeholder="Notes" className="min-w-[150px] text-xs" />
+          <Textarea rows={2} value={draft.notes} onChange={(e) => set('notes', e.target.value)} aria-label={`${row.control_id} notes`} placeholder="Notes" className="min-w-[130px] text-xs" />
         </td>
         <td className="td align-top">
           <div className="pt-1">
             <ComplianceStatusBadge status={row.status} />
           </div>
-        </td>
-        <td className="td align-top">
           {docs.length === 0 ? (
-            <span className="text-xs text-muted">None</span>
+            <div className="mt-1.5 text-xs text-muted">No evidence document</div>
           ) : (
-            <ul className="max-w-[170px] space-y-0.5">
+            <ul className="mt-1.5 max-w-[170px] space-y-0.5">
               {docs.map((d) => (
                 <li key={d.id} className="flex items-center gap-1 text-xs text-fg" title={d.filename}>
                   <FileText className="h-3 w-3 shrink-0 text-indigo-500" aria-hidden />
@@ -166,7 +164,7 @@ function SoaTableRow({ workspaceId, row, onDirtyChange }: SoaTableRowProps) {
       </tr>
       {error && (
         <tr>
-          <td colSpan={9} className="border-b border-line bg-red-50 px-4 py-1.5 text-xs text-red-700 dark:bg-red-500/10 dark:text-red-300" role="alert">
+          <td colSpan={7} className="border-b border-line bg-red-50 px-4 py-1.5 text-xs text-red-700 dark:bg-red-500/10 dark:text-red-300" role="alert">
             <span className="font-mono">{row.control_id}</span> — {error}
           </td>
         </tr>
@@ -242,17 +240,15 @@ export function SoaSection({ workspaceId }: { workspaceId: string }) {
             ))}
           </dl>
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[1180px] border-collapse text-sm">
+            <table className="w-full min-w-[940px] border-collapse text-sm">
               <thead>
                 <tr>
                   <th className="th">Control</th>
                   <th className="th">Applicable</th>
                   <th className="th">Justification</th>
-                  <th className="th">Implementation</th>
-                  <th className="th">Owner</th>
+                  <th className="th">Implementation / owner</th>
                   <th className="th">Notes</th>
-                  <th className="th">Status</th>
-                  <th className="th">Evidence</th>
+                  <th className="th">Status / evidence</th>
                   <th className="th sticky right-0 bg-surface text-right">Save</th>
                 </tr>
               </thead>
@@ -260,7 +256,7 @@ export function SoaSection({ workspaceId }: { workspaceId: string }) {
                 {objectives.map((o) => (
                   <Fragment key={o.id}>
                     <tr>
-                      <td colSpan={9} className="border-b border-line bg-surface2/60 px-4 py-1.5 text-xs font-semibold text-fg">
+                      <td colSpan={7} className="border-b border-line bg-surface2/60 px-4 py-1.5 text-xs font-semibold text-fg">
                         <span className="font-mono">{o.id}</span>
                         {o.title ? <span className="ml-2">{o.title}</span> : null}
                         <span className="ml-2 font-normal tabular-nums text-muted">

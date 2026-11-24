@@ -217,6 +217,7 @@ def template(type_id: str) -> dict | None:
     raw = open(os.path.join(config.KB_DIR, "templates", type_id + ".md"), encoding="utf-8").read()
     _, front, body = raw.split("---", 2)
     meta = dict(re.findall(r"(?m)^(\w+):\s*(.*)$", front))
+    meta = {k: v.strip().strip('"') if not v.strip().startswith("[") else v for k, v in meta.items()}
     try:
         legal_basis = json.loads(meta.get("legal_basis", "[]"))
     except json.JSONDecodeError:

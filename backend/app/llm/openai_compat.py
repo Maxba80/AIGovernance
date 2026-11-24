@@ -58,7 +58,11 @@ class OpenAICompatibleProvider:
                 last_error = e
                 messages = messages + [{"role": "assistant", "content": text},
                                        {"role": "user", "content": f"That was not valid. Errors: {e.errors()[:5]}. Return only the corrected JSON object."}]
-        raise LLMError(f"The model did not return valid structured output after a retry: {last_error}")
+        first = last_error.errors()[0] if last_error else {}
+        where = ".".join(str(x) for x in first.get("loc", [])) or "response"
+        raise LLMError(f"The model did not return output in the required structure, even after a retry "
+                       f"({last_error.error_count() if last_error else 0} problem(s); first: '{where}' {first.get('msg', '').lower()}). "
+                       "A more capable model usually fixes this.")
 
     def embed(self, model: str, texts: list[str]) -> list[list[float]]:
         response = self._call(self.client.embeddings.create, model=model, input=texts)

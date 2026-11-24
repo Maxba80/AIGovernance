@@ -27,7 +27,7 @@ export function EvidenceList({ evidence, emptyText = 'No evidence was cited for 
             <div className="flex flex-wrap items-baseline gap-x-2 text-xs">
               <span className="break-all font-medium text-fg">{e.filename ?? e.document_id ?? 'Source'}</span>
               {where && <span className="text-muted">{where}</span>}
-              {e.quote && !e.quote_verified && (
+              {e.quote && e.quote_verified === false && (
                 <span
                   className="inline-flex items-center gap-1 self-center font-medium text-amber-700 dark:text-amber-300"
                   title="This quote could not be found word for word in the document. Check the source before relying on it."
@@ -41,7 +41,7 @@ export function EvidenceList({ evidence, emptyText = 'No evidence was cited for 
               <blockquote
                 className={cn(
                   'mt-1.5 border-l-2 pl-2.5 text-xs italic leading-relaxed text-muted',
-                  e.quote_verified ? 'border-line-strong' : 'border-amber-400',
+                  e.quote_verified === false ? 'border-amber-400' : 'border-line-strong',
                 )}
               >
                 “{e.quote}”

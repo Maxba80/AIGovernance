@@ -444,7 +444,8 @@ export interface FindingEvidence {
   page: number | null;
   section: string | null;
   quote: string | null;
-  quote_verified: boolean;
+  /** False when the quote could not be found word for word in the document; may be absent. */
+  quote_verified?: boolean | null;
 }
 
 export interface Finding {
