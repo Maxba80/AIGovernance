@@ -73,6 +73,18 @@ def respond(system: str, user: str) -> str:
     if "NIST AI RMF Specialist" in system:
         return json.dumps({"maturity": {"GOVERN": 2, "MAP": 1, "MEASURE": 0, "MANAGE": 1}, "summary": "Early maturity.", "findings": [
             {"requirement_ref": "NIST-MAP-2.3", "status": "partial", "rationale": "Data considerations documented.", "evidence": [{"passage": n, "quote": q}]}]})
+    if "Draft the sections of a" in system:
+        ids = re.findall(r"(?m)^(s\d+) — ", user)
+        out = []
+        for i, sid in enumerate(ids):
+            if i == 1:
+                out.append({"id": sid, "content": "The organisation states that every decision is reviewed by two people.", "evidence": [{"passage": n, "quote": "every decision is reviewed by two people"}], "needs_input": []})
+            elif i == 2:
+                out.append({"id": sid, "content": "", "evidence": [], "needs_input": ["How often will the system be used?", "For how long?"]})
+            else:
+                out.append({"id": sid, "content": f"Draft for {sid}: data sets are subject to quality requirements.", "evidence": [{"passage": n, "quote": q}], "needs_input": []})
+        out.append({"id": "s999", "content": "Section that does not exist.", "evidence": [], "needs_input": []})
+        return json.dumps({"sections": out})
     if "Crosswalk & Risk Engine" in system:
         return json.dumps({"risks": [{"risk_id": "mit-ai-risk-subdomain-1.1", "likelihood": 4, "severity": 4, "rationale": "Screening can discriminate."},
                                      {"risk_id": "mit-ai-risk-subdomain-2.1", "likelihood": 3, "severity": 4, "rationale": "Candidate data."},

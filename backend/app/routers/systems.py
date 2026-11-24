@@ -289,33 +289,21 @@ def review_risk(risk_id: str, body: RiskReview, wid: str = Depends(require_works
 # ------------------------------------------------------------------ compliance status
 @router.get("/compliance")
 def compliance(wid: str = Depends(require_workspace)):
+    from .. import status
     with db.tx(wid) as c:
-        tags = c.execute("""SELECT t.cco_id, d.id, d.filename FROM evidence_tags t JOIN documents d ON d.id = t.document_id WHERE t.status = 'approved'""").fetchall()
-        found = c.execute("SELECT requirement_ref, status FROM findings WHERE review_status = 'approved'").fetchall()
-    docs: dict = {}
-    for t in tags:
-        docs.setdefault(t["cco_id"], {})[str(t["id"])] = t["filename"]
-    worst: dict = {}
-    for f in found:
-        if f["status"] != "insufficient_evidence" and SEVERITY[f["status"]] < SEVERITY.get(worst.get(f["requirement_ref"]), 99):
-            worst[f["requirement_ref"]] = f["status"]
+        data = status.load(c)
     reqs = kb.requirements()
-    status: dict = {}
+    seen: dict = {}
     objectives = []
     for cco in kb.control_objectives():
-        has_evidence = bool(docs.get(cco["id"]))
         rows = []
         for r in cco["requirements"]:
-            s = worst.get(r["ref"]) or ("evidence_present" if has_evidence and r["strength"] == "primary" else "not_assessed")
+            s = status.of(data, r["ref"])
+            seen[r["ref"]] = s
             rows.append({"ref": r["ref"], "framework": r["framework"], "title": reqs.get(r["ref"], {}).get("title", r["ref"]), "strength": r["strength"], "status": s})
-            rank = ["gap", "partial", "compliant", "not_applicable", "evidence_present", "not_assessed"]
-            if r["ref"] not in status or rank.index(s) < rank.index(status[r["ref"]]):
-                status[r["ref"]] = s
-        objectives.append({"id": cco["id"], "name_en": cco["name_en"], "approved_evidence": len(docs.get(cco["id"], {})),
-                           "documents": [{"id": k, "filename": v} for k, v in docs.get(cco["id"], {}).items()], "requirements": rows})
+        docs = data["approved_docs"].get(cco["id"], {})
+        objectives.append({"id": cco["id"], "name_en": cco["name_en"], "approved_evidence": len(docs),
+                           "documents": [{"id": k, "filename": v} for k, v in docs.items()], "requirements": rows})
     names = {"eu-ai-act": "EU AI Act", "gdpr": "GDPR", "iso-42001": "ISO/IEC 42001", "nist-ai-rmf": "NIST AI RMF"}
-    frameworks = []
-    for fid, name in names.items():
-        mine = [s for ref, s in status.items() if kb.framework_of(ref) == fid]
-        frameworks.append({"id": fid, "name": name, "total": len(mine), **{k: mine.count(k) for k in ("compliant", "partial", "gap", "evidence_present", "not_applicable", "not_assessed")}})
-    return {"frameworks": frameworks, "objectives": objectives}
+    return {"frameworks": [{"id": fid, "name": name, **status.counts(s for ref, s in seen.items() if kb.framework_of(ref) == fid)} for fid, name in names.items()],
+            "objectives": objectives}

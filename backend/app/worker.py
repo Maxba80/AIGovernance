@@ -36,6 +36,15 @@ def run(job: dict) -> None:
             log.exception("assessment job %s failed", job["id"])
             finish(job["id"], "failed", str(e))
         return
+    if job["kind"] == "assessment_draft":
+        from .routers import assessments
+        try:
+            assessments.run_draft(wid, str(job["assessment_id"]))
+            finish(job["id"], "done")
+        except Exception as e:  # recorded on the assessment (draft_error) and in the audit trail
+            log.warning("draft job %s failed: %s", job["id"], e)
+            finish(job["id"], "failed", str(e))
+        return
     doc_id = str(job["document_id"])
     try:
         pipeline.process_document(wid, doc_id, str(job["id"]), embed_only=job["kind"] == "reindex")

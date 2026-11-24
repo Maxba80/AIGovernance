@@ -3,7 +3,7 @@
 AI Governance, Risk & Compliance workspace for the EU AI Act, GDPR, ISO/IEC 42001 and NIST AI RMF.
 Single user, multiple client workspaces, local or cloud models, every AI output traceable to its source.
 
-**Status: Milestone 2** — Docker stack, model settings, evidence ingestion with citations, AI system inventory and Agent Cards, multi-agent assessments (LangGraph) with human approval, cross-framework status, audit trail.
+**Status: Milestone 3** — Docker stack, model settings, evidence ingestion with citations, AI system inventory and Agent Cards, multi-agent assessments (LangGraph) with human approval, cross-framework status, framework modules, assisted assessments (FRIA, DPIA, LIA, TIA, Art. 22, RoPA, Annex IV), ISO Statement of Applicability and CAPA, NIST scorecard, interactive compliance graph, audit trail with export.
 
 ## Start
 
@@ -71,6 +71,17 @@ Rules the agents cannot bypass (enforced in code, not in the prompt):
 
 Each agent can use a different model (Settings → Model routing). A paused run is checkpointed in PostgreSQL and survives restarts.
 
+## Framework modules and assisted assessments (Milestone 3)
+
+- **Frameworks.** For each framework: every requirement with its status, the control objectives it belongs to, the evidence behind it, and the findings per system. Opening a requirement shows its text, its source and verification level, the 2026 amendments (verbatim) for the EU AI Act, and the related requirements in the other frameworks.
+- **EU AI Act.** Application timeline as amended by Regulation (EU) 2026/1744, a manual classification wizard that walks the decision steps, and the obligations that apply to each system given its approved class and role.
+- **ISO/IEC 42001.** Statement of Applicability (excluding a control requires a justification) and a nonconformity/CAPA log (closing requires a corrective action).
+- **NIST AI RMF.** Maturity per function from the latest assessment of each system, and the status of the 72 subcategories.
+- **Assisted assessments.** FRIA, Annex IV, DPIA, RoPA, LIA, Art. 22 and TIA follow the knowledge-base templates section by section. A specialist agent drafts from the evidence; it never overwrites what you wrote; where facts are missing it asks questions instead of inventing text; a section without a verified quote is flagged. Approval stores the SHA-256 of the approved content; revising starts a new version.
+- **Compliance Graph.** Requirements, control objectives, documents and systems as an interactive graph: select a node to see everything connected to it.
+- **One status definition.** A requirement's status is the most recent approved finding per system (worst across systems); otherwise "evidence present" when an objective it belongs to has approved evidence; otherwise "not assessed". Unapproved proposals never change it.
+- **Audit export.** The whole trail as NDJSON, with the verification result on the last line.
+
 ## Known limits
 
 - Scanned PDFs are not read (no OCR).
@@ -100,6 +111,10 @@ python backend/tests/e2e.py http://<backend-address>:8000 "$ADMIN_EMAIL" "$ADMIN
 python backend/tests/e2e_m2.py http://<backend-address>:8000 "$ADMIN_EMAIL" "$ADMIN_PASSWORD"
 ```
 
+```bash
+python backend/tests/e2e_m3.py http://<backend-address>:8000 "$ADMIN_EMAIL" "$ADMIN_PASSWORD"
+```
+
 ## Layout
 
 ```
@@ -112,6 +127,5 @@ docs/                 API contract per milestone
 
 ## Roadmap
 
-- **M3** EU AI Act, GDPR, ISO 42001 and NIST modules, interactive compliance graph.
 - **M4** Deliverable generation (DOCX, PDF, XLSX) with white-label branding, risk heat map.
 - **M5** MCP server, UX refinement and testing.

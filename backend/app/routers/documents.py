@@ -230,6 +230,19 @@ def decide(approval_id: str, body: Decision, wid: str = Depends(require_workspac
                                                            "by": user["email"], "comment": body.comment})))
             c.execute("UPDATE runs SET status = 'queued', pending_approval_id = NULL WHERE id = %s", (a["payload"]["run_id"],))
             extra = {"proposed_class": a["payload"]["proposed_class"], "final_class": final if status == "approved" else None, "run_id": a["payload"]["run_id"]}
+        elif a["kind"] == "assessment_document":
+            from .assessments import content_hash
+            doc = c.execute("SELECT * FROM assessments WHERE id = %s FOR UPDATE", (a["payload"]["assessment_id"],)).fetchone()
+            if not doc or doc["status"] != "in_review":
+                raise HTTPException(409, "The assessment is no longer waiting for review")
+            digest = content_hash(doc["sections"])
+            if status == "approved":
+                c.execute("UPDATE assessments SET status = 'approved', content_hash = %s, approved_by = %s, approved_at = now(), pending_approval_id = NULL, updated_at = now() WHERE id = %s",
+                          (digest, user["email"], doc["id"]))
+            else:
+                c.execute("UPDATE assessments SET status = 'rejected', pending_approval_id = NULL, updated_at = now() WHERE id = %s", (doc["id"],))
+            extra = {"assessment_id": str(doc["id"]), "type": doc["type"], "version": doc["version"], "content_hash": digest,
+                     "sections_empty": a["payload"].get("sections_empty"), "sections_unsupported": a["payload"].get("sections_unsupported")}
         elif a["kind"] == "assessment_findings":
             n = c.execute("UPDATE findings SET review_status = %s, reviewed_by = %s WHERE id = ANY(%s::uuid[]) AND review_status = 'proposed'",
                           (status, user["email"], a["payload"]["finding_ids"])).rowcount

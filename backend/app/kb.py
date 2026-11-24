@@ -123,3 +123,119 @@ def agentic_risks() -> list[dict]:
         m = re.match(r"(ASI\d+)(?::\d+)?\s+(.*)", e["name"])
         out.append({"id": m.group(1) if m else e["id"], "name": m.group(2) if m else e["name"], "description": e.get("description")})
     return out
+
+
+# ------------------------------------------------------------------ Milestone 3 lookups
+SOURCE_OF = {"eu-ai-act": "eu-ai-act-2024-1689-oj", "gdpr": "gdpr-2016-679", "iso-42001": "iso-iec-42001-2023", "nist-ai-rmf": "nist-ai-100-1"}
+ASSESSMENT_TYPES = ("fria", "annex-iv-technical-documentation", "ai-enhanced-dpia", "ropa-ai-processing",
+                    "legitimate-interest-assessment", "art22-automated-decision-assessment", "transfer-impact-assessment")
+
+
+@functools.lru_cache(maxsize=1)
+def _details() -> dict[str, dict]:
+    out: dict[str, dict] = {}
+    a = ai_act()
+    amend = {m["id"]: m for m in a["amendments_2026_1744"]}
+    for x in a["articles"] + a["annexes"]:
+        is_article = "chapter" in x
+        out[x["id"]] = {"group": (x.get("chapter") or "Inserted by Regulation (EU) 2026/1744") if is_article else "Annexes",
+                        "citation": x["citation"], "text": x.get("text_as_amended") or x.get("text"), "summary": None,
+                        "status_note": (x.get("status") if x.get("amendments") else None) or (f"inserted by {x['inserted_by']}" if x.get("inserted_by") else None),
+                        "amendments": [{"citation": m["citation"], "instruction": amend[m["amendment_id"]]["instruction"]} for m in x.get("amendments", [])
+                                       if not x.get("text_as_amended")]}
+    relevance = {g["id"]: g["ai_relevance"] for g in gdpr_index()}
+    for x in _load("frameworks/gdpr/articles.json")["articles"]:
+        out[x["id"]] = {"group": x.get("chapter") or "GDPR", "citation": x["citation"], "text": x["text"], "summary": relevance.get(x["id"]),
+                        "status_note": None, "amendments": []}
+    iso = iso_requirements()
+    for x in iso["clauses"]:
+        out[x["id"]] = {"group": "Clauses 4–10", "citation": x["citation"], "text": None, "summary": x["summary_paraphrased"], "status_note": None, "amendments": []}
+    for x in iso["annex_a_controls"]:
+        out[x["id"]] = {"group": "Annex A", "citation": x["citation"], "text": x.get("control"), "summary": f"Objective {x['objective']}: {x['objective_title']}",
+                        "status_note": None, "amendments": []}
+    for x in nist_core():
+        out[x["id"]] = {"group": x["function"], "citation": x["citation"], "text": x["text"], "summary": None, "status_note": None, "amendments": []}
+    return out
+
+
+@functools.lru_cache(maxsize=1)
+def objectives_of() -> dict[str, list[dict]]:
+    out: dict[str, list[dict]] = {}
+    for cco in control_objectives():
+        for r in cco["requirements"]:
+            out.setdefault(r["ref"], []).append({"id": cco["id"], "name_en": cco["name_en"], "strength": r["strength"]})
+    return out
+
+
+@functools.lru_cache(maxsize=1)
+def _sources() -> dict[str, dict]:
+    return {s["id"]: s for s in _load("sources/manifest.json")["sources"]}
+
+
+def requirement_detail(ref: str) -> dict | None:
+    base = requirements().get(ref)
+    if not base:
+        return None
+    related: dict[str, dict] = {}
+    for mine in objectives_of().get(ref, []):
+        cco = cco_index()[mine["id"]]
+        for r in cco["requirements"]:
+            if r["ref"] == ref or r["framework"] == base["framework"]:
+                continue
+            relation = "closeMatch" if mine["strength"] == r["strength"] == "primary" else "relatedMatch"
+            if r["ref"] not in related or (relation == "closeMatch" and related[r["ref"]]["relation"] != "closeMatch"):
+                related[r["ref"]] = {"ref": r["ref"], "framework": r["framework"], "title": requirements().get(r["ref"], {}).get("title", r["ref"]),
+                                     "via": cco["id"], "relation": relation}
+    src = _sources().get(SOURCE_OF.get(base["framework"], ""), {})
+    return {**base, **_details().get(ref, {}), "objectives": objectives_of().get(ref, []),
+            "related": sorted(related.values(), key=lambda r: (r["framework"], r["relation"] != "closeMatch", r["ref"])),
+            "source": {"id": src.get("id"), "title": src.get("title"), "version": src.get("version"), "verification": src.get("verification")}}
+
+
+def group_of(ref: str) -> str:
+    return _details().get(ref, {}).get("group", "")
+
+
+def ai_act_overview() -> dict:
+    o = ai_act_overlay()
+    amended = o["timeline"]["as_amended_by_reg_2026_1744"]
+    return {"risk_classes": [{"id": c["id"], "label_en": c["label_en"], "basis": c["basis"]} for c in o["risk_classes"]],
+            "decision_tree": o["classification_decision_tree"], "roles": [{"id": r["id"], "obligations": r["obligations"]} for r in o["roles"]],
+            "timeline": amended["entries"], "timeline_verification": amended["verification"],
+            "penalties": o["penalties_original_art_99"]["tiers"], "key_changes": amended.get("key_changes", []), "guidance": o["guidance_register"]}
+
+
+AGENT_FOR_CATEGORY = {"eu-ai-act": ("eu_ai_act", "EU AI Act Specialist"), "gdpr": ("gdpr", "Data Protection & GDPR Specialist")}
+
+
+@functools.lru_cache(maxsize=16)
+def template(type_id: str) -> dict | None:
+    """Parses a deliverable template into its sections (title, legal basis, where the content comes from, guidance)."""
+    import re
+    if type_id not in ASSESSMENT_TYPES:
+        return None
+    raw = open(os.path.join(config.KB_DIR, "templates", type_id + ".md"), encoding="utf-8").read()
+    _, front, body = raw.split("---", 2)
+    meta = dict(re.findall(r"(?m)^(\w+):\s*(.*)$", front))
+    try:
+        legal_basis = json.loads(meta.get("legal_basis", "[]"))
+    except json.JSONDecodeError:
+        legal_basis = []
+    sections = []
+    for m in re.finditer(r"(?ms)^## (.+?)\n(.*?)(?=^## |\Z)", body):
+        title, content = m.group(1).strip(), m.group(2)
+        if re.search(r"sources and evidence|approval and sign-off|document control", title, re.I):
+            continue
+        c = re.search(r"<!--\s*basis:\s*(.*?)\s*\|\s*fill:\s*(\w+)\s*\|\s*evidence:\s*(\w+)\s*-->", content)
+        g = re.search(r"(?m)^[_*](.+?)[_*]\s*$", content)
+        guidance = " ".join(s for s in re.split(r"(?<=[.!?])\s+", g.group(1)) if "{{" not in s) if g else ""
+        num = re.match(r"(\d+(?:\.\d+)?)[.)]?\s+(.*)", title)
+        sections.append({"id": f"s{len(sections)}", "number": num.group(1) if num else str(len(sections)), "title": num.group(2) if num else title,
+                         "basis": c.group(1) if c else "", "fill": c.group(2) if c else "user", "guidance": guidance})
+    role, agent = AGENT_FOR_CATEGORY.get(meta.get("category", ""), ("orchestrator", "Orchestrator"))
+    return {"id": type_id, "title_en": meta.get("title_en", type_id), "category": meta.get("category", ""), "legal_basis": legal_basis,
+            "agent": agent, "agent_role": role, "sections": sections}
+
+
+def assessment_types() -> list[dict]:
+    return [{k: (len(v) if k == "sections" else v) for k, v in template(t).items() if k != "agent_role"} for t in ASSESSMENT_TYPES]
