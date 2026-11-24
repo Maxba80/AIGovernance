@@ -1,12 +1,19 @@
 import type {
+  AssessmentStatus,
   ComplianceStatus,
   DecisionStep,
   FindingStatus,
+  FrameworkId,
+  ImplementationStatus,
   Lifecycle,
+  NcGrade,
+  NcStatus,
   OrgRole,
   ReviewStatus,
   RiskClass,
   RunStatus,
+  SectionFill,
+  StatusCounts,
   StepStatus,
 } from './api';
 import type { Tone } from '../components/ui/Badge';
@@ -250,4 +257,95 @@ export function asCountMap(v: unknown): Record<string, number> {
     if (typeof n === 'number' && Number.isFinite(n)) out[k] = n;
   }
   return out;
+}
+
+// ---------- Milestone 3 ----------
+
+/** Badge tones of the requirement statuses: green compliant, amber partial, red gap, indigo evidence present, grey otherwise. */
+export const COMPLIANCE_TONES: Record<ComplianceStatus, Tone> = {
+  compliant: 'green',
+  partial: 'amber',
+  gap: 'red',
+  evidence_present: 'indigo',
+  not_applicable: 'grey',
+  not_assessed: 'grey',
+};
+
+export function complianceLabel(status: string | null | undefined): string {
+  if (!status) return COMPLIANCE_LABELS.not_assessed;
+  return COMPLIANCE_LABELS[status as ComplianceStatus] ?? status.replace(/_/g, ' ');
+}
+
+export const FRAMEWORK_IDS: FrameworkId[] = ['eu-ai-act', 'gdpr', 'iso-42001', 'nist-ai-rmf'];
+
+export function isFrameworkId(value: unknown): value is FrameworkId {
+  return typeof value === 'string' && (FRAMEWORK_IDS as string[]).includes(value);
+}
+
+export const ASSESSMENT_STATUS_LABELS: Record<AssessmentStatus, string> = {
+  draft: 'Draft',
+  drafting: 'AI is drafting',
+  in_review: 'In review',
+  approved: 'Approved',
+  rejected: 'Rejected',
+};
+
+export const ASSESSMENT_STATUS_TONES: Record<AssessmentStatus, Tone> = {
+  draft: 'grey',
+  drafting: 'amber',
+  in_review: 'amber',
+  approved: 'green',
+  rejected: 'red',
+};
+
+export const SECTION_FILL_LABELS: Record<SectionFill, string> = {
+  rag: 'From evidence',
+  user: 'Your input',
+  computed: 'Computed',
+  kb: 'From the knowledge base',
+};
+
+export const SECTION_FILL_HINTS: Record<SectionFill, string> = {
+  rag: 'The agent drafts this section from the evidence documents and cites them.',
+  user: 'Only you can provide this. The agent does not write it.',
+  computed: 'Filled from data already in the workspace, such as the inventory entry.',
+  kb: 'Filled from the regulatory knowledge base.',
+};
+
+export const NC_GRADES: NcGrade[] = ['major', 'minor', 'observation', 'opportunity'];
+export const NC_GRADE_LABELS: Record<NcGrade, string> = {
+  major: 'Major',
+  minor: 'Minor',
+  observation: 'Observation',
+  opportunity: 'Opportunity for improvement',
+};
+export const NC_GRADE_TONES: Record<NcGrade, Tone> = { major: 'red', minor: 'amber', observation: 'indigo', opportunity: 'grey' };
+
+export const NC_STATUSES: NcStatus[] = ['open', 'in_progress', 'implemented', 'verified', 'closed'];
+export const NC_STATUS_LABELS: Record<NcStatus, string> = {
+  open: 'Open',
+  in_progress: 'In progress',
+  implemented: 'Implemented',
+  verified: 'Verified',
+  closed: 'Closed',
+};
+export const NC_STATUS_TONES: Record<NcStatus, Tone> = {
+  open: 'red',
+  in_progress: 'amber',
+  implemented: 'indigo',
+  verified: 'green',
+  closed: 'grey',
+};
+
+export const IMPLEMENTATION_STATUSES: ImplementationStatus[] = ['not_started', 'in_progress', 'implemented'];
+export const IMPLEMENTATION_LABELS: Record<ImplementationStatus, string> = {
+  not_started: 'Not started',
+  in_progress: 'In progress',
+  implemented: 'Implemented',
+};
+
+/** Reads a count from a status-count object, tolerating missing keys. */
+export function statusCount(counts: StatusCounts | null | undefined, status: ComplianceStatus): number {
+  const n = counts?.[status];
+  return typeof n === 'number' && n > 0 ? n : 0;
 }

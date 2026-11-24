@@ -1,8 +1,26 @@
 import type { ReactNode } from 'react';
 import { AlertTriangle } from 'lucide-react';
-import type { DecisionStep, FindingStatus, ReviewStatus, RiskClass, RiskClassStatus, RunStatus } from '../lib/api';
+import type {
+  AssessmentStatus,
+  ComplianceStatus,
+  DecisionStep,
+  FindingStatus,
+  ReviewStatus,
+  RiskClass,
+  RiskClassStatus,
+  RunStatus,
+  StatusCounts,
+} from '../lib/api';
 import { cn } from '../lib/format';
 import {
+  ASSESSMENT_STATUS_LABELS,
+  ASSESSMENT_STATUS_TONES,
+  COMPLIANCE_FILL,
+  COMPLIANCE_LABELS,
+  COMPLIANCE_STATUSES,
+  COMPLIANCE_TONES,
+  complianceLabel,
+  statusCount,
   FINDING_STATUS_TONES,
   REVIEW_LABELS,
   REVIEW_TONES,
@@ -24,6 +42,73 @@ export function RefChip({ children, title }: { children: ReactNode; title?: stri
     >
       {children}
     </span>
+  );
+}
+
+/** A reference chip that opens the requirement (same look as RefChip, with a hover state). */
+export function RefButton({ children, title, onClick }: { children: ReactNode; title?: string; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      title={title}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick();
+      }}
+      className="inline-flex items-center whitespace-nowrap rounded border border-line bg-surface2 px-1.5 py-0.5 font-mono text-[11px] leading-4 text-fg hover:border-accent hover:text-accent-text"
+    >
+      {children}
+    </button>
+  );
+}
+
+/** Requirement status: green compliant, amber partial, red gap, indigo evidence present, grey not assessed. */
+export function ComplianceStatusBadge({ status }: { status: ComplianceStatus | string | null | undefined }) {
+  const s = (status ?? 'not_assessed') as ComplianceStatus;
+  return (
+    <Badge tone={COMPLIANCE_TONES[s] ?? 'grey'} withDot>
+      {complianceLabel(status)}
+    </Badge>
+  );
+}
+
+export function AssessmentStatusBadge({ status }: { status: AssessmentStatus | string }) {
+  return (
+    <Badge tone={ASSESSMENT_STATUS_TONES[status as AssessmentStatus] ?? 'grey'} withDot>
+      {ASSESSMENT_STATUS_LABELS[status as AssessmentStatus] ?? status}
+    </Badge>
+  );
+}
+
+/** Stacked status bar with a legend, for a set of requirement status counts. */
+export function StatusCountsBar({ counts, label, className }: { counts: StatusCounts | null | undefined; label: string; className?: string }) {
+  const segments = COMPLIANCE_STATUSES.map((s) => ({ status: s, n: statusCount(counts, s) })).filter((x) => x.n > 0);
+  const sum = segments.reduce((n, x) => n + x.n, 0);
+  const total = Math.max(counts?.total ?? 0, sum);
+  const summary = COMPLIANCE_STATUSES.map((s) => `${COMPLIANCE_LABELS[s]}: ${statusCount(counts, s)}`).join(', ');
+  return (
+    <div className={className}>
+      <div className="flex h-2.5 w-full overflow-hidden rounded-full bg-surface2" role="img" aria-label={`${label} — ${summary}`}>
+        {total > 0 &&
+          segments.map((x) => (
+            <div
+              key={x.status}
+              className={cn('h-full border-r border-surface last:border-r-0', COMPLIANCE_FILL[x.status])}
+              style={{ width: `${(x.n / total) * 100}%` }}
+              title={`${COMPLIANCE_LABELS[x.status]}: ${x.n}`}
+            />
+          ))}
+      </div>
+      <dl className="mt-1.5 flex flex-wrap gap-x-3 gap-y-0.5 text-xs">
+        {COMPLIANCE_STATUSES.filter((s) => s !== 'not_applicable' || statusCount(counts, s) > 0).map((s) => (
+          <div key={s} className="flex items-center gap-1">
+            <span className={cn('h-2 w-2 rounded-sm', COMPLIANCE_FILL[s])} aria-hidden />
+            <dt className="text-muted">{COMPLIANCE_LABELS[s]}</dt>
+            <dd className={cn('font-medium tabular-nums', statusCount(counts, s) > 0 ? 'text-fg' : 'text-muted')}>{statusCount(counts, s)}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
   );
 }
 

@@ -1,5 +1,5 @@
 /**
- * Typed client for the Milestone 1 and Milestone 2 API contracts (docs/api-m1.md, docs/api-m2.md).
+ * Typed client for the Milestone 1–3 API contracts (docs/api-m1.md, docs/api-m2.md, docs/api-m3.md).
  */
 
 // ---------- Types ----------
@@ -549,6 +549,361 @@ export interface AgenticRisk {
   description: string | null;
 }
 
+// ---------- Milestone 3: knowledge base detail, framework modules, assisted assessments, graph ----------
+
+export type StatusCounts = Partial<Record<ComplianceStatus, number>> & { total?: number };
+
+export interface KbAmendment {
+  citation: string;
+  /** Verbatim amending text. */
+  instruction: string;
+}
+
+export interface KbRequirementObjective {
+  id: string;
+  name_en: string;
+  strength: 'primary' | 'supporting';
+}
+
+export interface KbRelatedRequirement {
+  ref: string;
+  framework: string;
+  title: string | null;
+  /** The control objective the two requirements share. */
+  via: string | null;
+  relation: 'closeMatch' | 'relatedMatch' | string;
+}
+
+export interface KbRequirementSource {
+  id: string;
+  title: string;
+  version: string | null;
+  verification: string | null;
+}
+
+export interface KbRequirementDetail {
+  ref: string;
+  framework: string;
+  title: string;
+  group: string | null;
+  citation: string | null;
+  /** Null where the full text is not included (e.g. ISO standards in the public edition). */
+  text: string | null;
+  summary: string | null;
+  status_note: string | null;
+  amendments: KbAmendment[];
+  objectives: KbRequirementObjective[];
+  related: KbRelatedRequirement[];
+  source: KbRequirementSource | null;
+}
+
+export interface EuRiskClassInfo {
+  id: RiskClass;
+  label_en: string;
+  basis: string[];
+}
+
+export interface DecisionTreeStep {
+  step: number;
+  question: string;
+  basis: string[];
+  /** The next step number, or a result string that ends the tree. */
+  yes: number | string;
+  no: number | string;
+}
+
+export interface EuRoleInfo {
+  id: string;
+  obligations: string[];
+}
+
+export interface EuTimelineEntry {
+  date: string;
+  what: string;
+  basis: string | null;
+}
+
+export interface EuPenalty {
+  infringement: string;
+  max_eur: number | null;
+  max_turnover_pct: number | null;
+}
+
+export interface EuKeyChange {
+  article: string;
+  change: string;
+}
+
+export interface EuGuidance {
+  title: string;
+  date: string | null;
+  status: string | null;
+  verification: string | null;
+  url?: string | null;
+}
+
+export interface EuAiActOverview {
+  risk_classes: EuRiskClassInfo[];
+  decision_tree: DecisionTreeStep[];
+  roles: EuRoleInfo[];
+  timeline: EuTimelineEntry[];
+  timeline_verification: string | null;
+  penalties: EuPenalty[];
+  key_changes: EuKeyChange[];
+  guidance: EuGuidance[];
+}
+
+export type AssessmentCategory = 'eu-ai-act' | 'gdpr';
+
+export interface AssessmentType {
+  id: string;
+  title_en: string;
+  category: AssessmentCategory;
+  legal_basis: string[];
+  agent: string | null;
+  /** Number of sections in the template. */
+  sections: number;
+}
+
+export interface FrameworkFindingRef {
+  system_id: string;
+  system_name: string;
+  status: FindingStatus;
+  review_status: ReviewStatus;
+  origin: 'agent' | 'crosswalk';
+}
+
+export interface FrameworkRequirement {
+  ref: string;
+  title: string;
+  group: string | null;
+  status: ComplianceStatus;
+  objectives: string[];
+  /** Number of evidence documents. */
+  evidence_documents: number;
+  findings: FrameworkFindingRef[];
+}
+
+export interface FrameworkDetail {
+  id: FrameworkId;
+  name: string;
+  counts: StatusCounts;
+  groups: string[];
+  requirements: FrameworkRequirement[];
+}
+
+export interface Obligation {
+  ref: string;
+  title: string;
+  status: ComplianceStatus;
+  review_status: ReviewStatus | null;
+  finding_id: string | null;
+}
+
+export interface SystemObligations {
+  risk_class: RiskClass | null;
+  org_role: OrgRole | null;
+  basis_note: string | null;
+  obligations: Obligation[];
+}
+
+export type ImplementationStatus = 'not_started' | 'in_progress' | 'implemented';
+
+export interface SoaRow {
+  control_ref: string;
+  control_id: string;
+  title: string;
+  objective: string;
+  objective_title: string | null;
+  applicable: boolean;
+  justification: string | null;
+  implementation_status: ImplementationStatus;
+  owner: string | null;
+  notes: string | null;
+  status: ComplianceStatus;
+  evidence_documents: Array<{ id: string; filename: string }>;
+  updated_at: string | null;
+  updated_by: string | null;
+}
+
+export interface SoaInput {
+  applicable: boolean;
+  justification: string;
+  implementation_status: ImplementationStatus;
+  owner: string;
+  notes: string;
+}
+
+export type NcGrade = 'major' | 'minor' | 'observation' | 'opportunity';
+export type NcStatus = 'open' | 'in_progress' | 'implemented' | 'verified' | 'closed';
+
+export interface Nonconformity {
+  id: string;
+  requirement_ref: string;
+  requirement_title: string | null;
+  system_id: string | null;
+  system_name: string | null;
+  finding_id: string | null;
+  grade: NcGrade;
+  title: string;
+  description: string | null;
+  root_cause: string | null;
+  correction: string | null;
+  corrective_action: string | null;
+  owner: string | null;
+  /** YYYY-MM-DD */
+  due_date: string | null;
+  status: NcStatus;
+  created_at: string;
+  closed_at: string | null;
+  verified_by: string | null;
+}
+
+export interface NonconformityCreate {
+  requirement_ref: string;
+  title: string;
+  grade: NcGrade;
+  description?: string;
+  system_id?: string;
+  finding_id?: string;
+  owner?: string;
+  due_date?: string;
+}
+
+/** PUT body: any editable field. */
+export interface NonconformityUpdate {
+  requirement_ref?: string;
+  title?: string;
+  grade?: NcGrade;
+  description?: string | null;
+  system_id?: string | null;
+  root_cause?: string | null;
+  correction?: string | null;
+  corrective_action?: string | null;
+  owner?: string | null;
+  due_date?: string | null;
+  status?: NcStatus;
+}
+
+export interface NistSubcategory {
+  ref: string;
+  text: string;
+  status: ComplianceStatus;
+}
+
+export interface NistCategory {
+  id: string;
+  subcategories: NistSubcategory[];
+}
+
+export interface NistSystemLevel {
+  system_id: string;
+  name: string;
+  level: number | null;
+  run_id: string | null;
+}
+
+export interface NistFunctionScore {
+  id: NistFunction | string;
+  description: string | null;
+  /** Average of the latest completed run of each system (0–5); null when there is none. */
+  maturity: number | null;
+  systems: NistSystemLevel[];
+  counts: StatusCounts;
+  categories: NistCategory[];
+}
+
+export interface NistScorecard {
+  scale_note: string | null;
+  functions: NistFunctionScore[];
+}
+
+export type AssessmentStatus = 'draft' | 'drafting' | 'in_review' | 'approved' | 'rejected';
+export type SectionFill = 'rag' | 'user' | 'computed' | 'kb';
+export type SectionSource = 'empty' | 'ai' | 'user' | 'ai_edited';
+
+export interface AssessmentSection {
+  id: string;
+  number: string;
+  title: string;
+  basis: string | null;
+  fill: SectionFill;
+  guidance: string | null;
+  /** Markdown text. */
+  content: string | null;
+  source: SectionSource;
+  evidence: FindingEvidence[];
+  needs_input: string[];
+  /** False when an AI-written section has no verified quote behind it. */
+  supported: boolean;
+}
+
+export interface AssessmentSummary {
+  id: string;
+  system_id: string;
+  system_name: string;
+  type: string;
+  title: string;
+  category: AssessmentCategory;
+  legal_basis: string[];
+  status: AssessmentStatus;
+  version: number;
+  agent: string | null;
+  model: string | null;
+  draft_error: string | null;
+  content_hash: string | null;
+  approved_by: string | null;
+  approved_at: string | null;
+  pending_approval_id: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Assessment extends AssessmentSummary {
+  sections: AssessmentSection[];
+}
+
+export type GraphNodeType = 'objective' | 'requirement' | 'document' | 'system';
+
+export interface GraphNode {
+  id: string;
+  type: GraphNodeType;
+  label: string;
+  /** Objectives and requirements. */
+  status?: ComplianceStatus | null;
+  /** Requirements. */
+  framework?: string | null;
+  title?: string | null;
+  /** Documents. */
+  doc_type?: string | null;
+  /** Systems. */
+  risk_class?: RiskClass | null;
+  kind?: SystemKind | null;
+}
+
+export type GraphEdgeType = 'belongs_to' | 'evidence' | 'finding';
+
+export interface GraphEdge {
+  source: string;
+  target: string;
+  type: GraphEdgeType;
+  /** `belongs_to` */
+  strength?: 'primary' | 'supporting' | null;
+  /** `evidence`: approved | proposed. `finding`: the finding status. */
+  status?: string | null;
+  /** `evidence` */
+  page?: number | null;
+  /** `finding` */
+  review_status?: ReviewStatus | null;
+  origin?: 'agent' | 'crosswalk' | null;
+}
+
+export interface ComplianceGraph {
+  nodes: GraphNode[];
+  edges: GraphEdge[];
+  counts: StatusCounts;
+}
+
 // ---------- Token storage & errors ----------
 
 const TOKEN_KEY = 'aigrc.token';
@@ -731,6 +1086,39 @@ export function uploadDocuments(
   return { promise, abort: () => xhr.abort() };
 }
 
+// ---------- Download (audit export) ----------
+
+/** Fetches a file with the bearer token; used where a plain link cannot carry the Authorization header. */
+async function download(path: string): Promise<Blob> {
+  const headers: Record<string, string> = {};
+  const token = getToken();
+  if (token) headers.Authorization = `Bearer ${token}`;
+  let res: Response;
+  try {
+    res = await fetch(`/api${path}`, { headers });
+  } catch {
+    throw new ApiError(0, 'Cannot reach the server', null);
+  }
+  if (!res.ok) {
+    const body = parseBody(await res.text().catch(() => ''));
+    if (res.status === 401) handleUnauthorized();
+    throw new ApiError(res.status, detailFrom(body, res.status, res.statusText), body);
+  }
+  return res.blob();
+}
+
+/** Hands a blob to the browser as a file download. */
+export function saveBlob(blob: Blob, filename: string): void {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
 // ---------- Endpoints ----------
 
 const ws = (wid: string) => `/workspaces/${encodeURIComponent(wid)}`;
@@ -834,6 +1222,50 @@ export const api = {
   // Knowledge base lookups (M2, not workspace-scoped)
   kbRequirements: (framework?: string) => request<KbRequirement[]>('/kb/requirements', { query: { framework } }),
   kbAgenticRisks: () => request<AgenticRisk[]>('/kb/agentic-risks'),
+
+  // Knowledge base detail (M3, not workspace-scoped)
+  kbRequirement: (ref: string) => request<KbRequirementDetail>(`/kb/requirements/${enc(ref)}`),
+  euAiActOverview: () => request<EuAiActOverview>('/kb/eu-ai-act/overview'),
+  assessmentTypes: () => request<AssessmentType[]>('/kb/assessment-types'),
+
+  // Framework modules (M3)
+  framework: (wid: string, fid: FrameworkId) => request<FrameworkDetail>(`${ws(wid)}/frameworks/${enc(fid)}`),
+  systemObligations: (wid: string, systemId: string) =>
+    request<SystemObligations>(`${ws(wid)}/systems/${enc(systemId)}/obligations`),
+  listSoa: (wid: string) => request<SoaRow[]>(`${ws(wid)}/iso/soa`),
+  updateSoa: (wid: string, controlRef: string, body: SoaInput) =>
+    request<SoaRow>(`${ws(wid)}/iso/soa/${enc(controlRef)}`, { method: 'PUT', body }),
+  listNonconformities: (wid: string, status?: NcStatus) =>
+    request<Nonconformity[]>(`${ws(wid)}/nonconformities`, { query: { status } }),
+  createNonconformity: (wid: string, body: NonconformityCreate) =>
+    request<Nonconformity>(`${ws(wid)}/nonconformities`, { method: 'POST', body }),
+  updateNonconformity: (wid: string, id: string, body: NonconformityUpdate) =>
+    request<Nonconformity>(`${ws(wid)}/nonconformities/${enc(id)}`, { method: 'PUT', body }),
+  deleteNonconformity: (wid: string, id: string) =>
+    request<void>(`${ws(wid)}/nonconformities/${enc(id)}`, { method: 'DELETE' }),
+  nistScorecard: (wid: string) => request<NistScorecard>(`${ws(wid)}/nist/scorecard`),
+
+  // Assisted assessments (M3)
+  listAssessments: (wid: string, systemId?: string) =>
+    request<AssessmentSummary[]>(`${ws(wid)}/assessments`, { query: { system_id: systemId } }),
+  createAssessment: (wid: string, body: { system_id: string; type: string }) =>
+    request<Assessment>(`${ws(wid)}/assessments`, { method: 'POST', body }),
+  getAssessment: (wid: string, id: string) => request<Assessment>(`${ws(wid)}/assessments/${enc(id)}`),
+  draftAssessment: (wid: string, id: string) =>
+    request<Assessment>(`${ws(wid)}/assessments/${enc(id)}/draft`, { method: 'POST' }),
+  updateAssessmentSection: (wid: string, id: string, sectionId: string, content: string) =>
+    request<Assessment>(`${ws(wid)}/assessments/${enc(id)}/sections/${enc(sectionId)}`, { method: 'PUT', body: { content } }),
+  submitAssessment: (wid: string, id: string) =>
+    request<Assessment>(`${ws(wid)}/assessments/${enc(id)}/submit`, { method: 'POST' }),
+  reviseAssessment: (wid: string, id: string) =>
+    request<Assessment>(`${ws(wid)}/assessments/${enc(id)}/revise`, { method: 'POST' }),
+  deleteAssessment: (wid: string, id: string) => request<void>(`${ws(wid)}/assessments/${enc(id)}`, { method: 'DELETE' }),
+
+  // Compliance graph (M3)
+  graph: (wid: string) => request<ComplianceGraph>(`${ws(wid)}/graph`),
+
+  // Audit export (M3): NDJSON, one entry per line, oldest first; the last line is the chain verification.
+  auditExport: () => download('/audit/export'),
 };
 
 // ---------- Query keys ----------
@@ -863,6 +1295,24 @@ export const qk = {
   risks: (wid: string, systemId: string) => ['risks', wid, systemId] as const,
   compliance: (wid: string) => ['compliance', wid] as const,
   agenticRisks: ['kb-agentic-risks'] as const,
+  kbRequirements: (framework: string) => ['kb-requirements', framework] as const,
+  kbRequirement: (ref: string) => ['kb-requirement', ref] as const,
+  euOverview: ['kb-eu-ai-act-overview'] as const,
+  assessmentTypes: ['kb-assessment-types'] as const,
+  frameworksAll: (wid: string) => ['framework', wid] as const,
+  framework: (wid: string, fid: string) => ['framework', wid, fid] as const,
+  obligationsAll: (wid: string) => ['obligations', wid] as const,
+  obligations: (wid: string, systemId: string) => ['obligations', wid, systemId] as const,
+  soa: (wid: string) => ['iso-soa', wid] as const,
+  /** Prefix of every nonconformity query of a workspace. */
+  nonconformitiesAll: (wid: string) => ['nonconformities', wid] as const,
+  nonconformities: (wid: string, status: string | null) => ['nonconformities', wid, status] as const,
+  nistScorecard: (wid: string) => ['nist-scorecard', wid] as const,
+  /** Prefix of every assessment query of a workspace (lists and single documents). */
+  assessmentsAll: (wid: string) => ['assessments', wid] as const,
+  assessments: (wid: string, systemId: string | null) => ['assessments', wid, 'list', systemId] as const,
+  assessment: (wid: string, id: string) => ['assessments', wid, 'one', id] as const,
+  graph: (wid: string) => ['graph', wid] as const,
 };
 
 /** A run that is still moving, or paused on a human decision. */
