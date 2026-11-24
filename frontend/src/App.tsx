@@ -5,6 +5,8 @@ import { AppShell } from './components/layout/AppShell';
 import { LoginPage } from './pages/LoginPage';
 import { OverviewPage } from './pages/OverviewPage';
 import { EvidencePage } from './pages/evidence/EvidencePage';
+import { InventoryPage } from './pages/inventory/InventoryPage';
+import { SystemDetailPage } from './pages/inventory/SystemDetailPage';
 import { ActivityPage } from './pages/ActivityPage';
 import { SettingsPage } from './pages/settings/SettingsPage';
 import { PlaceholderPage } from './pages/PlaceholderPage';
@@ -29,7 +31,8 @@ export default function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route element={<Protected />}>
         <Route index element={<OverviewPage />} />
-        <Route path="inventory" element={<PlaceholderPage id="inventory" />} />
+        <Route path="inventory" element={<InventoryPage />} />
+        <Route path="inventory/:id" element={<SystemDetailPage />} />
         <Route path="frameworks" element={<PlaceholderPage id="frameworks" />} />
         <Route path="graph" element={<PlaceholderPage id="graph" />} />
         <Route path="risks" element={<PlaceholderPage id="risks" />} />

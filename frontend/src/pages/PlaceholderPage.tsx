@@ -3,14 +3,9 @@ import { NAV_ITEMS } from '../components/layout/nav';
 import { Badge } from '../components/ui/Badge';
 import { Card, PageHeader } from '../components/ui/Card';
 
-type PlaceholderId = 'inventory' | 'frameworks' | 'graph' | 'risks' | 'deliverables';
+type PlaceholderId = 'frameworks' | 'graph' | 'risks' | 'deliverables';
 
 const CONTENT: Record<PlaceholderId, { path: string; milestone: string; purpose: string }> = {
-  inventory: {
-    path: '/inventory',
-    milestone: 'Milestone 2',
-    purpose: 'A register of the AI systems and use cases in scope, with their owners, purpose and risk classification.',
-  },
   frameworks: {
     path: '/frameworks',
     milestone: 'Milestone 3',

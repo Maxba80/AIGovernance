@@ -1,4 +1,7 @@
 import { NavLink } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { api, qk } from '../../lib/api';
+import { useWorkspace } from '../../lib/workspace';
 import { PanelLeftClose, PanelLeftOpen, ShieldCheck } from 'lucide-react';
 import { cn } from '../../lib/format';
 import { usePrefs } from '../../lib/prefs';
@@ -6,6 +9,16 @@ import { NAV_ITEMS } from './nav';
 
 export function Sidebar() {
   const { sidebarCollapsed: collapsed, toggleSidebar } = usePrefs();
+  const { current } = useWorkspace();
+  const wid = current?.id ?? '';
+  // Pending approvals of every kind, shown as a badge on "Evidence" (where the approval queue lives).
+  const approvals = useQuery({
+    queryKey: qk.approvals(wid),
+    queryFn: () => api.listApprovals(wid, 'pending'),
+    enabled: !!wid,
+    refetchInterval: 15_000,
+  });
+  const pending = approvals.data?.length ?? 0;
 
   return (
     <aside
@@ -27,15 +40,26 @@ export function Sidebar() {
       </div>
 
       <nav className="min-h-0 flex-1 space-y-0.5 overflow-y-auto p-2" aria-label="Main">
-        {NAV_ITEMS.map((item) => (
+        {NAV_ITEMS.map((item) => {
+          const badge = item.to === '/evidence' && pending > 0 ? pending : 0;
+          const badgeTitle = `${badge} pending approval${badge === 1 ? '' : 's'}`;
+          return (
           <NavLink
             key={item.to}
             to={item.to}
             end={item.to === '/'}
-            title={collapsed ? (item.milestone ? `${item.label} (${item.milestone})` : item.label) : undefined}
+            title={
+              collapsed
+                ? item.milestone
+                  ? `${item.label} (${item.milestone})`
+                  : badge
+                    ? `${item.label} — ${badgeTitle}`
+                    : item.label
+                : undefined
+            }
             className={({ isActive }) =>
               cn(
-                'group flex h-8 items-center gap-2.5 rounded-md text-sm transition-colors',
+                'group relative flex h-8 items-center gap-2.5 rounded-md text-sm transition-colors',
                 collapsed ? 'justify-center' : 'px-2.5',
                 isActive ? 'bg-accent/10 font-medium text-accent-text' : 'text-muted hover:bg-surface2 hover:text-fg',
               )
@@ -46,8 +70,21 @@ export function Sidebar() {
             {!collapsed && item.milestone && (
               <span className="rounded border border-line px-1 text-[10px] font-medium leading-4 text-muted">{item.milestone}</span>
             )}
+            {badge > 0 &&
+              (collapsed ? (
+                <span className="absolute right-1.5 top-1 h-2 w-2 rounded-full bg-amber-500" aria-label={badgeTitle} />
+              ) : (
+                <span
+                  title={badgeTitle}
+                  aria-label={badgeTitle}
+                  className="rounded-full bg-amber-100 px-1.5 text-xs font-medium leading-5 tabular-nums text-amber-800 dark:bg-amber-500/15 dark:text-amber-300"
+                >
+                  {badge > 99 ? '99+' : badge}
+                </span>
+              ))}
           </NavLink>
-        ))}
+          );
+        })}
       </nav>
 
       <div className="shrink-0 border-t border-line p-2">

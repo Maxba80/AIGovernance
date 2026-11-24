@@ -21,7 +21,7 @@ export interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
   { to: '/', label: 'Overview', icon: LayoutDashboard },
-  { to: '/inventory', label: 'Inventory', icon: Boxes, milestone: 'M2' },
+  { to: '/inventory', label: 'Inventory', icon: Boxes },
   { to: '/frameworks', label: 'Frameworks', icon: Library, milestone: 'M3' },
   { to: '/graph', label: 'Compliance Graph', icon: Waypoints, milestone: 'M3' },
   { to: '/risks', label: 'Risks', icon: ShieldAlert, milestone: 'M4' },

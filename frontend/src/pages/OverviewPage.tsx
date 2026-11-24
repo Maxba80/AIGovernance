@@ -9,6 +9,7 @@ import { Card, CardHeader, PageHeader } from '../components/ui/Card';
 import { HashChip } from '../components/ui/Copy';
 import { EmptyState, ErrorState, Skeleton, SkeletonRows } from '../components/ui/Feedback';
 import { WorkspaceGate } from '../components/WorkspaceGate';
+import { ComplianceCard, SystemsCard } from './overview/ComplianceCard';
 
 /** Framework chip colours — used for borders and labels only. */
 function frameworkTone(f: KbFramework): { tone: Tone; border: string } {
@@ -336,14 +337,20 @@ function AuditChainCard() {
 export function OverviewPage() {
   return (
     <div className="space-y-6">
-      <PageHeader title="Overview" description="The normative knowledge base, the evidence in this workspace and the state of the audit trail." />
+      <PageHeader title="Overview" description="The normative knowledge base, the evidence, AI systems and compliance coverage of this workspace, and the state of the audit trail." />
       <div className="-mt-1 space-y-6">
         <WorkspaceGate>
           {(workspace) => (
-            <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
-              <DocumentsCard workspace={workspace} />
-              <ApprovalsCard workspace={workspace} />
-              <AuditChainCard />
+            <div className="space-y-3">
+              <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
+                <DocumentsCard workspace={workspace} />
+                <ApprovalsCard workspace={workspace} />
+                <AuditChainCard />
+              </div>
+              <div className="grid grid-cols-1 items-start gap-3 lg:grid-cols-3">
+                <SystemsCard workspace={workspace} />
+                <ComplianceCard workspace={workspace} />
+              </div>
             </div>
           )}
         </WorkspaceGate>

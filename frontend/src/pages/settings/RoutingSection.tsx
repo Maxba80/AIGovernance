@@ -337,6 +337,12 @@ export function RoutingSection({ settings }: { settings: LlmSettings }) {
             presets={presets}
             emptyLabel="Not set"
           />
+          {roles.length > 0 && (
+            <div className="bg-surface2/50 px-4 py-2 text-xs text-muted">
+              <span className="font-medium text-fg">Agents ({roles.length})</span> — optional per-agent overrides. An agent left on “Use the Reasoning
+              model” follows the Reasoning model above.
+            </div>
+          )}
           {roles.map((role) => (
             <RoutingRow
               key={role.id}
