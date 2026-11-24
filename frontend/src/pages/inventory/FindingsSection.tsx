@@ -16,8 +16,8 @@ import { Menu, MenuItem } from '../../components/ui/Menu';
 import { Tabs } from '../../components/ui/Tabs';
 import { useToast } from '../../components/ui/Toast';
 
-function EvidenceList({ evidence }: { evidence: FindingEvidence[] }) {
-  if (evidence.length === 0) return <p className="text-xs text-muted">No evidence was cited for this finding.</p>;
+export function EvidenceList({ evidence, emptyText = 'No evidence was cited for this finding.' }: { evidence: FindingEvidence[]; emptyText?: string }) {
+  if (evidence.length === 0) return <p className="text-xs text-muted">{emptyText}</p>;
   return (
     <ul className="space-y-1.5">
       {evidence.map((e, i) => {

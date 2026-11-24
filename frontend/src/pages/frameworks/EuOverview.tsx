@@ -140,7 +140,7 @@ export function EuOverview() {
       </Card>
 
       <Card>
-        <CardHeader title="Penalties" description="Maximum administrative fines. For undertakings the higher of the two amounts applies, unless the Regulation says otherwise." />
+        <CardHeader title="Penalties" description="Maximum administrative fines per type of infringement, as recorded in the knowledge base." />
         {penalties.length === 0 ? (
           <EmptyState compact title="No penalties recorded" />
         ) : (
