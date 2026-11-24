@@ -1,0 +1,825 @@
+{
+ "_meta": {
+  "kb_file": "crosswalks/risk/ibm_to_nist_genai.json",
+  "generated": "2026-11-24",
+  "source_ids": [
+   "ibm-ai-atlas-nexus"
+  ],
+  "licence": "Apache-2.0",
+  "relation_vocabulary": "SKOS mapping relations",
+  "extraction": "converted from ai-atlas-nexus `mappings/ibm2nistgenai_from_tsv_data.yaml`",
+  "verification": "upstream mapping; not re-validated"
+ },
+ "mappings": [
+  {
+   "source": "atlas-attribute-inference-attack",
+   "relation": "broadMatch",
+   "target": "nist-data-privacy"
+  },
+  {
+   "source": "nist-data-privacy",
+   "relation": "narrowMatch",
+   "target": "atlas-attribute-inference-attack"
+  },
+  {
+   "source": "atlas-attribute-inference-attack",
+   "relation": "broadMatch",
+   "target": "nist-information-security"
+  },
+  {
+   "source": "nist-information-security",
+   "relation": "narrowMatch",
+   "target": "atlas-attribute-inference-attack"
+  },
+  {
+   "source": "atlas-confidential-data-in-prompt",
+   "relation": "broadMatch",
+   "target": "nist-intellectual-property"
+  },
+  {
+   "source": "nist-intellectual-property",
+   "relation": "narrowMatch",
+   "target": "atlas-confidential-data-in-prompt"
+  },
+  {
+   "source": "atlas-confidential-information-in-data",
+   "relation": "broadMatch",
+   "target": "nist-intellectual-property"
+  },
+  {
+   "source": "nist-intellectual-property",
+   "relation": "narrowMatch",
+   "target": "atlas-confidential-information-in-data"
+  },
+  {
+   "source": "atlas-copyright-infringement",
+   "relation": "broadMatch",
+   "target": "nist-intellectual-property"
+  },
+  {
+   "source": "nist-intellectual-property",
+   "relation": "narrowMatch",
+   "target": "atlas-copyright-infringement"
+  },
+  {
+   "source": "atlas-dangerous-use",
+   "relation": "broadMatch",
+   "target": "nist-cbrn-information-or-capabilities"
+  },
+  {
+   "source": "nist-cbrn-information-or-capabilities",
+   "relation": "narrowMatch",
+   "target": "atlas-dangerous-use"
+  },
+  {
+   "source": "atlas-data-acquisition",
+   "relation": "broadMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "narrowMatch",
+   "target": "atlas-data-acquisition"
+  },
+  {
+   "source": "atlas-data-bias",
+   "relation": "broadMatch",
+   "target": "nist-harmful-bias-and-homogenization"
+  },
+  {
+   "source": "nist-harmful-bias-and-homogenization",
+   "relation": "narrowMatch",
+   "target": "atlas-data-bias"
+  },
+  {
+   "source": "atlas-data-contamination",
+   "relation": "broadMatch",
+   "target": "nist-information-security"
+  },
+  {
+   "source": "nist-information-security",
+   "relation": "narrowMatch",
+   "target": "atlas-data-contamination"
+  },
+  {
+   "source": "atlas-data-contamination",
+   "relation": "broadMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "narrowMatch",
+   "target": "atlas-data-contamination"
+  },
+  {
+   "source": "atlas-data-curation",
+   "relation": "broadMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "narrowMatch",
+   "target": "atlas-data-curation"
+  },
+  {
+   "source": "atlas-data-poisoning",
+   "relation": "broadMatch",
+   "target": "nist-information-security"
+  },
+  {
+   "source": "nist-information-security",
+   "relation": "narrowMatch",
+   "target": "atlas-data-poisoning"
+  },
+  {
+   "source": "atlas-data-privacy-rights",
+   "relation": "broadMatch",
+   "target": "nist-data-privacy"
+  },
+  {
+   "source": "nist-data-privacy",
+   "relation": "narrowMatch",
+   "target": "atlas-data-privacy-rights"
+  },
+  {
+   "source": "atlas-data-provenance",
+   "relation": "broadMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "narrowMatch",
+   "target": "atlas-data-provenance"
+  },
+  {
+   "source": "atlas-data-transfer",
+   "relation": "broadMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "narrowMatch",
+   "target": "atlas-data-transfer"
+  },
+  {
+   "source": "atlas-data-transparency",
+   "relation": "broadMatch",
+   "target": "nist-information-integrity"
+  },
+  {
+   "source": "nist-information-integrity",
+   "relation": "narrowMatch",
+   "target": "atlas-data-transparency"
+  },
+  {
+   "source": "atlas-data-transparency",
+   "relation": "broadMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "narrowMatch",
+   "target": "atlas-data-transparency"
+  },
+  {
+   "source": "atlas-data-usage-rights",
+   "relation": "broadMatch",
+   "target": "nist-data-privacy"
+  },
+  {
+   "source": "nist-data-privacy",
+   "relation": "narrowMatch",
+   "target": "atlas-data-usage-rights"
+  },
+  {
+   "source": "atlas-data-usage-rights",
+   "relation": "broadMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "narrowMatch",
+   "target": "atlas-data-usage-rights"
+  },
+  {
+   "source": "atlas-data-usage-rights",
+   "relation": "broadMatch",
+   "target": "nist-intellectual-property"
+  },
+  {
+   "source": "nist-intellectual-property",
+   "relation": "narrowMatch",
+   "target": "atlas-data-usage-rights"
+  },
+  {
+   "source": "atlas-decision-bias",
+   "relation": "broadMatch",
+   "target": "nist-harmful-bias-and-homogenization"
+  },
+  {
+   "source": "nist-harmful-bias-and-homogenization",
+   "relation": "narrowMatch",
+   "target": "atlas-decision-bias"
+  },
+  {
+   "source": "atlas-evasion-attack",
+   "relation": "broadMatch",
+   "target": "nist-information-security"
+  },
+  {
+   "source": "nist-information-security",
+   "relation": "narrowMatch",
+   "target": "atlas-evasion-attack"
+  },
+  {
+   "source": "atlas-exposing-personal-information",
+   "relation": "broadMatch",
+   "target": "nist-data-privacy"
+  },
+  {
+   "source": "nist-data-privacy",
+   "relation": "narrowMatch",
+   "target": "atlas-exposing-personal-information"
+  },
+  {
+   "source": "atlas-extraction-attack",
+   "relation": "broadMatch",
+   "target": "nist-information-security"
+  },
+  {
+   "source": "nist-information-security",
+   "relation": "narrowMatch",
+   "target": "atlas-extraction-attack"
+  },
+  {
+   "source": "atlas-generated-content-ownership",
+   "relation": "broadMatch",
+   "target": "nist-intellectual-property"
+  },
+  {
+   "source": "nist-intellectual-property",
+   "relation": "narrowMatch",
+   "target": "atlas-generated-content-ownership"
+  },
+  {
+   "source": "atlas-hallucination",
+   "relation": "exactMatch",
+   "target": "nist-confabulation"
+  },
+  {
+   "source": "nist-confabulation",
+   "relation": "exactMatch",
+   "target": "atlas-hallucination"
+  },
+  {
+   "source": "atlas-harmful-code-generation",
+   "relation": "broadMatch",
+   "target": "nist-dangerous-violent-or-hateful-content"
+  },
+  {
+   "source": "nist-dangerous-violent-or-hateful-content",
+   "relation": "narrowMatch",
+   "target": "atlas-harmful-code-generation"
+  },
+  {
+   "source": "atlas-harmful-code-generation",
+   "relation": "broadMatch",
+   "target": "nist-information-security"
+  },
+  {
+   "source": "nist-information-security",
+   "relation": "narrowMatch",
+   "target": "atlas-harmful-code-generation"
+  },
+  {
+   "source": "atlas-harmful-output",
+   "relation": "closeMatch",
+   "target": "nist-dangerous-violent-or-hateful-content"
+  },
+  {
+   "source": "nist-dangerous-violent-or-hateful-content",
+   "relation": "closeMatch",
+   "target": "atlas-harmful-output"
+  },
+  {
+   "source": "atlas-harmful-output",
+   "relation": "relatedMatch",
+   "target": "nist-cbrn-information-or-capabilities"
+  },
+  {
+   "source": "nist-cbrn-information-or-capabilities",
+   "relation": "relatedMatch",
+   "target": "atlas-harmful-output"
+  },
+  {
+   "source": "atlas-harmful-output",
+   "relation": "relatedMatch",
+   "target": "nist-data-privacy"
+  },
+  {
+   "source": "nist-data-privacy",
+   "relation": "relatedMatch",
+   "target": "atlas-harmful-output"
+  },
+  {
+   "source": "atlas-harmful-output",
+   "relation": "relatedMatch",
+   "target": "nist-obscene-degrading-and-or-abusive-content"
+  },
+  {
+   "source": "nist-obscene-degrading-and-or-abusive-content",
+   "relation": "relatedMatch",
+   "target": "atlas-harmful-output"
+  },
+  {
+   "source": "atlas-human-exploitation",
+   "relation": "broadMatch",
+   "target": "nist-obscene-degrading-and-or-abusive-content"
+  },
+  {
+   "source": "nist-obscene-degrading-and-or-abusive-content",
+   "relation": "narrowMatch",
+   "target": "atlas-human-exploitation"
+  },
+  {
+   "source": "atlas-impact-on-affected-communities",
+   "relation": "broadMatch",
+   "target": "nist-harmful-bias-and-homogenization"
+  },
+  {
+   "source": "nist-harmful-bias-and-homogenization",
+   "relation": "narrowMatch",
+   "target": "atlas-impact-on-affected-communities"
+  },
+  {
+   "source": "atlas-impact-on-cultural-diversity",
+   "relation": "broadMatch",
+   "target": "nist-information-integrity"
+  },
+  {
+   "source": "nist-information-integrity",
+   "relation": "narrowMatch",
+   "target": "atlas-impact-on-cultural-diversity"
+  },
+  {
+   "source": "atlas-impact-on-human-agency",
+   "relation": "broadMatch",
+   "target": "nist-information-integrity"
+  },
+  {
+   "source": "nist-information-integrity",
+   "relation": "narrowMatch",
+   "target": "atlas-impact-on-human-agency"
+  },
+  {
+   "source": "atlas-impact-on-the-environment",
+   "relation": "exactMatch",
+   "target": "nist-environmental-impacts"
+  },
+  {
+   "source": "nist-environmental-impacts",
+   "relation": "exactMatch",
+   "target": "atlas-impact-on-the-environment"
+  },
+  {
+   "source": "atlas-improper-retraining",
+   "relation": "broadMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "narrowMatch",
+   "target": "atlas-improper-retraining"
+  },
+  {
+   "source": "atlas-improper-usage",
+   "relation": "broadMatch",
+   "target": "nist-human-ai-configuration"
+  },
+  {
+   "source": "nist-human-ai-configuration",
+   "relation": "narrowMatch",
+   "target": "atlas-improper-usage"
+  },
+  {
+   "source": "atlas-inaccessible-training-data",
+   "relation": "broadMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "narrowMatch",
+   "target": "atlas-inaccessible-training-data"
+  },
+  {
+   "source": "atlas-incomplete-advice",
+   "relation": "broadMatch",
+   "target": "nist-information-integrity"
+  },
+  {
+   "source": "nist-information-integrity",
+   "relation": "narrowMatch",
+   "target": "atlas-incomplete-advice"
+  },
+  {
+   "source": "atlas-incomplete-advice",
+   "relation": "broadMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "narrowMatch",
+   "target": "atlas-incomplete-advice"
+  },
+  {
+   "source": "atlas-incomplete-usage-definition",
+   "relation": "broadMatch",
+   "target": "nist-human-ai-configuration"
+  },
+  {
+   "source": "nist-human-ai-configuration",
+   "relation": "narrowMatch",
+   "target": "atlas-incomplete-usage-definition"
+  },
+  {
+   "source": "atlas-incorrect-risk-testing",
+   "relation": "broadMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "narrowMatch",
+   "target": "atlas-incorrect-risk-testing"
+  },
+  {
+   "source": "atlas-ip-information-in-prompt",
+   "relation": "broadMatch",
+   "target": "nist-data-privacy"
+  },
+  {
+   "source": "nist-data-privacy",
+   "relation": "narrowMatch",
+   "target": "atlas-ip-information-in-prompt"
+  },
+  {
+   "source": "atlas-jailbreaking",
+   "relation": "broadMatch",
+   "target": "nist-information-integrity"
+  },
+  {
+   "source": "nist-information-integrity",
+   "relation": "narrowMatch",
+   "target": "atlas-jailbreaking"
+  },
+  {
+   "source": "atlas-lack-of-data-transparency",
+   "relation": "broadMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "narrowMatch",
+   "target": "atlas-lack-of-data-transparency"
+  },
+  {
+   "source": "atlas-lack-of-model-transparency",
+   "relation": "broadMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "narrowMatch",
+   "target": "atlas-lack-of-model-transparency"
+  },
+  {
+   "source": "atlas-lack-of-system-transparency",
+   "relation": "broadMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "narrowMatch",
+   "target": "atlas-lack-of-system-transparency"
+  },
+  {
+   "source": "atlas-lack-of-testing-diversity",
+   "relation": "broadMatch",
+   "target": "nist-information-integrity"
+  },
+  {
+   "source": "nist-information-integrity",
+   "relation": "narrowMatch",
+   "target": "atlas-lack-of-testing-diversity"
+  },
+  {
+   "source": "atlas-legal-accountability",
+   "relation": "broadMatch",
+   "target": "nist-data-privacy"
+  },
+  {
+   "source": "nist-data-privacy",
+   "relation": "narrowMatch",
+   "target": "atlas-legal-accountability"
+  },
+  {
+   "source": "atlas-legal-accountability",
+   "relation": "broadMatch",
+   "target": "nist-intellectual-property"
+  },
+  {
+   "source": "nist-intellectual-property",
+   "relation": "narrowMatch",
+   "target": "atlas-legal-accountability"
+  },
+  {
+   "source": "atlas-legal-accountability",
+   "relation": "broadMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "narrowMatch",
+   "target": "atlas-legal-accountability"
+  },
+  {
+   "source": "atlas-membership-inference-attack",
+   "relation": "broadMatch",
+   "target": "nist-data-privacy"
+  },
+  {
+   "source": "nist-data-privacy",
+   "relation": "narrowMatch",
+   "target": "atlas-membership-inference-attack"
+  },
+  {
+   "source": "atlas-model-usage-rights",
+   "relation": "broadMatch",
+   "target": "nist-data-privacy"
+  },
+  {
+   "source": "nist-data-privacy",
+   "relation": "narrowMatch",
+   "target": "atlas-model-usage-rights"
+  },
+  {
+   "source": "atlas-model-usage-rights",
+   "relation": "broadMatch",
+   "target": "nist-intellectual-property"
+  },
+  {
+   "source": "nist-intellectual-property",
+   "relation": "narrowMatch",
+   "target": "atlas-model-usage-rights"
+  },
+  {
+   "source": "atlas-model-usage-rights",
+   "relation": "broadMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "narrowMatch",
+   "target": "atlas-model-usage-rights"
+  },
+  {
+   "source": "atlas-non-disclosure",
+   "relation": "broadMatch",
+   "target": "nist-human-ai-configuration"
+  },
+  {
+   "source": "nist-human-ai-configuration",
+   "relation": "narrowMatch",
+   "target": "atlas-non-disclosure"
+  },
+  {
+   "source": "atlas-nonconsensual-use",
+   "relation": "broadMatch",
+   "target": "nist-data-privacy"
+  },
+  {
+   "source": "nist-data-privacy",
+   "relation": "narrowMatch",
+   "target": "atlas-nonconsensual-use"
+  },
+  {
+   "source": "atlas-output-bias",
+   "relation": "broadMatch",
+   "target": "nist-harmful-bias-and-homogenization"
+  },
+  {
+   "source": "nist-harmful-bias-and-homogenization",
+   "relation": "narrowMatch",
+   "target": "atlas-output-bias"
+  },
+  {
+   "source": "atlas-over-or-under-reliance",
+   "relation": "broadMatch",
+   "target": "nist-human-ai-configuration"
+  },
+  {
+   "source": "nist-human-ai-configuration",
+   "relation": "narrowMatch",
+   "target": "atlas-over-or-under-reliance"
+  },
+  {
+   "source": "atlas-personal-information-in-data",
+   "relation": "broadMatch",
+   "target": "nist-data-privacy"
+  },
+  {
+   "source": "nist-data-privacy",
+   "relation": "narrowMatch",
+   "target": "atlas-personal-information-in-data"
+  },
+  {
+   "source": "atlas-personal-information-in-prompt",
+   "relation": "broadMatch",
+   "target": "nist-data-privacy"
+  },
+  {
+   "source": "nist-data-privacy",
+   "relation": "narrowMatch",
+   "target": "atlas-personal-information-in-prompt"
+  },
+  {
+   "source": "atlas-poor-model-accuracy",
+   "relation": "broadMatch",
+   "target": "nist-human-ai-configuration"
+  },
+  {
+   "source": "nist-human-ai-configuration",
+   "relation": "narrowMatch",
+   "target": "atlas-poor-model-accuracy"
+  },
+  {
+   "source": "atlas-poor-model-accuracy",
+   "relation": "broadMatch",
+   "target": "nist-information-integrity"
+  },
+  {
+   "source": "nist-information-integrity",
+   "relation": "narrowMatch",
+   "target": "atlas-poor-model-accuracy"
+  },
+  {
+   "source": "atlas-poor-model-accuracy",
+   "relation": "broadMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "narrowMatch",
+   "target": "atlas-poor-model-accuracy"
+  },
+  {
+   "source": "atlas-prompt-injection",
+   "relation": "broadMatch",
+   "target": "nist-information-security"
+  },
+  {
+   "source": "nist-information-security",
+   "relation": "narrowMatch",
+   "target": "atlas-prompt-injection"
+  },
+  {
+   "source": "atlas-prompt-leaking",
+   "relation": "broadMatch",
+   "target": "nist-information-security"
+  },
+  {
+   "source": "nist-information-security",
+   "relation": "narrowMatch",
+   "target": "atlas-prompt-leaking"
+  },
+  {
+   "source": "atlas-prompt-priming",
+   "relation": "broadMatch",
+   "target": "nist-information-security"
+  },
+  {
+   "source": "nist-information-security",
+   "relation": "narrowMatch",
+   "target": "atlas-prompt-priming"
+  },
+  {
+   "source": "atlas-reidentification",
+   "relation": "broadMatch",
+   "target": "nist-data-privacy"
+  },
+  {
+   "source": "nist-data-privacy",
+   "relation": "narrowMatch",
+   "target": "atlas-reidentification"
+  },
+  {
+   "source": "atlas-revealing-confidential-information",
+   "relation": "broadMatch",
+   "target": "nist-intellectual-property"
+  },
+  {
+   "source": "nist-intellectual-property",
+   "relation": "narrowMatch",
+   "target": "atlas-revealing-confidential-information"
+  },
+  {
+   "source": "atlas-spreading-disinformation",
+   "relation": "broadMatch",
+   "target": "nist-information-integrity"
+  },
+  {
+   "source": "nist-information-integrity",
+   "relation": "narrowMatch",
+   "target": "atlas-spreading-disinformation"
+  },
+  {
+   "source": "atlas-spreading-toxicity",
+   "relation": "broadMatch",
+   "target": "nist-harmful-bias-and-homogenization"
+  },
+  {
+   "source": "nist-harmful-bias-and-homogenization",
+   "relation": "narrowMatch",
+   "target": "atlas-spreading-toxicity"
+  },
+  {
+   "source": "atlas-toxic-output",
+   "relation": "closeMatch",
+   "target": "nist-dangerous-violent-or-hateful-content"
+  },
+  {
+   "source": "nist-dangerous-violent-or-hateful-content",
+   "relation": "closeMatch",
+   "target": "atlas-toxic-output"
+  },
+  {
+   "source": "atlas-toxic-output",
+   "relation": "closeMatch",
+   "target": "nist-obscene-degrading-and-or-abusive-content"
+  },
+  {
+   "source": "nist-obscene-degrading-and-or-abusive-content",
+   "relation": "closeMatch",
+   "target": "atlas-toxic-output"
+  },
+  {
+   "source": "atlas-unexplainable-output",
+   "relation": "broadMatch",
+   "target": "nist-information-integrity"
+  },
+  {
+   "source": "nist-information-integrity",
+   "relation": "narrowMatch",
+   "target": "atlas-unexplainable-output"
+  },
+  {
+   "source": "atlas-unreliable-source-attribution",
+   "relation": "broadMatch",
+   "target": "nist-information-security"
+  },
+  {
+   "source": "nist-information-security",
+   "relation": "narrowMatch",
+   "target": "atlas-unreliable-source-attribution"
+  },
+  {
+   "source": "atlas-unrepresentative-data",
+   "relation": "broadMatch",
+   "target": "nist-harmful-bias-and-homogenization"
+  },
+  {
+   "source": "nist-harmful-bias-and-homogenization",
+   "relation": "narrowMatch",
+   "target": "atlas-unrepresentative-data"
+  },
+  {
+   "source": "atlas-unrepresentative-data",
+   "relation": "relatedMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "relatedMatch",
+   "target": "atlas-unrepresentative-data"
+  },
+  {
+   "source": "atlas-unrepresentative-risk-testing",
+   "relation": "broadMatch",
+   "target": "nist-value-chain-and-component-integration"
+  },
+  {
+   "source": "nist-value-chain-and-component-integration",
+   "relation": "narrowMatch",
+   "target": "atlas-unrepresentative-risk-testing"
+  },
+  {
+   "source": "atlas-untraceable-attribution",
+   "relation": "broadMatch",
+   "target": "nist-information-integrity"
+  },
+  {
+   "source": "nist-information-integrity",
+   "relation": "narrowMatch",
+   "target": "atlas-untraceable-attribution"
+  }
+ ]
+}

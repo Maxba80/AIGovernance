@@ -1,0 +1,325 @@
+{
+ "_meta": {
+  "kb_file": "crosswalks/risk/ibm_to_owasp_llm.json",
+  "generated": "2026-11-24",
+  "source_ids": [
+   "ibm-ai-atlas-nexus"
+  ],
+  "licence": "Apache-2.0",
+  "relation_vocabulary": "SKOS mapping relations",
+  "extraction": "converted from ai-atlas-nexus `mappings/ibm2owasp_from_tsv_data.yaml`",
+  "verification": "upstream mapping; not re-validated"
+ },
+ "mappings": [
+  {
+   "source": "atlas-attribute-inference-attack",
+   "relation": "relatedMatch",
+   "target": "llm022025-sensitive-information-disclosure"
+  },
+  {
+   "source": "llm022025-sensitive-information-disclosure",
+   "relation": "relatedMatch",
+   "target": "atlas-attribute-inference-attack"
+  },
+  {
+   "source": "atlas-confidential-data-in-prompt",
+   "relation": "relatedMatch",
+   "target": "llm022025-sensitive-information-disclosure"
+  },
+  {
+   "source": "llm022025-sensitive-information-disclosure",
+   "relation": "relatedMatch",
+   "target": "atlas-confidential-data-in-prompt"
+  },
+  {
+   "source": "atlas-confidential-information-in-data",
+   "relation": "relatedMatch",
+   "target": "llm022025-sensitive-information-disclosure"
+  },
+  {
+   "source": "llm022025-sensitive-information-disclosure",
+   "relation": "relatedMatch",
+   "target": "atlas-confidential-information-in-data"
+  },
+  {
+   "source": "atlas-data-acquisition",
+   "relation": "broadMatch",
+   "target": "llm032025-supply-chain"
+  },
+  {
+   "source": "llm032025-supply-chain",
+   "relation": "narrowMatch",
+   "target": "atlas-data-acquisition"
+  },
+  {
+   "source": "atlas-data-contamination",
+   "relation": "broadMatch",
+   "target": "llm032025-supply-chain"
+  },
+  {
+   "source": "llm032025-supply-chain",
+   "relation": "narrowMatch",
+   "target": "atlas-data-contamination"
+  },
+  {
+   "source": "atlas-data-curation",
+   "relation": "broadMatch",
+   "target": "llm032025-supply-chain"
+  },
+  {
+   "source": "llm032025-supply-chain",
+   "relation": "narrowMatch",
+   "target": "atlas-data-curation"
+  },
+  {
+   "source": "atlas-data-poisoning",
+   "relation": "broadMatch",
+   "target": "llm042025-data-and-model-poisoning"
+  },
+  {
+   "source": "llm042025-data-and-model-poisoning",
+   "relation": "narrowMatch",
+   "target": "atlas-data-poisoning"
+  },
+  {
+   "source": "atlas-data-provenance",
+   "relation": "broadMatch",
+   "target": "llm032025-supply-chain"
+  },
+  {
+   "source": "llm032025-supply-chain",
+   "relation": "narrowMatch",
+   "target": "atlas-data-provenance"
+  },
+  {
+   "source": "atlas-data-usage-rights",
+   "relation": "broadMatch",
+   "target": "llm032025-supply-chain"
+  },
+  {
+   "source": "llm032025-supply-chain",
+   "relation": "narrowMatch",
+   "target": "atlas-data-usage-rights"
+  },
+  {
+   "source": "atlas-exposing-personal-information",
+   "relation": "broadMatch",
+   "target": "llm022025-sensitive-information-disclosure"
+  },
+  {
+   "source": "llm022025-sensitive-information-disclosure",
+   "relation": "narrowMatch",
+   "target": "atlas-exposing-personal-information"
+  },
+  {
+   "source": "atlas-hallucination",
+   "relation": "relatedMatch",
+   "target": "llm092025-misinformation"
+  },
+  {
+   "source": "llm092025-misinformation",
+   "relation": "relatedMatch",
+   "target": "atlas-hallucination"
+  },
+  {
+   "source": "atlas-harmful-code-generation",
+   "relation": "relatedMatch",
+   "target": "llm092025-misinformation"
+  },
+  {
+   "source": "llm092025-misinformation",
+   "relation": "relatedMatch",
+   "target": "atlas-harmful-code-generation"
+  },
+  {
+   "source": "atlas-improper-retraining",
+   "relation": "relatedMatch",
+   "target": "llm032025-supply-chain"
+  },
+  {
+   "source": "llm032025-supply-chain",
+   "relation": "relatedMatch",
+   "target": "atlas-improper-retraining"
+  },
+  {
+   "source": "atlas-inaccessible-training-data",
+   "relation": "relatedMatch",
+   "target": "llm032025-supply-chain"
+  },
+  {
+   "source": "llm032025-supply-chain",
+   "relation": "relatedMatch",
+   "target": "atlas-inaccessible-training-data"
+  },
+  {
+   "source": "atlas-incomplete-advice",
+   "relation": "broadMatch",
+   "target": "llm092025-misinformation"
+  },
+  {
+   "source": "llm092025-misinformation",
+   "relation": "narrowMatch",
+   "target": "atlas-incomplete-advice"
+  },
+  {
+   "source": "atlas-ip-information-in-prompt",
+   "relation": "relatedMatch",
+   "target": "llm022025-sensitive-information-disclosure"
+  },
+  {
+   "source": "llm022025-sensitive-information-disclosure",
+   "relation": "relatedMatch",
+   "target": "atlas-ip-information-in-prompt"
+  },
+  {
+   "source": "atlas-jailbreaking",
+   "relation": "broadMatch",
+   "target": "llm01-prompt-injection"
+  },
+  {
+   "source": "llm01-prompt-injection",
+   "relation": "narrowMatch",
+   "target": "atlas-jailbreaking"
+  },
+  {
+   "source": "atlas-lack-of-data-transparency",
+   "relation": "broadMatch",
+   "target": "llm032025-supply-chain"
+  },
+  {
+   "source": "llm032025-supply-chain",
+   "relation": "narrowMatch",
+   "target": "atlas-lack-of-data-transparency"
+  },
+  {
+   "source": "atlas-membership-inference-attack",
+   "relation": "relatedMatch",
+   "target": "llm022025-sensitive-information-disclosure"
+  },
+  {
+   "source": "llm022025-sensitive-information-disclosure",
+   "relation": "relatedMatch",
+   "target": "atlas-membership-inference-attack"
+  },
+  {
+   "source": "atlas-model-usage-rights",
+   "relation": "broadMatch",
+   "target": "llm032025-supply-chain"
+  },
+  {
+   "source": "llm032025-supply-chain",
+   "relation": "narrowMatch",
+   "target": "atlas-model-usage-rights"
+  },
+  {
+   "source": "atlas-over-or-under-reliance",
+   "relation": "relatedMatch",
+   "target": "llm052025-improper-output-handling"
+  },
+  {
+   "source": "llm052025-improper-output-handling",
+   "relation": "relatedMatch",
+   "target": "atlas-over-or-under-reliance"
+  },
+  {
+   "source": "atlas-over-or-under-reliance",
+   "relation": "relatedMatch",
+   "target": "llm062025-excessive-agency"
+  },
+  {
+   "source": "llm062025-excessive-agency",
+   "relation": "relatedMatch",
+   "target": "atlas-over-or-under-reliance"
+  },
+  {
+   "source": "atlas-personal-information-in-data",
+   "relation": "relatedMatch",
+   "target": "llm022025-sensitive-information-disclosure"
+  },
+  {
+   "source": "llm022025-sensitive-information-disclosure",
+   "relation": "relatedMatch",
+   "target": "atlas-personal-information-in-data"
+  },
+  {
+   "source": "atlas-personal-information-in-prompt",
+   "relation": "relatedMatch",
+   "target": "llm022025-sensitive-information-disclosure"
+  },
+  {
+   "source": "llm022025-sensitive-information-disclosure",
+   "relation": "relatedMatch",
+   "target": "atlas-personal-information-in-prompt"
+  },
+  {
+   "source": "atlas-prompt-injection",
+   "relation": "exactMatch",
+   "target": "llm01-prompt-injection"
+  },
+  {
+   "source": "llm01-prompt-injection",
+   "relation": "exactMatch",
+   "target": "atlas-prompt-injection"
+  },
+  {
+   "source": "atlas-prompt-leaking",
+   "relation": "broadMatch",
+   "target": "llm022025-sensitive-information-disclosure"
+  },
+  {
+   "source": "llm022025-sensitive-information-disclosure",
+   "relation": "narrowMatch",
+   "target": "atlas-prompt-leaking"
+  },
+  {
+   "source": "atlas-prompt-priming",
+   "relation": "broadMatch",
+   "target": "llm01-prompt-injection"
+  },
+  {
+   "source": "llm01-prompt-injection",
+   "relation": "narrowMatch",
+   "target": "atlas-prompt-priming"
+  },
+  {
+   "source": "atlas-reidentification",
+   "relation": "relatedMatch",
+   "target": "llm022025-sensitive-information-disclosure"
+  },
+  {
+   "source": "llm022025-sensitive-information-disclosure",
+   "relation": "relatedMatch",
+   "target": "atlas-reidentification"
+  },
+  {
+   "source": "atlas-revealing-confidential-information",
+   "relation": "broadMatch",
+   "target": "llm022025-sensitive-information-disclosure"
+  },
+  {
+   "source": "llm022025-sensitive-information-disclosure",
+   "relation": "narrowMatch",
+   "target": "atlas-revealing-confidential-information"
+  },
+  {
+   "source": "atlas-spreading-disinformation",
+   "relation": "broadMatch",
+   "target": "llm092025-misinformation"
+  },
+  {
+   "source": "llm092025-misinformation",
+   "relation": "narrowMatch",
+   "target": "atlas-spreading-disinformation"
+  },
+  {
+   "source": "atlas-untraceable-attribution",
+   "relation": "broadMatch",
+   "target": "llm032025-supply-chain"
+  },
+  {
+   "source": "llm032025-supply-chain",
+   "relation": "narrowMatch",
+   "target": "atlas-untraceable-attribution"
+  }
+ ]
+}

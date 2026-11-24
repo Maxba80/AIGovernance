@@ -1,0 +1,2035 @@
+{
+ "_meta": {
+  "kb_file": "crosswalks/common_control_objectives.json",
+  "generated": "2026-11-24",
+  "source_ids": [
+   "eu-ai-act-2024-1689-oj",
+   "gdpr-2016-679",
+   "iso-iec-42001-2023",
+   "nist-ai-100-1"
+  ],
+  "licence": "Original work of this knowledge base",
+  "extraction": "AUTHORED BY AI (Claude) from the framework texts — NOT an official crosswalk. Every referenced requirement id is checked to exist in frameworks/.",
+  "verification": "integrity-checked only; semantic correctness requires validation by a qualified professional. Official NIST crosswalks (AI RMF to ISO/IEC 42001) exist and should be used to validate ISO-NIST links.",
+  "method": "Hub-and-spoke: each Common Control Objective (CCO) groups requirements from all frameworks that the same evidence can satisfy ('assess once, comply many'). Pairwise edges are derived from shared CCO membership. closeMatch = both links primary; relatedMatch = at least one supporting."
+ },
+ "common_control_objectives": [
+  {
+   "id": "CCO-01",
+   "name_en": "Legal and regulatory requirements",
+   "name_it": "Requisiti legali e normativi",
+   "description": "Applicable AI, data-protection and sector rules are identified, documented and kept current.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.2",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.3",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.24",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.5",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-4.1",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-4.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-1.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-1.1",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "legal register",
+    "regulatory applicability analysis"
+   ],
+   "deliverables": [
+    "tpl-cross-framework-gap-analysis-roadmap"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-02",
+   "name_en": "AI policy and leadership commitment",
+   "name_it": "Policy AI e impegno della direzione",
+   "description": "A documented AI policy approved by top management sets principles, objectives and commitments.",
+   "requirements": [
+    {
+     "ref": "ISO42001-5.1",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-5.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.2.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.2.3",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.2.4",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.17",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.24",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "NIST-GOVERN-1.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-1.4",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-2.3",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-4.1",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "AI policy",
+    "acceptable use policy",
+    "board minutes"
+   ],
+   "deliverables": [
+    "tpl-corporate-ai-policy",
+    "tpl-genai-acceptable-use-policy"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-03",
+   "name_en": "Roles, responsibilities and accountability",
+   "name_it": "Ruoli, responsabilità e accountability",
+   "description": "AI roles (incl. regulatory role as provider/deployer and controller/processor) are assigned and documented.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.16",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.26",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.25",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.22",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.24",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.26",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.28",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.37",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-5.3",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.3.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.10.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-2.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-2.3",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    }
+   ],
+   "typical_evidence": [
+    "organisation chart",
+    "RACI matrix",
+    "job descriptions",
+    "committee charter"
+   ],
+   "deliverables": [
+    "tpl-ai-governance-raci-matrix"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-04",
+   "name_en": "AI system inventory and risk classification",
+   "name_it": "Inventario dei sistemi AI e classificazione del rischio",
+   "description": "All AI systems and agents are inventoried with purpose, role and risk class.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.5",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.6",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Annex.I",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Annex.III",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.49",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.51",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.30",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-4.3",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.4.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-1.6",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-1.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-2.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-3.3",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "AI inventory",
+    "use case description",
+    "classification memo"
+   ],
+   "deliverables": [
+    "tpl-ai-use-case-inventory-record",
+    "tpl-agent-card",
+    "tpl-risk-classification-rationale"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-05",
+   "name_en": "AI risk management process",
+   "name_it": "Processo di gestione del rischio AI",
+   "description": "A repeatable process identifies, analyses, evaluates and treats AI risks across the lifecycle.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.9",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.32",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.35",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-6.1.1",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-6.1.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-6.1.3",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-8.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-8.3",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-1.3",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-1.5",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-5.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MANAGE-1.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MANAGE-1.3",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MANAGE-1.4",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    }
+   ],
+   "typical_evidence": [
+    "risk methodology",
+    "risk register",
+    "risk treatment plan"
+   ],
+   "deliverables": [
+    "tpl-ai-risk-assessment-treatment-plan",
+    "tpl-risk-heat-map-report",
+    "tpl-statement-of-applicability"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-06",
+   "name_en": "Impact assessment on individuals, groups and society",
+   "name_it": "Valutazione d'impatto su persone, gruppi e società",
+   "description": "Impacts on fundamental rights, individuals and society are assessed before deployment and on change.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.27",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.35",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.36",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-6.1.4",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-8.4",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.5.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.5.3",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.5.4",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.5.5",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-5.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-3.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-3.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-1.1",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "FRIA",
+    "DPIA",
+    "AI system impact assessment"
+   ],
+   "deliverables": [
+    "tpl-fria",
+    "tpl-ai-enhanced-dpia",
+    "tpl-ai-system-impact-assessment"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-07",
+   "name_en": "Data governance and data quality",
+   "name_it": "Governance e qualità dei dati",
+   "description": "Training, validation, testing and operational data are governed for provenance, quality, relevance and lawfulness.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.10",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.4a",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.5",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.6",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.9",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.25",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-A.7.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.7.3",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.7.4",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.7.5",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.7.6",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.4.3",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-2.3",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-2.9",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "data governance policy",
+    "dataset documentation / datasheet",
+    "data lineage records",
+    "data quality report"
+   ],
+   "deliverables": [
+    "tpl-data-governance-bias-audit-report"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-08",
+   "name_en": "Bias and fairness",
+   "name_it": "Bias ed equità",
+   "description": "Bias is examined, measured and mitigated in data and outcomes.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.10",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.4a",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.15",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.5",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.9",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.22",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-A.5.4",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.7.4",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.6.2.4",
+     "framework": "iso-42001",
+     "strength": "supporting"
+    },
+    {
+     "ref": "NIST-MEASURE-2.11",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-3.1",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "bias audit report",
+    "fairness metrics",
+    "test results by subgroup"
+   ],
+   "deliverables": [
+    "tpl-data-governance-bias-audit-report"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-09",
+   "name_en": "Technical documentation",
+   "name_it": "Documentazione tecnica",
+   "description": "System design, development, performance and limitations are documented and kept up to date.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.11",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Annex.IV",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.18",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.30",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-7.5",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.6.2.3",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.6.2.7",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.4.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.4.4",
+     "framework": "iso-42001",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-A.4.5",
+     "framework": "iso-42001",
+     "strength": "supporting"
+    },
+    {
+     "ref": "NIST-GOVERN-4.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-2.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-2.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-2.1",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "technical documentation",
+    "model card",
+    "system architecture",
+    "design specification"
+   ],
+   "deliverables": [
+    "tpl-annex-iv-technical-documentation"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-10",
+   "name_en": "Logging and record-keeping",
+   "name_it": "Registrazione degli eventi e conservazione dei log",
+   "description": "Events are logged automatically and logs are retained to ensure traceability.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.12",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.19",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.26",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.5",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.32",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-A.6.2.8",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-2.4",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    },
+    {
+     "ref": "NIST-MEASURE-2.8",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    },
+    {
+     "ref": "NIST-MANAGE-4.1",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "logging specification",
+    "log samples",
+    "log retention policy"
+   ],
+   "deliverables": [],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-11",
+   "name_en": "Transparency and information to users and affected persons",
+   "name_it": "Trasparenza e informazione a utenti e interessati",
+   "description": "Deployers, users and affected persons receive clear information about the AI system and its outputs.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.13",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.50",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.26",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "AIA-Art.86",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.12",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.13",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.14",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.15",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-A.8.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.8.5",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.9.4",
+     "framework": "iso-42001",
+     "strength": "supporting"
+    },
+    {
+     "ref": "NIST-MEASURE-2.8",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-2.9",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-3.4",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "instructions for use",
+    "privacy notice",
+    "AI disclosure notice",
+    "user documentation"
+   ],
+   "deliverables": [
+    "tpl-instructions-for-use",
+    "tpl-transparency-notices"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-12",
+   "name_en": "Human oversight",
+   "name_it": "Sorveglianza umana",
+   "description": "Humans can understand, monitor, intervene in and override the system; oversight roles are competent and empowered.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.14",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.26",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.22",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.9.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.9.3",
+     "framework": "iso-42001",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-A.6.1.3",
+     "framework": "iso-42001",
+     "strength": "supporting"
+    },
+    {
+     "ref": "NIST-GOVERN-3.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-3.5",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-2.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MANAGE-2.4",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "human oversight procedure",
+    "escalation / override procedure",
+    "operator training records"
+   ],
+   "deliverables": [
+    "tpl-agent-card",
+    "tpl-art22-automated-decision-assessment"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-13",
+   "name_en": "Accuracy, robustness and cybersecurity",
+   "name_it": "Accuratezza, robustezza e cibersicurezza",
+   "description": "The system reaches declared accuracy, is resilient to errors and attacks, and is secured.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.15",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.32",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.6.2.4",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.6.2.6",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.6.2.2",
+     "framework": "iso-42001",
+     "strength": "supporting"
+    },
+    {
+     "ref": "NIST-MEASURE-2.5",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-2.6",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-2.7",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-2.3",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "test report",
+    "penetration test / red-team report",
+    "security architecture",
+    "performance metrics"
+   ],
+   "deliverables": [
+    "tpl-genai-risk-profile-tevv-summary"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-14",
+   "name_en": "Testing, evaluation, verification and validation (TEVV)",
+   "name_it": "Test, valutazione, verifica e validazione (TEVV)",
+   "description": "Systems are tested against defined metrics before release and periodically, with independent review where appropriate.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.9",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.15",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "AIA-Art.60",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-A.6.2.4",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-9.1",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-1.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-1.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-1.3",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-2.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-2.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-2.3",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-2.13",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-4.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-4.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-2.3",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    }
+   ],
+   "typical_evidence": [
+    "test plan",
+    "validation report",
+    "evaluation benchmark results"
+   ],
+   "deliverables": [
+    "tpl-genai-risk-profile-tevv-summary"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-15",
+   "name_en": "Quality management and lifecycle processes",
+   "name_it": "Gestione della qualità e processi del ciclo di vita",
+   "description": "Documented lifecycle processes cover design, development, deployment, change and retirement.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.17",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-8.1",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-6.3",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.6.1.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.6.1.3",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.6.2.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.6.2.5",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-1.4",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-1.7",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-4.1",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    },
+    {
+     "ref": "NIST-MAP-1.6",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MANAGE-1.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    }
+   ],
+   "typical_evidence": [
+    "quality manual",
+    "SDLC / MLOps procedure",
+    "change management records",
+    "release approval"
+   ],
+   "deliverables": [],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-16",
+   "name_en": "Conformity assessment, declaration and registration",
+   "name_it": "Valutazione di conformità, dichiarazione e registrazione",
+   "description": "Conformity is assessed, declared and registered before placing on the market or putting into service.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.43",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.47",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Annex.V",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.48",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.49",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-9.2",
+     "framework": "iso-42001",
+     "strength": "supporting"
+    },
+    {
+     "ref": "NIST-MEASURE-1.3",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "conformity assessment report",
+    "EU declaration of conformity",
+    "certificate",
+    "EU database registration"
+   ],
+   "deliverables": [
+    "tpl-eu-declaration-of-conformity"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-17",
+   "name_en": "Monitoring, post-market monitoring and continual improvement",
+   "name_it": "Monitoraggio, post-market monitoring e miglioramento continuo",
+   "description": "Performance and risks are monitored in operation; findings feed improvement.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.72",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.26",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.35",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-9.1",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-10.1",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.6.2.6",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-1.5",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-2.4",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-3.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-3.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-4.3",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MANAGE-4.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MANAGE-4.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MANAGE-2.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    }
+   ],
+   "typical_evidence": [
+    "post-market monitoring plan",
+    "monitoring dashboard / KPI report",
+    "drift report"
+   ],
+   "deliverables": [
+    "tpl-post-market-monitoring-plan"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-18",
+   "name_en": "Incident management and reporting",
+   "name_it": "Gestione e segnalazione degli incidenti",
+   "description": "Incidents, malfunctions and breaches are detected, handled, reported to authorities and communicated.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.73",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.20",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.26",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.33",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.34",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.8.4",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.8.3",
+     "framework": "iso-42001",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-10.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-4.3",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MANAGE-4.3",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MANAGE-2.3",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MANAGE-4.1",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "incident response procedure",
+    "incident log",
+    "breach notification records"
+   ],
+   "deliverables": [
+    "tpl-serious-incident-report",
+    "tpl-audit-readiness-nc-capa-log"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-19",
+   "name_en": "Third-party, supplier and value-chain management",
+   "name_it": "Gestione di terze parti, fornitori e catena del valore",
+   "description": "Suppliers of models, data and components are assessed, contracted and monitored.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.25",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.23",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "AIA-Art.24",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "AIA-Art.53",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.28",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.26",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-A.10.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.10.3",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.10.4",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-6.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-6.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-4.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-4.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MANAGE-3.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MANAGE-3.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    }
+   ],
+   "typical_evidence": [
+    "vendor assessment",
+    "contract / DPA",
+    "supplier SLA",
+    "model provider documentation"
+   ],
+   "deliverables": [
+    "tpl-vendor-third-party-risk-assessment"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-20",
+   "name_en": "Competence, awareness and AI literacy",
+   "name_it": "Competenza, consapevolezza e alfabetizzazione AI",
+   "description": "Staff and other persons dealing with AI have sufficient AI literacy and role-specific competence.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.4",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.26",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "AIA-Art.14",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.39",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-7.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-7.3",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.4.6",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-2.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-3.4",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-3.1",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "training plan",
+    "training records",
+    "competence matrix"
+   ],
+   "deliverables": [
+    "tpl-ai-literacy-plan"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-21",
+   "name_en": "Stakeholder engagement, feedback and complaints",
+   "name_it": "Coinvolgimento degli stakeholder, feedback e reclami",
+   "description": "Interested parties can raise concerns and their feedback is considered.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.27",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "AIA-Art.85",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.26",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.35",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.77",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-4.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-7.4",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.3.3",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.8.3",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-5.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-GOVERN-5.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-5.2",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-3.3",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-1.2",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "whistleblowing / concern-reporting procedure",
+    "stakeholder consultation records",
+    "complaint log"
+   ],
+   "deliverables": [],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-22",
+   "name_en": "Automated decision-making and right to explanation",
+   "name_it": "Decisioni automatizzate e diritto alla spiegazione",
+   "description": "Individuals subject to automated or AI-assisted decisions get safeguards, explanation and a way to contest.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.86",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.14",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "AIA-Art.26",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.22",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.13",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.15",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.21",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-A.5.4",
+     "framework": "iso-42001",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-A.8.2",
+     "framework": "iso-42001",
+     "strength": "supporting"
+    },
+    {
+     "ref": "NIST-MEASURE-2.9",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-3.3",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "ADM assessment",
+    "explanation procedure",
+    "contestation / appeal procedure"
+   ],
+   "deliverables": [
+    "tpl-art22-automated-decision-assessment"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-23",
+   "name_en": "Privacy and data protection by design",
+   "name_it": "Privacy e protezione dei dati fin dalla progettazione",
+   "description": "Personal data use in AI is minimised, lawful and protected by design; data subject rights can be exercised.",
+   "requirements": [
+    {
+     "ref": "GDPR-Art.25",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.5",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.6",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.16",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.17",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.30",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.10",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "AIA-Art.4a",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.9",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-A.7.3",
+     "framework": "iso-42001",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-A.7.5",
+     "framework": "iso-42001",
+     "strength": "supporting"
+    },
+    {
+     "ref": "NIST-MEASURE-2.10",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    }
+   ],
+   "typical_evidence": [
+    "RoPA",
+    "LIA",
+    "privacy-by-design assessment",
+    "data subject request procedure"
+   ],
+   "deliverables": [
+    "tpl-ropa-ai-processing",
+    "tpl-legitimate-interest-assessment",
+    "tpl-ai-enhanced-dpia"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-24",
+   "name_en": "International data transfers",
+   "name_it": "Trasferimenti internazionali di dati",
+   "description": "Transfers of personal data to non-EU AI providers rely on a valid mechanism and a transfer impact assessment.",
+   "requirements": [
+    {
+     "ref": "GDPR-Art.44",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.45",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.46",
+     "framework": "gdpr",
+     "strength": "primary"
+    },
+    {
+     "ref": "GDPR-Art.49",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.28",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-A.10.3",
+     "framework": "iso-42001",
+     "strength": "supporting"
+    },
+    {
+     "ref": "NIST-GOVERN-6.1",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "TIA",
+    "standard contractual clauses",
+    "data flow map"
+   ],
+   "deliverables": [
+    "tpl-transfer-impact-assessment"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-25",
+   "name_en": "General-purpose AI model obligations",
+   "name_it": "Obblighi per i modelli GPAI",
+   "description": "GPAI providers document the model, inform downstream providers, respect copyright and manage systemic risk.",
+   "requirements": [
+    {
+     "ref": "AIA-Art.51",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.53",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.54",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.55",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Annex.XI",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Annex.XII",
+     "framework": "eu-ai-act",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.6.2.7",
+     "framework": "iso-42001",
+     "strength": "supporting"
+    },
+    {
+     "ref": "ISO42001-A.10.4",
+     "framework": "iso-42001",
+     "strength": "supporting"
+    },
+    {
+     "ref": "NIST-MANAGE-3.2",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    },
+    {
+     "ref": "NIST-GOVERN-6.1",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "model documentation",
+    "training-data summary",
+    "copyright policy",
+    "systemic risk assessment"
+   ],
+   "deliverables": [],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-26",
+   "name_en": "Internal audit and management review",
+   "name_it": "Audit interno e riesame della direzione",
+   "description": "The governance system is audited and reviewed by management at planned intervals.",
+   "requirements": [
+    {
+     "ref": "ISO42001-9.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-9.3",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-10.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.17",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    },
+    {
+     "ref": "GDPR-Art.24",
+     "framework": "gdpr",
+     "strength": "supporting"
+    },
+    {
+     "ref": "NIST-GOVERN-1.5",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-1.3",
+     "framework": "nist-ai-rmf",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "internal audit programme",
+    "audit report",
+    "management review minutes",
+    "CAPA log"
+   ],
+   "deliverables": [
+    "tpl-audit-readiness-nc-capa-log",
+    "tpl-board-executive-compliance-report"
+   ],
+   "validation_status": "draft — not yet validated by a human"
+  },
+  {
+   "id": "CCO-27",
+   "name_en": "Objectives, resources and environmental considerations",
+   "name_it": "Obiettivi, risorse e aspetti ambientali",
+   "description": "AI objectives are set and resourced; computing and environmental impacts are considered.",
+   "requirements": [
+    {
+     "ref": "ISO42001-6.2",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-7.1",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.9.3",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.4.5",
+     "framework": "iso-42001",
+     "strength": "primary"
+    },
+    {
+     "ref": "ISO42001-A.4.4",
+     "framework": "iso-42001",
+     "strength": "supporting"
+    },
+    {
+     "ref": "NIST-MAP-1.3",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MAP-1.4",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MANAGE-2.1",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "NIST-MEASURE-2.12",
+     "framework": "nist-ai-rmf",
+     "strength": "primary"
+    },
+    {
+     "ref": "AIA-Art.95",
+     "framework": "eu-ai-act",
+     "strength": "supporting"
+    }
+   ],
+   "typical_evidence": [
+    "AI objectives",
+    "budget / resource plan",
+    "sustainability report"
+   ],
+   "deliverables": [],
+   "validation_status": "draft — not yet validated by a human"
+  }
+ ]
+}

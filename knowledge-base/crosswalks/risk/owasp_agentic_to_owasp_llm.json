@@ -1,0 +1,245 @@
+{
+ "_meta": {
+  "kb_file": "crosswalks/risk/owasp_agentic_to_owasp_llm.json",
+  "generated": "2026-11-24",
+  "source_ids": [
+   "ibm-ai-atlas-nexus"
+  ],
+  "licence": "Apache-2.0",
+  "relation_vocabulary": "SKOS mapping relations",
+  "extraction": "converted from ai-atlas-nexus `mappings/owasp_asi2owasp_llm_from_tsv_data.yaml`",
+  "verification": "upstream mapping; not re-validated"
+ },
+ "mappings": [
+  {
+   "source": "asi01-agent-goal-hijack",
+   "relation": "broadMatch",
+   "target": "llm01-prompt-injection"
+  },
+  {
+   "source": "llm01-prompt-injection",
+   "relation": "narrowMatch",
+   "target": "asi01-agent-goal-hijack"
+  },
+  {
+   "source": "asi01-agent-goal-hijack",
+   "relation": "relatedMatch",
+   "target": "llm062025-excessive-agency"
+  },
+  {
+   "source": "llm062025-excessive-agency",
+   "relation": "relatedMatch",
+   "target": "asi01-agent-goal-hijack"
+  },
+  {
+   "source": "asi02-tool-misuse-and-exploitation",
+   "relation": "narrowMatch",
+   "target": "llm062025-excessive-agency"
+  },
+  {
+   "source": "llm062025-excessive-agency",
+   "relation": "broadMatch",
+   "target": "asi02-tool-misuse-and-exploitation"
+  },
+  {
+   "source": "asi03-identity-and-privilege-abuse",
+   "relation": "narrowMatch",
+   "target": "llm062025-excessive-agency"
+  },
+  {
+   "source": "llm062025-excessive-agency",
+   "relation": "broadMatch",
+   "target": "asi03-identity-and-privilege-abuse"
+  },
+  {
+   "source": "asi03-identity-and-privilege-abuse",
+   "relation": "relatedMatch",
+   "target": "llm01-prompt-injection"
+  },
+  {
+   "source": "llm01-prompt-injection",
+   "relation": "relatedMatch",
+   "target": "asi03-identity-and-privilege-abuse"
+  },
+  {
+   "source": "asi03-identity-and-privilege-abuse",
+   "relation": "relatedMatch",
+   "target": "llm022025-sensitive-information-disclosure"
+  },
+  {
+   "source": "llm022025-sensitive-information-disclosure",
+   "relation": "relatedMatch",
+   "target": "asi03-identity-and-privilege-abuse"
+  },
+  {
+   "source": "asi04-agentic-supply-chain-vulnerabilities",
+   "relation": "narrowMatch",
+   "target": "llm032025-supply-chain"
+  },
+  {
+   "source": "llm032025-supply-chain",
+   "relation": "broadMatch",
+   "target": "asi04-agentic-supply-chain-vulnerabilities"
+  },
+  {
+   "source": "asi05-unexpected-code-execution",
+   "relation": "narrowMatch",
+   "target": "llm052025-improper-output-handling"
+  },
+  {
+   "source": "llm052025-improper-output-handling",
+   "relation": "broadMatch",
+   "target": "asi05-unexpected-code-execution"
+  },
+  {
+   "source": "asi05-unexpected-code-execution",
+   "relation": "relatedMatch",
+   "target": "llm01-prompt-injection"
+  },
+  {
+   "source": "llm01-prompt-injection",
+   "relation": "relatedMatch",
+   "target": "asi05-unexpected-code-execution"
+  },
+  {
+   "source": "asi06-memory-and-context-poisoning",
+   "relation": "broadMatch",
+   "target": "llm042025-data-and-model-poisoning"
+  },
+  {
+   "source": "llm042025-data-and-model-poisoning",
+   "relation": "narrowMatch",
+   "target": "asi06-memory-and-context-poisoning"
+  },
+  {
+   "source": "asi06-memory-and-context-poisoning",
+   "relation": "relatedMatch",
+   "target": "llm01-prompt-injection"
+  },
+  {
+   "source": "llm01-prompt-injection",
+   "relation": "relatedMatch",
+   "target": "asi06-memory-and-context-poisoning"
+  },
+  {
+   "source": "asi06-memory-and-context-poisoning",
+   "relation": "relatedMatch",
+   "target": "llm082025-vector-and-embedding-weaknesses"
+  },
+  {
+   "source": "llm082025-vector-and-embedding-weaknesses",
+   "relation": "relatedMatch",
+   "target": "asi06-memory-and-context-poisoning"
+  },
+  {
+   "source": "asi07-insecure-inter-agent-communication",
+   "relation": "relatedMatch",
+   "target": "llm022025-sensitive-information-disclosure"
+  },
+  {
+   "source": "llm022025-sensitive-information-disclosure",
+   "relation": "relatedMatch",
+   "target": "asi07-insecure-inter-agent-communication"
+  },
+  {
+   "source": "asi07-insecure-inter-agent-communication",
+   "relation": "relatedMatch",
+   "target": "llm062025-excessive-agency"
+  },
+  {
+   "source": "llm062025-excessive-agency",
+   "relation": "relatedMatch",
+   "target": "asi07-insecure-inter-agent-communication"
+  },
+  {
+   "source": "asi08-cascading-failures",
+   "relation": "relatedMatch",
+   "target": "llm01-prompt-injection"
+  },
+  {
+   "source": "llm01-prompt-injection",
+   "relation": "relatedMatch",
+   "target": "asi08-cascading-failures"
+  },
+  {
+   "source": "asi08-cascading-failures",
+   "relation": "relatedMatch",
+   "target": "llm042025-data-and-model-poisoning"
+  },
+  {
+   "source": "llm042025-data-and-model-poisoning",
+   "relation": "relatedMatch",
+   "target": "asi08-cascading-failures"
+  },
+  {
+   "source": "asi08-cascading-failures",
+   "relation": "relatedMatch",
+   "target": "llm062025-excessive-agency"
+  },
+  {
+   "source": "llm062025-excessive-agency",
+   "relation": "relatedMatch",
+   "target": "asi08-cascading-failures"
+  },
+  {
+   "source": "asi09-human-agent-trust-exploitation",
+   "relation": "broadMatch",
+   "target": "llm092025-misinformation"
+  },
+  {
+   "source": "llm092025-misinformation",
+   "relation": "narrowMatch",
+   "target": "asi09-human-agent-trust-exploitation"
+  },
+  {
+   "source": "asi09-human-agent-trust-exploitation",
+   "relation": "relatedMatch",
+   "target": "llm01-prompt-injection"
+  },
+  {
+   "source": "llm01-prompt-injection",
+   "relation": "relatedMatch",
+   "target": "asi09-human-agent-trust-exploitation"
+  },
+  {
+   "source": "asi09-human-agent-trust-exploitation",
+   "relation": "relatedMatch",
+   "target": "llm052025-improper-output-handling"
+  },
+  {
+   "source": "llm052025-improper-output-handling",
+   "relation": "relatedMatch",
+   "target": "asi09-human-agent-trust-exploitation"
+  },
+  {
+   "source": "asi09-human-agent-trust-exploitation",
+   "relation": "relatedMatch",
+   "target": "llm062025-excessive-agency"
+  },
+  {
+   "source": "llm062025-excessive-agency",
+   "relation": "relatedMatch",
+   "target": "asi09-human-agent-trust-exploitation"
+  },
+  {
+   "source": "asi10-rogue-agents",
+   "relation": "relatedMatch",
+   "target": "llm022025-sensitive-information-disclosure"
+  },
+  {
+   "source": "llm022025-sensitive-information-disclosure",
+   "relation": "relatedMatch",
+   "target": "asi10-rogue-agents"
+  },
+  {
+   "source": "asi10-rogue-agents",
+   "relation": "relatedMatch",
+   "target": "llm092025-misinformation"
+  },
+  {
+   "source": "llm092025-misinformation",
+   "relation": "relatedMatch",
+   "target": "asi10-rogue-agents"
+  }
+ ]
+}

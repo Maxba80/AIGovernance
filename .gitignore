@@ -1,0 +1,11 @@
+.env
+__pycache__/
+*.pyc
+node_modules/
+dist/
+.pytest_cache/
+.DS_Store
+
+# Licensed or personal material: kept locally and on the owner's Drive, never in the public repository
+knowledge-base/frameworks/iso_42001/requirements.licensed.json
+knowledge-base/checklists/iso42001_lead_auditor_quiz.json

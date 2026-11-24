@@ -1,0 +1,73 @@
+# AI Governance Tool — start everything with:  docker compose up -d --build
+# Optional local model server:               docker compose --profile local-llm up -d
+name: aigovernance
+
+x-backend: &backend
+  build: ./backend
+  env_file: .env
+  environment:
+    DATABASE_URL: postgresql://${POSTGRES_USER:-aigov}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB:-aigov}
+    KB_DIR: /kb
+    UPLOAD_DIR: /data/uploads
+    EXPORT_DIR: /data/exports
+  volumes:
+    - uploads:/data/uploads
+    - exports:/data/exports
+    - ./knowledge-base:/kb:ro
+  extra_hosts:
+    - "host.docker.internal:host-gateway"   # lets containers reach Ollama / LM Studio running on the host
+  depends_on:
+    database:
+      condition: service_healthy
+  restart: unless-stopped
+
+services:
+  database:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-aigov}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-aigov}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-aigov} -d ${POSTGRES_DB:-aigov}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+  backend:
+    <<: *backend
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  worker:
+    <<: *backend
+    command: ["python", "-m", "app.worker"]
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "${APP_PORT:-3000}:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  ollama:
+    profiles: ["local-llm"]
+    image: ollama/ollama:latest
+    volumes:
+      - ollama:/root/.ollama
+    ports:
+      - "${OLLAMA_PORT:-11434}:11434"
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  uploads:
+  exports:
+  ollama:

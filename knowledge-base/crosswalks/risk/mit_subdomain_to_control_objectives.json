@@ -1,0 +1,193 @@
+{
+ "_meta": {
+  "kb_file": "crosswalks/risk/mit_subdomain_to_control_objectives.json",
+  "generated": "2026-11-24",
+  "source_ids": [
+   "eu-ai-act-2024-1689-oj",
+   "gdpr-2016-679",
+   "iso-iec-42001-2023",
+   "nist-ai-100-1"
+  ],
+  "licence": "Original work of this knowledge base",
+  "extraction": "AUTHORED BY AI (Claude) from the framework texts — NOT an official crosswalk. Every referenced requirement id is checked to exist in frameworks/.",
+  "verification": "integrity-checked only; semantic correctness requires validation by a qualified professional. Official NIST crosswalks (AI RMF to ISO/IEC 42001) exist and should be used to validate ISO-NIST links.",
+  "method": "Each MIT domain-taxonomy subdomain is linked to the Common Control Objectives that primarily mitigate it; used to place risks on the heat map and to suggest controls."
+ },
+ "mappings": [
+  {
+   "risk": "mit-ai-risk-subdomain-1.1",
+   "mitigating_objectives": [
+    "CCO-08",
+    "CCO-07",
+    "CCO-06"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-1.2",
+   "mitigating_objectives": [
+    "CCO-13",
+    "CCO-14",
+    "CCO-11"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-1.3",
+   "mitigating_objectives": [
+    "CCO-08",
+    "CCO-14"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-2.1",
+   "mitigating_objectives": [
+    "CCO-23",
+    "CCO-07",
+    "CCO-24"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-2.2",
+   "mitigating_objectives": [
+    "CCO-13",
+    "CCO-19",
+    "CCO-18"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-3.1",
+   "mitigating_objectives": [
+    "CCO-13",
+    "CCO-11",
+    "CCO-12"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-3.2",
+   "mitigating_objectives": [
+    "CCO-11",
+    "CCO-06"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-4.1",
+   "mitigating_objectives": [
+    "CCO-11",
+    "CCO-04"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-4.2",
+   "mitigating_objectives": [
+    "CCO-13",
+    "CCO-04"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-4.3",
+   "mitigating_objectives": [
+    "CCO-13",
+    "CCO-11"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-5.1",
+   "mitigating_objectives": [
+    "CCO-12",
+    "CCO-20",
+    "CCO-11"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-5.2",
+   "mitigating_objectives": [
+    "CCO-12",
+    "CCO-22"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-6.1",
+   "mitigating_objectives": [
+    "CCO-06",
+    "CCO-19"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-6.2",
+   "mitigating_objectives": [
+    "CCO-06",
+    "CCO-21"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-6.3",
+   "mitigating_objectives": [
+    "CCO-06"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-6.4",
+   "mitigating_objectives": [
+    "CCO-02",
+    "CCO-15"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-6.5",
+   "mitigating_objectives": [
+    "CCO-02",
+    "CCO-03",
+    "CCO-26"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-6.6",
+   "mitigating_objectives": [
+    "CCO-27"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-7.1",
+   "mitigating_objectives": [
+    "CCO-14",
+    "CCO-12",
+    "CCO-05"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-7.2",
+   "mitigating_objectives": [
+    "CCO-12",
+    "CCO-14"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-7.3",
+   "mitigating_objectives": [
+    "CCO-13",
+    "CCO-14"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-7.4",
+   "mitigating_objectives": [
+    "CCO-11",
+    "CCO-09",
+    "CCO-10"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-7.5",
+   "mitigating_objectives": [
+    "CCO-06"
+   ]
+  },
+  {
+   "risk": "mit-ai-risk-subdomain-7.6",
+   "mitigating_objectives": [
+    "CCO-12",
+    "CCO-14",
+    "CCO-10"
+   ]
+  }
+ ]
+}

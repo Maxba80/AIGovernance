@@ -1,0 +1,329 @@
+{
+ "_meta": {
+  "generated": "2026-11-24",
+  "purpose": "Tamper-evidence: SHA-256 of every knowledge-base file",
+  "note": "Public repository edition: the licensed ISO edition and the course quiz are not listed."
+ },
+ "files": [
+  {
+   "path": "README.md",
+   "sha256": "944377db72476ca0cb1e96e6fecd6c0b9cf688799a00da0881e30d51787f28f8",
+   "bytes": 5575
+  },
+  {
+   "path": "_build/build_kb.py",
+   "sha256": "a1348811c040ab4e9c7f6ab71c97bb698d66ff627176e2b6786e6d30244eca77",
+   "bytes": 68747
+  },
+  {
+   "path": "_build/build_manifest.py",
+   "sha256": "cfda9a63b2cf3114bae74f88e2994069e772701460c426003162b4ff993e2ee0",
+   "bytes": 10225
+  },
+  {
+   "path": "crosswalks/common_control_objectives.json",
+   "sha256": "ceb11f8a70cdc9a05aaddd73e0b8e758568a2ea0418a91f241080835f4f035a8",
+   "bytes": 46788
+  },
+  {
+   "path": "crosswalks/framework_edges.json",
+   "sha256": "593160d549ca3223b696cebd24567b8bdaa72bd7d6eb1866968ac54fed0a75d8",
+   "bytes": 144726
+  },
+  {
+   "path": "crosswalks/risk/ibm_to_mit.json",
+   "sha256": "f6f6afe3ae338d0b7583cc6107a8358ef3e5da4f54ae508c41abd0d417dea6ac",
+   "bytes": 66496
+  },
+  {
+   "path": "crosswalks/risk/ibm_to_nist_genai.json",
+   "sha256": "ac64eff47ae723d9308456d50ee8345c8b3a63bca29b9aed9175fd2704edaa37",
+   "bytes": 21099
+  },
+  {
+   "path": "crosswalks/risk/ibm_to_owasp_llm.json",
+   "sha256": "78814b3c9c403f21c54623e8da506222f039b96d2b2b6136dbdcf9b0f5c1c88a",
+   "bytes": 8418
+  },
+  {
+   "path": "crosswalks/risk/mit_subdomain_to_control_objectives.json",
+   "sha256": "a4193150f6391e0103de7dd9df717c96479d0df6020c6b4d4a9e0d93248fc34a",
+   "bytes": 3636
+  },
+  {
+   "path": "crosswalks/risk/owasp_agentic_to_ibm.json",
+   "sha256": "5aa35bf32c87de26a1b9098a4a8ed20f23a7918e92dd6a77f98a7733904fc03d",
+   "bytes": 19977
+  },
+  {
+   "path": "crosswalks/risk/owasp_agentic_to_owasp_llm.json",
+   "sha256": "5b0d29c48aa6a43becc9f5f034dd2189d1e7704f5af6ebe1de9e6d442014f874",
+   "bytes": 6507
+  },
+  {
+   "path": "frameworks/eu_ai_act/articles.json",
+   "sha256": "04a3bf0cc821a4930cf3610ac300ab61e20230c0292c4a2a137899f51c24f90e",
+   "bytes": 497681
+  },
+  {
+   "path": "frameworks/eu_ai_act/classification_roles_timeline.json",
+   "sha256": "606c2b522bc6fd9ae233000e40694485411b3dc724ac71dcbf34e056399ceffb",
+   "bytes": 13707
+  },
+  {
+   "path": "frameworks/gartner/ai_maturity_and_trism.json",
+   "sha256": "e5497d68f261f69b3ec023553db7b354ca63abd4e02c56835959030967449fe2",
+   "bytes": 2949
+  },
+  {
+   "path": "frameworks/gdpr/ai_relevant_articles.json",
+   "sha256": "402c9349e3db3e1b6134bf6d829ca64e9d059209943273a15998557ab35c4716",
+   "bytes": 87635
+  },
+  {
+   "path": "frameworks/gdpr/articles.json",
+   "sha256": "59f80da3c244e69a01bb9b8a24f8472c937934d734041a417cf36fc1037fda63",
+   "bytes": 213402
+  },
+  {
+   "path": "frameworks/iso_42001/requirements.json",
+   "sha256": "1fd00dd478d443c1fcb1850bf3252ddbbf8853a5c88ccb2710dbee9e3dc80a40",
+   "bytes": 20904
+  },
+  {
+   "path": "frameworks/nist_ai_rmf/core.json",
+   "sha256": "b1befccc8c86059c41059ce5b5b20917acefdbc10b52cb6d75b876fc013d642a",
+   "bytes": 27690
+  },
+  {
+   "path": "frameworks/nist_ai_rmf/genai_profile_600-1.json",
+   "sha256": "76e8fb647fa8c86c337512d41c55ecca6190c52c565922b471ffef3261bd242b",
+   "bytes": 138676
+  },
+  {
+   "path": "risk-taxonomy/ibm_ai_risk_atlas.json",
+   "sha256": "b2d6f95c4ca3b42d30fd270c98e42234ee5097787b0e2dd0ea11123e6e2392d2",
+   "bytes": 102226
+  },
+  {
+   "path": "risk-taxonomy/mit_ai_risk_database_v4.json",
+   "sha256": "8d09905def6045bb244456b05fe3a78c05e0085f722c1f00c7f9973121f09a6c",
+   "bytes": 2297455
+  },
+  {
+   "path": "risk-taxonomy/mit_ai_risk_mitigation_taxonomy.json",
+   "sha256": "32cef267fef59f0b2c41a02a5cd8beaf2d69c4268cba211911041f397f32c541",
+   "bytes": 36376
+  },
+  {
+   "path": "risk-taxonomy/mit_ai_risk_taxonomies.json",
+   "sha256": "07acd3b3f336d98d25084e8ac689ea51bfd04f56e2b9bab707930739a146b2c4",
+   "bytes": 20197
+  },
+  {
+   "path": "risk-taxonomy/owasp_agentic_top10_2026.json",
+   "sha256": "7073306c0d3bf6717852f866e3396f832fd42f5b66c4c2220d51b12a27da1fcc",
+   "bytes": 15127
+  },
+  {
+   "path": "risk-taxonomy/owasp_llm_top10_2025.json",
+   "sha256": "f6ff5a94d05ffa4a2996295081adf81691d5e7f35044f03d118f729fb99107df",
+   "bytes": 8383
+  },
+  {
+   "path": "sources/manifest.json",
+   "sha256": "ae1ae9c4b4ec7dae86e260bffcd8effa860bcfa2dcae118b5e61334a56827c88",
+   "bytes": 13306
+  },
+  {
+   "path": "sources/raw/edpb_opinion_28_2024_ai_models.pdf",
+   "sha256": "addcafb4e28028fa87d13a15f91d593ac4b38c4d897be901e38556b5f816a50e",
+   "bytes": 728647
+  },
+  {
+   "path": "sources/raw/edpb_rec_01_2020_supplementary_measures.pdf",
+   "sha256": "36d34fe340cc140fc38919cdaea2710042c0e6cb48f8d7cecd6819d75de937b4",
+   "bytes": 1374391
+  },
+  {
+   "path": "sources/raw/eu_ai_act_2024_1689_oj.pdf",
+   "sha256": "bba630444b3278e881066774002a1d7824308934f49ccfa203e65be43692f55e",
+   "bytes": 2583319
+  },
+  {
+   "path": "sources/raw/mit_ai_risk_repository_v4.xlsx",
+   "sha256": "3dac1ef7a4df874ea57408acc0a7e2d5ce4912cf8b9dbabdd07e8c1813757368",
+   "bytes": 711955
+  },
+  {
+   "path": "sources/raw/nist_ai_100-1.pdf",
+   "sha256": "7576edb531d9848825814ee88e28b1795d3a84b435b4b797d3670eafdc4a89f1",
+   "bytes": 1946127
+  },
+  {
+   "path": "sources/raw/nist_ai_600-1.pdf",
+   "sha256": "6e73620ab6b64e90ef2c04bf0e0d6246185a2f4b1b13cab0df494496cff89b6a",
+   "bytes": 1174643
+  },
+  {
+   "path": "templates/_REVIEW_NOTES.md",
+   "sha256": "9fb3ab7a8d2f5ae59317bf87be3fe1b32c3e9de2d3d7624739a6df6f0c60c314",
+   "bytes": 3185
+  },
+  {
+   "path": "templates/agent-card.md",
+   "sha256": "f23805df4703f666d7140d74a506aaef34d3c125c61761a4e4c347f7cd6fd3fc",
+   "bytes": 14452
+  },
+  {
+   "path": "templates/ai-enhanced-dpia.md",
+   "sha256": "d598a087e162ed56d9fbd1d7264383b1c7347aa5c02b47b8699dc285e81f05af",
+   "bytes": 14243
+  },
+  {
+   "path": "templates/ai-governance-raci-matrix.md",
+   "sha256": "a9ff1ba3abeb6f8453edeb3444c35ccf2197aa056a62e4869d8b392b7d1cd396",
+   "bytes": 12865
+  },
+  {
+   "path": "templates/ai-literacy-plan.md",
+   "sha256": "02cdc1afc52d640be60033dc29cc84ff127207184f1441f47b56eb044e751ebe",
+   "bytes": 11221
+  },
+  {
+   "path": "templates/ai-risk-assessment-treatment-plan.md",
+   "sha256": "562ccec2a5456386669cae4d8e2b4a430059ce3efbbe8dfd05370acc04771444",
+   "bytes": 8436
+  },
+  {
+   "path": "templates/ai-system-impact-assessment.md",
+   "sha256": "11a1df8cf43847fb354c359a77a220e594118789652f99c5fd945603b432b575",
+   "bytes": 10309
+  },
+  {
+   "path": "templates/ai-use-case-inventory-record.md",
+   "sha256": "7a0fd30ea4e461ccd23acba8f63d22ea65a0089cfa277e65a9a58fdf88169b28",
+   "bytes": 10052
+  },
+  {
+   "path": "templates/aims-scope.md",
+   "sha256": "680b76c4f6f6c74e2048f650eab6bef91e901cafa9531461a518830fa8c93530",
+   "bytes": 7590
+  },
+  {
+   "path": "templates/annex-iv-technical-documentation.md",
+   "sha256": "30fd7148d6bc22d2bdd5cd35e8a60856402c24177904887d2c092be2edc43608",
+   "bytes": 12583
+  },
+  {
+   "path": "templates/art22-automated-decision-assessment.md",
+   "sha256": "f023473e804e586da2dec23679b5eeb54dafdb5faca3b61a36c137f585203b3c",
+   "bytes": 10979
+  },
+  {
+   "path": "templates/audit-readiness-nc-capa-log.md",
+   "sha256": "55a816616b87501c5f6e3873f015e8401d4ddefe561afeb0921932bc3bb2cd53",
+   "bytes": 9206
+  },
+  {
+   "path": "templates/board-executive-compliance-report.md",
+   "sha256": "ae5551474a6403ebf4ce696a2bad4ab38e529c3a6ec232a14907beb136f106fe",
+   "bytes": 11137
+  },
+  {
+   "path": "templates/corporate-ai-policy.md",
+   "sha256": "4def01e1a2b3dd9eeb3123bb24fd9b17f9005b79a3889869f91caa61a26635c6",
+   "bytes": 10356
+  },
+  {
+   "path": "templates/cross-framework-gap-analysis-roadmap.md",
+   "sha256": "eca5ed46162d662562efb9a70332f2b721da5c59640289f8643f5b9bd843ddca",
+   "bytes": 8267
+  },
+  {
+   "path": "templates/data-governance-bias-audit-report.md",
+   "sha256": "e1c1f109ce895c914d4a6c965cf571ee5e2264fe41e80f6636f455006cb9072e",
+   "bytes": 11132
+  },
+  {
+   "path": "templates/eu-declaration-of-conformity.md",
+   "sha256": "dd21397ab7e758d4407261b64a8407c0abc435c20b557c3334821c64e5559abf",
+   "bytes": 10262
+  },
+  {
+   "path": "templates/fria.md",
+   "sha256": "ba046e99d0865498b35054db313f1f1befee4bbd0cfd62f46a8e8f456600fb22",
+   "bytes": 12696
+  },
+  {
+   "path": "templates/genai-acceptable-use-policy.md",
+   "sha256": "7c0ed42342cca3211e6c11e782af0d8e14bc5134035264d975b788f0ae77f4d6",
+   "bytes": 10152
+  },
+  {
+   "path": "templates/genai-risk-profile-tevv-summary.md",
+   "sha256": "994e781aae0e2b979f1960bccd396e66e860b556dbc0e92499b5b03830500e98",
+   "bytes": 11388
+  },
+  {
+   "path": "templates/instructions-for-use.md",
+   "sha256": "9bab21ae8925abcdfc32d1b41bbf51ee2092d565271f349161779758ccdf04c2",
+   "bytes": 11348
+  },
+  {
+   "path": "templates/legitimate-interest-assessment.md",
+   "sha256": "d652bcd87ec21cb1628825540021443c49576fdcf1562821228084e0105a374c",
+   "bytes": 10088
+  },
+  {
+   "path": "templates/nist-maturity-scorecard.md",
+   "sha256": "98e1f1556df473f61c1c541566f88f009648fd286b7dd214b26812e850c09f39",
+   "bytes": 8183
+  },
+  {
+   "path": "templates/post-market-monitoring-plan.md",
+   "sha256": "0d16ea3eae80682f59c4855ee3e2cf12f9878267836b85a9265c5363bea1f2a5",
+   "bytes": 13174
+  },
+  {
+   "path": "templates/risk-classification-rationale.md",
+   "sha256": "2e9c3c2b1c685be79b0078d4b44b4dd99e408af0cc79f466165aacc824fe0a03",
+   "bytes": 13294
+  },
+  {
+   "path": "templates/risk-heat-map-report.md",
+   "sha256": "7950f95fa26795066680f97cd3c465143b9d52399d2ff2c772cbf262a5886dba",
+   "bytes": 8403
+  },
+  {
+   "path": "templates/ropa-ai-processing.md",
+   "sha256": "2964cba961239fcedfb13116b6c4f245f2ccd284c6528f7959c7dfe734698134",
+   "bytes": 8252
+  },
+  {
+   "path": "templates/serious-incident-report.md",
+   "sha256": "e7fc67057f9cd508466c1f5b180a0a63c1bc25817d1241d8f900572de0563f6a",
+   "bytes": 13955
+  },
+  {
+   "path": "templates/statement-of-applicability.md",
+   "sha256": "d12918af8289c51ea994dded4bc4216ef2bd230d5505919103cd0d2e6da6e89c",
+   "bytes": 7832
+  },
+  {
+   "path": "templates/transfer-impact-assessment.md",
+   "sha256": "9f9d2155c68d45037074a3412f0ad4e0ff62a0d93eeeb9683bbf4c0daba07585",
+   "bytes": 10049
+  },
+  {
+   "path": "templates/transparency-notices.md",
+   "sha256": "f77de9e8c13aeb775e3ca012cf2a50ead23f171e6e6d37f134da48853995b92e",
+   "bytes": 11882
+  },
+  {
+   "path": "templates/vendor-third-party-risk-assessment.md",
+   "sha256": "7855e2f96522d7743e4c18d178135733dd44d63e6ec37e55c644567438b976bb",
+   "bytes": 13599
+  }
+ ]
+}

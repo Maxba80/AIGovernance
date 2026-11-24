@@ -1,0 +1,805 @@
+{
+ "_meta": {
+  "kb_file": "crosswalks/risk/owasp_agentic_to_ibm.json",
+  "generated": "2026-11-24",
+  "source_ids": [
+   "ibm-ai-atlas-nexus"
+  ],
+  "licence": "Apache-2.0",
+  "relation_vocabulary": "SKOS mapping relations",
+  "extraction": "converted from ai-atlas-nexus `mappings/owasp_asi2ibm_risk_atlas_from_tsv_data.yaml`",
+  "verification": "upstream mapping; not re-validated"
+ },
+ "mappings": [
+  {
+   "source": "asi01-agent-goal-hijack",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-b003"
+  },
+  {
+   "source": "asi01-agent-goal-hijack",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-b006"
+  },
+  {
+   "source": "asi01-agent-goal-hijack",
+   "relation": "relatedMatch",
+   "target": "granite-guardian-harm"
+  },
+  {
+   "source": "granite-guardian-harm",
+   "relation": "relatedMatch",
+   "target": "asi01-agent-goal-hijack"
+  },
+  {
+   "source": "asi01-agent-goal-hijack",
+   "relation": "relatedMatch",
+   "target": "granite-jailbreak"
+  },
+  {
+   "source": "granite-jailbreak",
+   "relation": "relatedMatch",
+   "target": "asi01-agent-goal-hijack"
+  },
+  {
+   "source": "asi01-agent-goal-hijack",
+   "relation": "relatedMatch",
+   "target": "atlas-jailbreaking"
+  },
+  {
+   "source": "atlas-jailbreaking",
+   "relation": "relatedMatch",
+   "target": "asi01-agent-goal-hijack"
+  },
+  {
+   "source": "asi01-agent-goal-hijack",
+   "relation": "relatedMatch",
+   "target": "atlas-prompt-injection"
+  },
+  {
+   "source": "atlas-prompt-injection",
+   "relation": "relatedMatch",
+   "target": "asi01-agent-goal-hijack"
+  },
+  {
+   "source": "asi01-agent-goal-hijack",
+   "relation": "relatedMatch",
+   "target": "atlas-prompt-priming"
+  },
+  {
+   "source": "atlas-prompt-priming",
+   "relation": "relatedMatch",
+   "target": "asi01-agent-goal-hijack"
+  },
+  {
+   "source": "asi02-tool-misuse-and-exploitation",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-a003"
+  },
+  {
+   "source": "asi02-tool-misuse-and-exploitation",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-d003"
+  },
+  {
+   "source": "asi02-tool-misuse-and-exploitation",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-d004"
+  },
+  {
+   "source": "asi02-tool-misuse-and-exploitation",
+   "relation": "relatedMatch",
+   "target": "granite-function-call"
+  },
+  {
+   "source": "granite-function-call",
+   "relation": "relatedMatch",
+   "target": "asi02-tool-misuse-and-exploitation"
+  },
+  {
+   "source": "asi02-tool-misuse-and-exploitation",
+   "relation": "relatedMatch",
+   "target": "granite-jailbreak"
+  },
+  {
+   "source": "granite-jailbreak",
+   "relation": "relatedMatch",
+   "target": "asi02-tool-misuse-and-exploitation"
+  },
+  {
+   "source": "asi02-tool-misuse-and-exploitation",
+   "relation": "relatedMatch",
+   "target": "atlas-over-or-under-reliance"
+  },
+  {
+   "source": "atlas-over-or-under-reliance",
+   "relation": "relatedMatch",
+   "target": "asi02-tool-misuse-and-exploitation"
+  },
+  {
+   "source": "asi02-tool-misuse-and-exploitation",
+   "relation": "relatedMatch",
+   "target": "atlas-prompt-injection"
+  },
+  {
+   "source": "atlas-prompt-injection",
+   "relation": "relatedMatch",
+   "target": "asi02-tool-misuse-and-exploitation"
+  },
+  {
+   "source": "asi02-tool-misuse-and-exploitation",
+   "relation": "relatedMatch",
+   "target": "atlas-unauthorized-use-agentic"
+  },
+  {
+   "source": "atlas-unauthorized-use-agentic",
+   "relation": "relatedMatch",
+   "target": "asi02-tool-misuse-and-exploitation"
+  },
+  {
+   "source": "asi03-identity-and-privilege-abuse",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-b001"
+  },
+  {
+   "source": "asi03-identity-and-privilege-abuse",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-e001"
+  },
+  {
+   "source": "asi03-identity-and-privilege-abuse",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-e015"
+  },
+  {
+   "source": "asi03-identity-and-privilege-abuse",
+   "relation": "relatedMatch",
+   "target": "granite-guardian-harm"
+  },
+  {
+   "source": "granite-guardian-harm",
+   "relation": "relatedMatch",
+   "target": "asi03-identity-and-privilege-abuse"
+  },
+  {
+   "source": "asi03-identity-and-privilege-abuse",
+   "relation": "relatedMatch",
+   "target": "atlas-exposing-personal-information"
+  },
+  {
+   "source": "atlas-exposing-personal-information",
+   "relation": "relatedMatch",
+   "target": "asi03-identity-and-privilege-abuse"
+  },
+  {
+   "source": "asi03-identity-and-privilege-abuse",
+   "relation": "relatedMatch",
+   "target": "atlas-nonconsensual-use"
+  },
+  {
+   "source": "atlas-nonconsensual-use",
+   "relation": "relatedMatch",
+   "target": "asi03-identity-and-privilege-abuse"
+  },
+  {
+   "source": "asi03-identity-and-privilege-abuse",
+   "relation": "relatedMatch",
+   "target": "atlas-unauthorized-use-agentic"
+  },
+  {
+   "source": "atlas-unauthorized-use-agentic",
+   "relation": "relatedMatch",
+   "target": "asi03-identity-and-privilege-abuse"
+  },
+  {
+   "source": "asi04-agentic-supply-chain-vulnerabilities",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-a001"
+  },
+  {
+   "source": "asi04-agentic-supply-chain-vulnerabilities",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-b009"
+  },
+  {
+   "source": "asi04-agentic-supply-chain-vulnerabilities",
+   "relation": "relatedMatch",
+   "target": "granite-evasiveness"
+  },
+  {
+   "source": "granite-evasiveness",
+   "relation": "relatedMatch",
+   "target": "asi04-agentic-supply-chain-vulnerabilities"
+  },
+  {
+   "source": "asi04-agentic-supply-chain-vulnerabilities",
+   "relation": "relatedMatch",
+   "target": "granite-guardian-harm"
+  },
+  {
+   "source": "granite-guardian-harm",
+   "relation": "relatedMatch",
+   "target": "asi04-agentic-supply-chain-vulnerabilities"
+  },
+  {
+   "source": "asi04-agentic-supply-chain-vulnerabilities",
+   "relation": "relatedMatch",
+   "target": "atlas-data-contamination"
+  },
+  {
+   "source": "atlas-data-contamination",
+   "relation": "relatedMatch",
+   "target": "asi04-agentic-supply-chain-vulnerabilities"
+  },
+  {
+   "source": "asi04-agentic-supply-chain-vulnerabilities",
+   "relation": "relatedMatch",
+   "target": "atlas-data-poisoning"
+  },
+  {
+   "source": "atlas-data-poisoning",
+   "relation": "relatedMatch",
+   "target": "asi04-agentic-supply-chain-vulnerabilities"
+  },
+  {
+   "source": "asi04-agentic-supply-chain-vulnerabilities",
+   "relation": "relatedMatch",
+   "target": "atlas-incomplete-advice"
+  },
+  {
+   "source": "atlas-incomplete-advice",
+   "relation": "relatedMatch",
+   "target": "asi04-agentic-supply-chain-vulnerabilities"
+  },
+  {
+   "source": "asi05-unexpected-code-execution",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-b003"
+  },
+  {
+   "source": "asi05-unexpected-code-execution",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-d003"
+  },
+  {
+   "source": "asi05-unexpected-code-execution",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-d004"
+  },
+  {
+   "source": "asi05-unexpected-code-execution",
+   "relation": "relatedMatch",
+   "target": "granite-function-call"
+  },
+  {
+   "source": "granite-function-call",
+   "relation": "relatedMatch",
+   "target": "asi05-unexpected-code-execution"
+  },
+  {
+   "source": "asi05-unexpected-code-execution",
+   "relation": "relatedMatch",
+   "target": "granite-jailbreak"
+  },
+  {
+   "source": "granite-jailbreak",
+   "relation": "relatedMatch",
+   "target": "asi05-unexpected-code-execution"
+  },
+  {
+   "source": "asi05-unexpected-code-execution",
+   "relation": "relatedMatch",
+   "target": "atlas-extraction-attack"
+  },
+  {
+   "source": "atlas-extraction-attack",
+   "relation": "relatedMatch",
+   "target": "asi05-unexpected-code-execution"
+  },
+  {
+   "source": "asi05-unexpected-code-execution",
+   "relation": "relatedMatch",
+   "target": "atlas-jailbreaking"
+  },
+  {
+   "source": "atlas-jailbreaking",
+   "relation": "relatedMatch",
+   "target": "asi05-unexpected-code-execution"
+  },
+  {
+   "source": "asi05-unexpected-code-execution",
+   "relation": "relatedMatch",
+   "target": "atlas-prompt-injection"
+  },
+  {
+   "source": "atlas-prompt-injection",
+   "relation": "relatedMatch",
+   "target": "asi05-unexpected-code-execution"
+  },
+  {
+   "source": "asi06-memory-and-context-poisoning",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-a001"
+  },
+  {
+   "source": "asi06-memory-and-context-poisoning",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-a006"
+  },
+  {
+   "source": "asi06-memory-and-context-poisoning",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-e015"
+  },
+  {
+   "source": "asi06-memory-and-context-poisoning",
+   "relation": "relatedMatch",
+   "target": "granite-groundedness"
+  },
+  {
+   "source": "granite-groundedness",
+   "relation": "relatedMatch",
+   "target": "asi06-memory-and-context-poisoning"
+  },
+  {
+   "source": "asi06-memory-and-context-poisoning",
+   "relation": "relatedMatch",
+   "target": "granite-relevance"
+  },
+  {
+   "source": "granite-relevance",
+   "relation": "relatedMatch",
+   "target": "asi06-memory-and-context-poisoning"
+  },
+  {
+   "source": "asi06-memory-and-context-poisoning",
+   "relation": "relatedMatch",
+   "target": "atlas-data-bias"
+  },
+  {
+   "source": "atlas-data-bias",
+   "relation": "relatedMatch",
+   "target": "asi06-memory-and-context-poisoning"
+  },
+  {
+   "source": "asi06-memory-and-context-poisoning",
+   "relation": "relatedMatch",
+   "target": "atlas-data-poisoning"
+  },
+  {
+   "source": "atlas-data-poisoning",
+   "relation": "relatedMatch",
+   "target": "asi06-memory-and-context-poisoning"
+  },
+  {
+   "source": "asi06-memory-and-context-poisoning",
+   "relation": "relatedMatch",
+   "target": "atlas-hallucination"
+  },
+  {
+   "source": "atlas-hallucination",
+   "relation": "relatedMatch",
+   "target": "asi06-memory-and-context-poisoning"
+  },
+  {
+   "source": "asi07-insecure-inter-agent-communication",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-b001"
+  },
+  {
+   "source": "asi07-insecure-inter-agent-communication",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-e001"
+  },
+  {
+   "source": "asi07-insecure-inter-agent-communication",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-e015"
+  },
+  {
+   "source": "asi07-insecure-inter-agent-communication",
+   "relation": "relatedMatch",
+   "target": "granite-evasiveness"
+  },
+  {
+   "source": "granite-evasiveness",
+   "relation": "relatedMatch",
+   "target": "asi07-insecure-inter-agent-communication"
+  },
+  {
+   "source": "asi07-insecure-inter-agent-communication",
+   "relation": "relatedMatch",
+   "target": "granite-guardian-harm"
+  },
+  {
+   "source": "granite-guardian-harm",
+   "relation": "relatedMatch",
+   "target": "asi07-insecure-inter-agent-communication"
+  },
+  {
+   "source": "asi07-insecure-inter-agent-communication",
+   "relation": "relatedMatch",
+   "target": "atlas-attribute-inference-attack"
+  },
+  {
+   "source": "atlas-attribute-inference-attack",
+   "relation": "relatedMatch",
+   "target": "asi07-insecure-inter-agent-communication"
+  },
+  {
+   "source": "asi07-insecure-inter-agent-communication",
+   "relation": "relatedMatch",
+   "target": "atlas-data-privacy-rights"
+  },
+  {
+   "source": "atlas-data-privacy-rights",
+   "relation": "relatedMatch",
+   "target": "asi07-insecure-inter-agent-communication"
+  },
+  {
+   "source": "asi07-insecure-inter-agent-communication",
+   "relation": "relatedMatch",
+   "target": "atlas-prompt-injection"
+  },
+  {
+   "source": "atlas-prompt-injection",
+   "relation": "relatedMatch",
+   "target": "asi07-insecure-inter-agent-communication"
+  },
+  {
+   "source": "asi08-cascading-failures",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-c008"
+  },
+  {
+   "source": "asi08-cascading-failures",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-d002"
+  },
+  {
+   "source": "asi08-cascading-failures",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-e015"
+  },
+  {
+   "source": "asi08-cascading-failures",
+   "relation": "relatedMatch",
+   "target": "granite-answer-relevance"
+  },
+  {
+   "source": "granite-answer-relevance",
+   "relation": "relatedMatch",
+   "target": "asi08-cascading-failures"
+  },
+  {
+   "source": "asi08-cascading-failures",
+   "relation": "relatedMatch",
+   "target": "granite-groundedness"
+  },
+  {
+   "source": "granite-groundedness",
+   "relation": "relatedMatch",
+   "target": "asi08-cascading-failures"
+  },
+  {
+   "source": "asi08-cascading-failures",
+   "relation": "relatedMatch",
+   "target": "atlas-data-contamination"
+  },
+  {
+   "source": "atlas-data-contamination",
+   "relation": "relatedMatch",
+   "target": "asi08-cascading-failures"
+  },
+  {
+   "source": "asi08-cascading-failures",
+   "relation": "relatedMatch",
+   "target": "atlas-hallucination"
+  },
+  {
+   "source": "atlas-hallucination",
+   "relation": "relatedMatch",
+   "target": "asi08-cascading-failures"
+  },
+  {
+   "source": "asi08-cascading-failures",
+   "relation": "relatedMatch",
+   "target": "atlas-poor-model-accuracy"
+  },
+  {
+   "source": "atlas-poor-model-accuracy",
+   "relation": "relatedMatch",
+   "target": "asi08-cascading-failures"
+  },
+  {
+   "source": "asi09-human-agent-trust-exploitation",
+   "relation": "closeMatch",
+   "target": "atlas-over-or-under-reliance"
+  },
+  {
+   "source": "atlas-over-or-under-reliance",
+   "relation": "closeMatch",
+   "target": "asi09-human-agent-trust-exploitation"
+  },
+  {
+   "source": "asi09-human-agent-trust-exploitation",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-d001"
+  },
+  {
+   "source": "asi09-human-agent-trust-exploitation",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-e001"
+  },
+  {
+   "source": "asi09-human-agent-trust-exploitation",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-e003"
+  },
+  {
+   "source": "asi09-human-agent-trust-exploitation",
+   "relation": "relatedMatch",
+   "target": "granite-groundedness"
+  },
+  {
+   "source": "granite-groundedness",
+   "relation": "relatedMatch",
+   "target": "asi09-human-agent-trust-exploitation"
+  },
+  {
+   "source": "asi09-human-agent-trust-exploitation",
+   "relation": "relatedMatch",
+   "target": "granite-guardian-harm"
+  },
+  {
+   "source": "granite-guardian-harm",
+   "relation": "relatedMatch",
+   "target": "asi09-human-agent-trust-exploitation"
+  },
+  {
+   "source": "asi09-human-agent-trust-exploitation",
+   "relation": "relatedMatch",
+   "target": "atlas-incomplete-advice"
+  },
+  {
+   "source": "atlas-incomplete-advice",
+   "relation": "relatedMatch",
+   "target": "asi09-human-agent-trust-exploitation"
+  },
+  {
+   "source": "asi09-human-agent-trust-exploitation",
+   "relation": "relatedMatch",
+   "target": "atlas-lack-of-system-transparency"
+  },
+  {
+   "source": "atlas-lack-of-system-transparency",
+   "relation": "relatedMatch",
+   "target": "asi09-human-agent-trust-exploitation"
+  },
+  {
+   "source": "asi10-rogue-agents",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-b006"
+  },
+  {
+   "source": "asi10-rogue-agents",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-c008"
+  },
+  {
+   "source": "asi10-rogue-agents",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-e012"
+  },
+  {
+   "source": "asi10-rogue-agents",
+   "relation": "relatedMatch",
+   "target": "aiuc1-req-e015"
+  },
+  {
+   "source": "asi10-rogue-agents",
+   "relation": "relatedMatch",
+   "target": "granite-function-call"
+  },
+  {
+   "source": "granite-function-call",
+   "relation": "relatedMatch",
+   "target": "asi10-rogue-agents"
+  },
+  {
+   "source": "asi10-rogue-agents",
+   "relation": "relatedMatch",
+   "target": "granite-guardian-harm"
+  },
+  {
+   "source": "granite-guardian-harm",
+   "relation": "relatedMatch",
+   "target": "asi10-rogue-agents"
+  },
+  {
+   "source": "asi10-rogue-agents",
+   "relation": "relatedMatch",
+   "target": "granite-jailbreak"
+  },
+  {
+   "source": "granite-jailbreak",
+   "relation": "relatedMatch",
+   "target": "asi10-rogue-agents"
+  },
+  {
+   "source": "asi10-rogue-agents",
+   "relation": "relatedMatch",
+   "target": "atlas-function-calling-hallucination-agentic"
+  },
+  {
+   "source": "atlas-function-calling-hallucination-agentic",
+   "relation": "relatedMatch",
+   "target": "asi10-rogue-agents"
+  },
+  {
+   "source": "asi10-rogue-agents",
+   "relation": "relatedMatch",
+   "target": "atlas-mitigation-maintenance-agentic"
+  },
+  {
+   "source": "atlas-mitigation-maintenance-agentic",
+   "relation": "relatedMatch",
+   "target": "asi10-rogue-agents"
+  },
+  {
+   "source": "asi10-rogue-agents",
+   "relation": "relatedMatch",
+   "target": "atlas-unauthorized-use-agentic"
+  },
+  {
+   "source": "atlas-unauthorized-use-agentic",
+   "relation": "relatedMatch",
+   "target": "asi10-rogue-agents"
+  },
+  {
+   "source": "aiuc1-req-b003",
+   "relation": "relatedMatch",
+   "target": "asi01-agent-goal-hijack"
+  },
+  {
+   "source": "aiuc1-req-b006",
+   "relation": "relatedMatch",
+   "target": "asi01-agent-goal-hijack"
+  },
+  {
+   "source": "aiuc1-req-a003",
+   "relation": "relatedMatch",
+   "target": "asi02-tool-misuse-and-exploitation"
+  },
+  {
+   "source": "aiuc1-req-d003",
+   "relation": "relatedMatch",
+   "target": "asi02-tool-misuse-and-exploitation"
+  },
+  {
+   "source": "aiuc1-req-d004",
+   "relation": "relatedMatch",
+   "target": "asi02-tool-misuse-and-exploitation"
+  },
+  {
+   "source": "aiuc1-req-b001",
+   "relation": "relatedMatch",
+   "target": "asi03-identity-and-privilege-abuse"
+  },
+  {
+   "source": "aiuc1-req-e001",
+   "relation": "relatedMatch",
+   "target": "asi03-identity-and-privilege-abuse"
+  },
+  {
+   "source": "aiuc1-req-e015",
+   "relation": "relatedMatch",
+   "target": "asi03-identity-and-privilege-abuse"
+  },
+  {
+   "source": "aiuc1-req-a001",
+   "relation": "relatedMatch",
+   "target": "asi04-agentic-supply-chain-vulnerabilities"
+  },
+  {
+   "source": "aiuc1-req-b009",
+   "relation": "relatedMatch",
+   "target": "asi04-agentic-supply-chain-vulnerabilities"
+  },
+  {
+   "source": "aiuc1-req-b003",
+   "relation": "relatedMatch",
+   "target": "asi05-unexpected-code-execution"
+  },
+  {
+   "source": "aiuc1-req-d003",
+   "relation": "relatedMatch",
+   "target": "asi05-unexpected-code-execution"
+  },
+  {
+   "source": "aiuc1-req-d004",
+   "relation": "relatedMatch",
+   "target": "asi05-unexpected-code-execution"
+  },
+  {
+   "source": "aiuc1-req-a001",
+   "relation": "relatedMatch",
+   "target": "asi06-memory-and-context-poisoning"
+  },
+  {
+   "source": "aiuc1-req-a006",
+   "relation": "relatedMatch",
+   "target": "asi06-memory-and-context-poisoning"
+  },
+  {
+   "source": "aiuc1-req-e015",
+   "relation": "relatedMatch",
+   "target": "asi06-memory-and-context-poisoning"
+  },
+  {
+   "source": "aiuc1-req-b001",
+   "relation": "relatedMatch",
+   "target": "asi07-insecure-inter-agent-communication"
+  },
+  {
+   "source": "aiuc1-req-e001",
+   "relation": "relatedMatch",
+   "target": "asi07-insecure-inter-agent-communication"
+  },
+  {
+   "source": "aiuc1-req-e015",
+   "relation": "relatedMatch",
+   "target": "asi07-insecure-inter-agent-communication"
+  },
+  {
+   "source": "aiuc1-req-c008",
+   "relation": "relatedMatch",
+   "target": "asi08-cascading-failures"
+  },
+  {
+   "source": "aiuc1-req-d002",
+   "relation": "relatedMatch",
+   "target": "asi08-cascading-failures"
+  },
+  {
+   "source": "aiuc1-req-e015",
+   "relation": "relatedMatch",
+   "target": "asi08-cascading-failures"
+  },
+  {
+   "source": "aiuc1-req-d001",
+   "relation": "relatedMatch",
+   "target": "asi09-human-agent-trust-exploitation"
+  },
+  {
+   "source": "aiuc1-req-e001",
+   "relation": "relatedMatch",
+   "target": "asi09-human-agent-trust-exploitation"
+  },
+  {
+   "source": "aiuc1-req-e003",
+   "relation": "relatedMatch",
+   "target": "asi09-human-agent-trust-exploitation"
+  },
+  {
+   "source": "aiuc1-req-b006",
+   "relation": "relatedMatch",
+   "target": "asi10-rogue-agents"
+  },
+  {
+   "source": "aiuc1-req-c008",
+   "relation": "relatedMatch",
+   "target": "asi10-rogue-agents"
+  },
+  {
+   "source": "aiuc1-req-e012",
+   "relation": "relatedMatch",
+   "target": "asi10-rogue-agents"
+  },
+  {
+   "source": "aiuc1-req-e015",
+   "relation": "relatedMatch",
+   "target": "asi10-rogue-agents"
+  }
+ ]
+}

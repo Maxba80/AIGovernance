@@ -1,0 +1,105 @@
+{
+ "_meta": {
+  "kb_file": "frameworks/gartner/ai_maturity_and_trism.json",
+  "generated": "2026-11-24",
+  "source_ids": [
+   "gartner-public-summaries"
+  ],
+  "licence": "Gartner research is proprietary. This file is a short paraphrased summary of publicly described models, not Gartner content.",
+  "extraction": "AUTHORED BY AI (Claude) from model knowledge",
+  "verification": "NOT verified against Gartner publications; a Gartner licence is needed to consult the originals. Links to CCOs are this knowledge base's own."
+ },
+ "ai_maturity_model": {
+  "levels": [
+   {
+    "level": 1,
+    "name": "Awareness",
+    "description": "AI is discussed but no pilots or strategy exist; interest is ad hoc."
+   },
+   {
+    "level": 2,
+    "name": "Active",
+    "description": "Experiments and proofs of concept; knowledge sharing starts."
+   },
+   {
+    "level": 3,
+    "name": "Operational",
+    "description": "At least one AI project is in production with budget, ownership and supporting practices."
+   },
+   {
+    "level": 4,
+    "name": "Systemic",
+    "description": "AI is considered in every new digital initiative and is embedded in business processes."
+   },
+   {
+    "level": 5,
+    "name": "Transformational",
+    "description": "AI is part of the business DNA and central to the operating model."
+   }
+  ],
+  "assessment_pillars": [
+   "Strategy",
+   "Product / value",
+   "Governance",
+   "Engineering",
+   "Data",
+   "Operating models",
+   "Culture"
+  ],
+  "nist_bridge_note": "The app's NIST maturity scorecard uses a 0–5 scale per subcategory; map 0 = not started, 1–5 = the five levels above."
+ },
+ "ai_trism": {
+  "name": "AI Trust, Risk and Security Management (AI TRiSM)",
+  "layers": [
+   {
+    "id": "trism-governance",
+    "name": "AI governance",
+    "scope": "Inventory of AI assets, policies, accountability, risk and compliance tracking",
+    "related_cco": [
+     "CCO-02",
+     "CCO-03",
+     "CCO-04",
+     "CCO-05"
+    ]
+   },
+   {
+    "id": "trism-runtime",
+    "name": "AI runtime inspection and enforcement",
+    "scope": "Real-time inspection of models, applications and agent interactions; guardrails and policy enforcement",
+    "related_cco": [
+     "CCO-10",
+     "CCO-12",
+     "CCO-13",
+     "CCO-17"
+    ]
+   },
+   {
+    "id": "trism-information-governance",
+    "name": "Information governance",
+    "scope": "Data classification, access rights and protection of data used by AI",
+    "related_cco": [
+     "CCO-07",
+     "CCO-23",
+     "CCO-24"
+    ]
+   },
+   {
+    "id": "trism-infrastructure",
+    "name": "Infrastructure and stack",
+    "scope": "Traditional technology protection: endpoint, network, cloud, identity, workload security",
+    "related_cco": [
+     "CCO-13",
+     "CCO-19"
+    ]
+   }
+  ],
+  "risk_categories": [
+   "Explainability / model monitoring",
+   "ModelOps",
+   "AI application security",
+   "Privacy",
+   "Third-party model and data risk",
+   "Agentic AI runtime risk"
+  ]
+ }
+}

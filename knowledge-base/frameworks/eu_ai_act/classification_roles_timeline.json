@@ -1,0 +1,452 @@
+{
+ "_meta": {
+  "kb_file": "frameworks/eu_ai_act/classification_roles_timeline.json",
+  "generated": "2026-11-24",
+  "source_ids": [
+   "eu-ai-act-2024-1689-oj",
+   "eu-reg-2026-1744"
+  ],
+  "licence": "Original work of this knowledge base",
+  "extraction": "AUTHORED BY AI (Claude) from the Regulation; each element cites the articles it derives from",
+  "verification": "see the `verification` field on each block; the timeline is verified against the OJ text of Regulation (EU) 2026/1744"
+ },
+ "risk_classes": [
+  {
+   "id": "prohibited",
+   "label_en": "Prohibited practice",
+   "label_it": "Pratica vietata",
+   "basis": [
+    "AIA-Art.5"
+   ]
+  },
+  {
+   "id": "high-risk-annex-i",
+   "label_en": "High-risk (product safety, Annex I)",
+   "label_it": "Alto rischio (sicurezza prodotti, Allegato I)",
+   "basis": [
+    "AIA-Art.6",
+    "AIA-Annex.I"
+   ]
+  },
+  {
+   "id": "high-risk-annex-iii",
+   "label_en": "High-risk (stand-alone, Annex III)",
+   "label_it": "Alto rischio (Allegato III)",
+   "basis": [
+    "AIA-Art.6",
+    "AIA-Annex.III"
+   ]
+  },
+  {
+   "id": "limited-transparency",
+   "label_en": "Limited risk (transparency obligations)",
+   "label_it": "Rischio limitato (obblighi di trasparenza)",
+   "basis": [
+    "AIA-Art.50"
+   ]
+  },
+  {
+   "id": "minimal",
+   "label_en": "Minimal risk",
+   "label_it": "Rischio minimo",
+   "basis": [
+    "AIA-Art.95"
+   ]
+  },
+  {
+   "id": "gpai",
+   "label_en": "General-purpose AI model",
+   "label_it": "Modello di IA per finalità generali",
+   "basis": [
+    "AIA-Art.51",
+    "AIA-Art.53"
+   ]
+  },
+  {
+   "id": "gpai-systemic",
+   "label_en": "GPAI model with systemic risk",
+   "label_it": "Modello GPAI con rischio sistemico",
+   "basis": [
+    "AIA-Art.51",
+    "AIA-Art.55"
+   ]
+  }
+ ],
+ "classification_decision_tree": [
+  {
+   "step": 1,
+   "question": "Is it an 'AI system' (Art. 3(1)) or a GPAI model (Art. 3(63)) within the scope of Art. 2, and no exclusion of Art. 2 applies?",
+   "basis": [
+    "AIA-Art.2",
+    "AIA-Art.3"
+   ],
+   "no": "out-of-scope",
+   "yes": 2
+  },
+  {
+   "step": 2,
+   "question": "Does the use fall under any prohibited practice of Art. 5?",
+   "basis": [
+    "AIA-Art.5"
+   ],
+   "yes": "prohibited",
+   "no": 3
+  },
+  {
+   "step": 3,
+   "question": "Is the system a safety component of a product, or itself a product, covered by Annex I legislation AND subject to third-party conformity assessment under that legislation? (See Art. 6(1a)-(1c), inserted in 2026: components used only for non-safety aspects are not safety components.)",
+   "basis": [
+    "AIA-Art.6",
+    "AIA-Annex.I"
+   ],
+   "yes": "high-risk-annex-i",
+   "no": 4
+  },
+  {
+   "step": 4,
+   "question": "Is the system used in one of the areas and use cases listed in Annex III?",
+   "basis": [
+    "AIA-Art.6",
+    "AIA-Annex.III"
+   ],
+   "yes": 5,
+   "no": 6
+  },
+  {
+   "step": 5,
+   "question": "Does a derogation of Art. 6(3) apply (narrow procedural task, improving a completed human activity, detecting decision patterns, preparatory task) AND the system does NOT perform profiling of natural persons?",
+   "basis": [
+    "AIA-Art.6"
+   ],
+   "yes": "not high-risk — document the assessment (Art. 6(4)) and register (Art. 49(2)); continue at step 6",
+   "no": "high-risk-annex-iii"
+  },
+  {
+   "step": 6,
+   "question": "Does the system interact with natural persons, generate synthetic content, perform emotion recognition / biometric categorisation, or produce deep fakes?",
+   "basis": [
+    "AIA-Art.50"
+   ],
+   "yes": "limited-transparency",
+   "no": "minimal"
+  },
+  {
+   "step": 7,
+   "question": "Independently of steps 2–6: is the organisation the provider of a GPAI model? If yes, does it meet the systemic-risk criteria of Art. 51?",
+   "basis": [
+    "AIA-Art.51",
+    "AIA-Art.53",
+    "AIA-Art.55"
+   ],
+   "yes": "gpai / gpai-systemic",
+   "no": "n/a"
+  }
+ ],
+ "hitl_gate": "The final class is always confirmed by a human (HITL) and recorded in the audit log with the rationale.",
+ "roles": [
+  {
+   "id": "provider",
+   "label_it": "Fornitore",
+   "definition": "AIA-Art.3",
+   "obligations": [
+    "AIA-Art.16",
+    "AIA-Art.17",
+    "AIA-Art.18",
+    "AIA-Art.19",
+    "AIA-Art.20",
+    "AIA-Art.21",
+    "AIA-Art.9",
+    "AIA-Art.10",
+    "AIA-Art.11",
+    "AIA-Art.12",
+    "AIA-Art.13",
+    "AIA-Art.14",
+    "AIA-Art.15",
+    "AIA-Art.43",
+    "AIA-Art.47",
+    "AIA-Art.48",
+    "AIA-Art.49",
+    "AIA-Art.72",
+    "AIA-Art.73",
+    "AIA-Art.4",
+    "AIA-Art.50"
+   ]
+  },
+  {
+   "id": "deployer",
+   "label_it": "Deployer (utilizzatore)",
+   "definition": "AIA-Art.3",
+   "obligations": [
+    "AIA-Art.26",
+    "AIA-Art.27",
+    "AIA-Art.4",
+    "AIA-Art.50",
+    "AIA-Art.86",
+    "AIA-Art.49"
+   ]
+  },
+  {
+   "id": "importer",
+   "label_it": "Importatore",
+   "definition": "AIA-Art.3",
+   "obligations": [
+    "AIA-Art.23"
+   ]
+  },
+  {
+   "id": "distributor",
+   "label_it": "Distributore",
+   "definition": "AIA-Art.3",
+   "obligations": [
+    "AIA-Art.24"
+   ]
+  },
+  {
+   "id": "authorised-representative",
+   "label_it": "Rappresentante autorizzato",
+   "definition": "AIA-Art.3",
+   "obligations": [
+    "AIA-Art.22",
+    "AIA-Art.54"
+   ]
+  },
+  {
+   "id": "gpai-provider",
+   "label_it": "Fornitore di modello GPAI",
+   "definition": "AIA-Art.3",
+   "obligations": [
+    "AIA-Art.53",
+    "AIA-Art.54",
+    "AIA-Art.55",
+    "AIA-Annex.XI",
+    "AIA-Annex.XII"
+   ]
+  }
+ ],
+ "role_change_rule": {
+  "basis": [
+   "AIA-Art.25"
+  ],
+  "note": "A distributor, importer, deployer or other third party becomes a provider when it rebrands, substantially modifies, or changes the intended purpose of a high-risk system."
+ },
+ "timeline": {
+  "original_regulation_art_113": {
+   "verification": "primary source read (Art. 113)",
+   "entries": [
+    {
+     "date": "2024-08-01",
+     "what": "Entry into force"
+    },
+    {
+     "date": "2025-02-02",
+     "what": "Chapters I and II apply (general provisions incl. AI literacy Art. 4; prohibited practices Art. 5)"
+    },
+    {
+     "date": "2025-08-02",
+     "what": "Chapter III Section 4, Chapter V (GPAI), Chapter VII, Chapter XII and Art. 78 apply (penalties except Art. 101)"
+    },
+    {
+     "date": "2026-08-02",
+     "what": "General date of application (incl. Annex III high-risk obligations and Art. 50 in the original text)"
+    },
+    {
+     "date": "2027-08-02",
+     "what": "Art. 6(1) and corresponding obligations (Annex I high-risk) in the original text"
+    }
+   ]
+  },
+  "as_amended_by_reg_2026_1744": {
+   "verification": "primary source read: Regulation (EU) 2026/1744 (OJ L, 24.7.2026), Article 1(39), 1(40) and Article 4",
+   "entries": [
+    {
+     "date": "2025-02-02",
+     "what": "Chapters I and II apply (unchanged), except the new prohibitions below",
+     "basis": "Art. 113(a) as amended"
+    },
+    {
+     "date": "2025-08-02",
+     "what": "GPAI obligations, governance, penalties (unchanged)",
+     "basis": "Art. 113(b)"
+    },
+    {
+     "date": "2026-07-27",
+     "what": "Entry into force of Regulation (EU) 2026/1744 (third day after publication on 24.7.2026); Articles 102 to 110 apply",
+     "basis": "2026/1744 Art. 4; Art. 113(d)"
+    },
+    {
+     "date": "2026-08-02",
+     "what": "General date of application, incl. Art. 50 transparency obligations (unchanged)",
+     "basis": "Art. 113, second paragraph"
+    },
+    {
+     "date": "2026-12-02",
+     "what": "New prohibitions of Art. 5(1)(ba) and (bb) with Art. 5(1a) and (1b) apply; providers of generative AI systems placed on the market before 2 Aug 2026 must comply with Art. 50(2)",
+     "basis": "Art. 113(a) and Art. 111(4) as amended"
+    },
+    {
+     "date": "2027-08-02",
+     "what": "National AI regulatory sandboxes operational; Commission delegated acts under Art. 2(13) due",
+     "basis": "Art. 57(1) and Art. 2(13) as amended"
+    },
+    {
+     "date": "2027-09-02",
+     "what": "Commission guidance and template for the post-market monitoring plan due",
+     "basis": "Art. 72(3) as amended"
+    },
+    {
+     "date": "2027-12-02",
+     "what": "Chapter III Sections 1-3 apply to high-risk AI systems under Art. 6(2) and Annex III",
+     "basis": "Art. 113(c)(i) as amended"
+    },
+    {
+     "date": "2028-01-28",
+     "what": "Notified bodies under Annex I Section A legislation must apply for designation",
+     "basis": "Art. 43(3) as amended"
+    },
+    {
+     "date": "2028-08-02",
+     "what": "Chapter III Sections 1-3 apply to high-risk AI systems under Art. 6(1) and Annex I",
+     "basis": "Art. 113(c)(ii) as amended"
+    },
+    {
+     "date": "2030-08-02",
+     "what": "High-risk AI systems intended for public authorities placed on the market before application must comply",
+     "basis": "Art. 111(2) as amended"
+    }
+   ],
+   "key_changes": [
+    {
+     "article": "AIA-Art.4",
+     "change": "AI literacy: providers and deployers 'shall take measures to support the development of AI literacy'; no duty to guarantee a specific level for any individual"
+    },
+    {
+     "article": "AIA-Art.4a",
+     "change": "New article on processing special categories of personal data for bias detection and correction; replaces Art. 10(5), which is deleted, and extends the possibility to other AI systems and to deployers under the same safeguards"
+    },
+    {
+     "article": "AIA-Art.5",
+     "change": "New prohibited practices (ba) non-consensual intimate or sexually explicit content of identifiable persons and (bb) child sexual abuse material, with conditions in (1a) and (1b)"
+    },
+    {
+     "article": "AIA-Art.6",
+     "change": "New paragraphs 1a-1c narrowing what counts as a safety component and as third-party conformity assessment"
+    },
+    {
+     "article": "AIA-Art.11",
+     "change": "Simplified technical documentation form extended to small mid-caps (SMCs)"
+    },
+    {
+     "article": "AIA-Art.25",
+     "change": "Initial provider must cooperate with the new provider; written agreement in 25(4) now also covers AI models"
+    },
+    {
+     "article": "AIA-Art.27",
+     "change": "FRIA may cross-reference or include the relevant parts of the DPIA; AI Office template to allow this"
+    },
+    {
+     "article": "AIA-Art.75",
+     "change": "AI Office exclusively competent for AI systems based on a GPAI model of the same provider and for systems integrated in very large online platforms or search engines, with listed exceptions"
+    },
+    {
+     "article": "AIA-Art.99",
+     "change": "SMEs' and SMCs' interests to be taken into account; for SMCs each fine is capped at the lower of the percentage or the amount; breaches of Art. 25(2) and (4) added to Art. 99(4)"
+    }
+   ]
+  }
+ },
+ "penalties_original_art_99": {
+  "verification": "primary source read (Art. 99 and its amendment by 2026/1744 Art. 1(38)): amounts unchanged; for SMEs and SMCs each fine is the lower of the percentage or the amount (Art. 99(6) and new 6a)",
+  "tiers": [
+   {
+    "infringement": "Prohibited practices (Art. 5)",
+    "max_eur": 35000000,
+    "max_turnover_pct": 7
+   },
+   {
+    "infringement": "Other operator obligations (Art. 99(4))",
+    "max_eur": 15000000,
+    "max_turnover_pct": 3
+   },
+   {
+    "infringement": "Incorrect, incomplete or misleading information to authorities",
+    "max_eur": 7500000,
+    "max_turnover_pct": 1
+   }
+  ],
+  "gpai": {
+   "basis": "AIA-Art.101",
+   "max_eur": 15000000,
+   "max_turnover_pct": 3
+  }
+ },
+ "guidance_register": [
+  {
+   "title": "Commission Guidelines on prohibited AI practices (Art. 5)",
+   "date": "2025-02-04",
+   "status": "adopted",
+   "verification": "model knowledge, not re-checked"
+  },
+  {
+   "title": "Commission Guidelines on the definition of an AI system",
+   "date": "2025-02-06",
+   "status": "adopted",
+   "verification": "model knowledge, not re-checked"
+  },
+  {
+   "title": "General-Purpose AI Code of Practice (Transparency, Copyright, Safety & Security chapters)",
+   "date": "2025-07-10",
+   "status": "final",
+   "verification": "confirmed via IBM ai-atlas-nexus dataset metadata"
+  },
+  {
+   "title": "Commission Guidelines on obligations for providers of GPAI models",
+   "date": "2025-07-18",
+   "status": "adopted",
+   "verification": "model knowledge, not re-checked"
+  },
+  {
+   "title": "Template for the public summary of training content (Art. 53(1)(d))",
+   "date": "2025-07-24",
+   "status": "adopted",
+   "verification": "model knowledge, not re-checked"
+  },
+  {
+   "title": "Code of Practice on transparency of AI-generated content",
+   "date": "2026-06-10",
+   "status": "final (voluntary)",
+   "verification": "official site search hit; date from secondary source",
+   "url": "https://digital-strategy.ec.europa.eu/en/policies/code-practice-ai-generated-content"
+  },
+  {
+   "title": "Commission Guidelines on transparency obligations (Art. 50), C(2026) 5054",
+   "date": "2026-07-20",
+   "status": "adopted",
+   "verification": "official site search hit",
+   "url": "https://digital-strategy.ec.europa.eu/en/library/guidelines-transparency-obligations-providers-and-deployers-ai-systems"
+  },
+  {
+   "title": "Guidelines on high-risk classification (Art. 6)",
+   "date": "2026-05-19",
+   "status": "DRAFT",
+   "verification": "secondary"
+  },
+  {
+   "title": "Guidance on serious incident reporting (Art. 73)",
+   "date": "2025-09-26",
+   "status": "DRAFT",
+   "verification": "secondary"
+  },
+  {
+   "title": "AI Office FRIA template (Art. 27(5))",
+   "date": null,
+   "status": "NOT PUBLISHED",
+   "verification": "secondary"
+  },
+  {
+   "title": "EN 18286:2026 Quality management system for EU AI Act regulatory purposes (cited by Implementing Decision (EU) 2026/2274)",
+   "date": "2026-10-14",
+   "status": "harmonised standard cited in OJ (reported)",
+   "verification": "secondary"
+  }
+ ]
+}

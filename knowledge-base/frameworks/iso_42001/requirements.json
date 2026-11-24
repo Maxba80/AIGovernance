@@ -1,0 +1,664 @@
+{
+ "_meta": {
+  "kb_file": "frameworks/iso_42001/requirements.json",
+  "generated": "2026-11-24",
+  "source_ids": [
+   "iso-iec-42001-2023",
+   "iso42001-lead-auditor-study-guide"
+  ],
+  "licence": "Identifiers, short titles and AI-written clause summaries only. The control statements of ISO/IEC 42001:2023 are copyright ISO/IEC and are NOT included in this public file.",
+  "extraction": "Public edition: control ids and titles; clause summaries paraphrased by AI. The full edition (control statements from the owner's licensed copy, audit procedures from the owner's study notes) is kept outside the repository as `requirements.licensed.json` and is loaded automatically when present.",
+  "verification": "control count checked (38); clause list from model knowledge cross-checked with the PDF table of contents",
+  "language": "en",
+  "edition": "public"
+ },
+ "clauses": [
+  {
+   "id": "ISO42001-4.1",
+   "clause": "4.1",
+   "title": "Understanding the organization and its context",
+   "summary_paraphrased": "Determine external and internal issues, the organisation's AI roles and whether climate change is a relevant issue.",
+   "citation": "ISO/IEC 42001:2023, clause 4.1"
+  },
+  {
+   "id": "ISO42001-4.2",
+   "clause": "4.2",
+   "title": "Understanding the needs and expectations of interested parties",
+   "summary_paraphrased": "Identify interested parties and which of their requirements the AIMS addresses.",
+   "citation": "ISO/IEC 42001:2023, clause 4.2"
+  },
+  {
+   "id": "ISO42001-4.3",
+   "clause": "4.3",
+   "title": "Determining the scope of the AI management system",
+   "summary_paraphrased": "Define and document the boundaries and applicability of the AIMS.",
+   "citation": "ISO/IEC 42001:2023, clause 4.3"
+  },
+  {
+   "id": "ISO42001-4.4",
+   "clause": "4.4",
+   "title": "AI management system",
+   "summary_paraphrased": "Establish, implement, maintain and continually improve the AIMS.",
+   "citation": "ISO/IEC 42001:2023, clause 4.4"
+  },
+  {
+   "id": "ISO42001-5.1",
+   "clause": "5.1",
+   "title": "Leadership and commitment",
+   "summary_paraphrased": "Top management demonstrates leadership: policy, objectives, resources, integration into business processes.",
+   "citation": "ISO/IEC 42001:2023, clause 5.1"
+  },
+  {
+   "id": "ISO42001-5.2",
+   "clause": "5.2",
+   "title": "AI policy",
+   "summary_paraphrased": "Establish a documented AI policy with commitments to requirements and continual improvement.",
+   "citation": "ISO/IEC 42001:2023, clause 5.2"
+  },
+  {
+   "id": "ISO42001-5.3",
+   "clause": "5.3",
+   "title": "Roles, responsibilities and authorities",
+   "summary_paraphrased": "Assign and communicate responsibilities and authorities for the AIMS.",
+   "citation": "ISO/IEC 42001:2023, clause 5.3"
+  },
+  {
+   "id": "ISO42001-6.1.1",
+   "clause": "6.1.1",
+   "title": "Actions to address risks and opportunities — General",
+   "summary_paraphrased": "Plan actions for risks and opportunities; define AI risk criteria.",
+   "citation": "ISO/IEC 42001:2023, clause 6.1.1"
+  },
+  {
+   "id": "ISO42001-6.1.2",
+   "clause": "6.1.2",
+   "title": "AI risk assessment",
+   "summary_paraphrased": "Define and apply a repeatable AI risk assessment process: identify, analyse, evaluate.",
+   "citation": "ISO/IEC 42001:2023, clause 6.1.2"
+  },
+  {
+   "id": "ISO42001-6.1.3",
+   "clause": "6.1.3",
+   "title": "AI risk treatment",
+   "summary_paraphrased": "Select treatment options, determine controls, compare with Annex A, produce the Statement of Applicability and treatment plan.",
+   "citation": "ISO/IEC 42001:2023, clause 6.1.3"
+  },
+  {
+   "id": "ISO42001-6.1.4",
+   "clause": "6.1.4",
+   "title": "AI system impact assessment",
+   "summary_paraphrased": "Assess consequences of AI systems for individuals, groups and societies; document results.",
+   "citation": "ISO/IEC 42001:2023, clause 6.1.4"
+  },
+  {
+   "id": "ISO42001-6.2",
+   "clause": "6.2",
+   "title": "AI objectives and planning to achieve them",
+   "summary_paraphrased": "Set measurable AI objectives and plans to achieve them.",
+   "citation": "ISO/IEC 42001:2023, clause 6.2"
+  },
+  {
+   "id": "ISO42001-6.3",
+   "clause": "6.3",
+   "title": "Planning of changes",
+   "summary_paraphrased": "Carry out changes to the AIMS in a planned manner.",
+   "citation": "ISO/IEC 42001:2023, clause 6.3"
+  },
+  {
+   "id": "ISO42001-7.1",
+   "clause": "7.1",
+   "title": "Resources",
+   "summary_paraphrased": "Provide the resources needed for the AIMS.",
+   "citation": "ISO/IEC 42001:2023, clause 7.1"
+  },
+  {
+   "id": "ISO42001-7.2",
+   "clause": "7.2",
+   "title": "Competence",
+   "summary_paraphrased": "Determine and ensure competence of persons affecting AI performance; keep evidence.",
+   "citation": "ISO/IEC 42001:2023, clause 7.2"
+  },
+  {
+   "id": "ISO42001-7.3",
+   "clause": "7.3",
+   "title": "Awareness",
+   "summary_paraphrased": "Ensure awareness of the AI policy, contribution and implications of nonconformity.",
+   "citation": "ISO/IEC 42001:2023, clause 7.3"
+  },
+  {
+   "id": "ISO42001-7.4",
+   "clause": "7.4",
+   "title": "Communication",
+   "summary_paraphrased": "Determine internal and external communications relevant to the AIMS.",
+   "citation": "ISO/IEC 42001:2023, clause 7.4"
+  },
+  {
+   "id": "ISO42001-7.5",
+   "clause": "7.5",
+   "title": "Documented information",
+   "summary_paraphrased": "Create, update and control documented information.",
+   "citation": "ISO/IEC 42001:2023, clause 7.5"
+  },
+  {
+   "id": "ISO42001-8.1",
+   "clause": "8.1",
+   "title": "Operational planning and control",
+   "summary_paraphrased": "Plan, implement and control processes, including outsourced ones and changes.",
+   "citation": "ISO/IEC 42001:2023, clause 8.1"
+  },
+  {
+   "id": "ISO42001-8.2",
+   "clause": "8.2",
+   "title": "AI risk assessment",
+   "summary_paraphrased": "Perform risk assessments at planned intervals or on significant change; retain results.",
+   "citation": "ISO/IEC 42001:2023, clause 8.2"
+  },
+  {
+   "id": "ISO42001-8.3",
+   "clause": "8.3",
+   "title": "AI risk treatment",
+   "summary_paraphrased": "Implement the risk treatment plan and verify effectiveness; retain results.",
+   "citation": "ISO/IEC 42001:2023, clause 8.3"
+  },
+  {
+   "id": "ISO42001-8.4",
+   "clause": "8.4",
+   "title": "AI system impact assessment",
+   "summary_paraphrased": "Perform impact assessments at planned intervals or on significant change; retain results.",
+   "citation": "ISO/IEC 42001:2023, clause 8.4"
+  },
+  {
+   "id": "ISO42001-9.1",
+   "clause": "9.1",
+   "title": "Monitoring, measurement, analysis and evaluation",
+   "summary_paraphrased": "Determine what is monitored and measured, methods, timing; evaluate AIMS performance.",
+   "citation": "ISO/IEC 42001:2023, clause 9.1"
+  },
+  {
+   "id": "ISO42001-9.2",
+   "clause": "9.2",
+   "title": "Internal audit",
+   "summary_paraphrased": "Plan and conduct internal audits through an audit programme; report results.",
+   "citation": "ISO/IEC 42001:2023, clause 9.2"
+  },
+  {
+   "id": "ISO42001-9.3",
+   "clause": "9.3",
+   "title": "Management review",
+   "summary_paraphrased": "Top management reviews the AIMS at planned intervals with defined inputs and results.",
+   "citation": "ISO/IEC 42001:2023, clause 9.3"
+  },
+  {
+   "id": "ISO42001-10.1",
+   "clause": "10.1",
+   "title": "Continual improvement",
+   "summary_paraphrased": "Continually improve suitability, adequacy and effectiveness of the AIMS.",
+   "citation": "ISO/IEC 42001:2023, clause 10.1"
+  },
+  {
+   "id": "ISO42001-10.2",
+   "clause": "10.2",
+   "title": "Nonconformity and corrective action",
+   "summary_paraphrased": "React to nonconformities, determine causes, implement and review corrective actions.",
+   "citation": "ISO/IEC 42001:2023, clause 10.2"
+  }
+ ],
+ "annex_a_controls": [
+  {
+   "id": "ISO42001-A.2.2",
+   "control_id": "A.2.2",
+   "objective": "A.2",
+   "objective_title": "Policies related to AI",
+   "title": "AI policy",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.2.2",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.2.3",
+   "control_id": "A.2.3",
+   "objective": "A.2",
+   "objective_title": "Policies related to AI",
+   "title": "Alignment with other organizational policies",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.2.3",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.2.4",
+   "control_id": "A.2.4",
+   "objective": "A.2",
+   "objective_title": "Policies related to AI",
+   "title": "Review of the AI policy",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.2.4",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.3.2",
+   "control_id": "A.3.2",
+   "objective": "A.3",
+   "objective_title": "Internal organization",
+   "title": "AI roles and responsibilities",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.3.2",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.3.3",
+   "control_id": "A.3.3",
+   "objective": "A.3",
+   "objective_title": "Internal organization",
+   "title": "Reporting of concerns",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.3.3",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.4.2",
+   "control_id": "A.4.2",
+   "objective": "A.4",
+   "objective_title": "Resources for AI systems",
+   "title": "Resource documentation",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.4.2",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.4.3",
+   "control_id": "A.4.3",
+   "objective": "A.4",
+   "objective_title": "Resources for AI systems",
+   "title": "Data resources",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.4.3",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.4.4",
+   "control_id": "A.4.4",
+   "objective": "A.4",
+   "objective_title": "Resources for AI systems",
+   "title": "Tooling resources",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.4.4",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.4.5",
+   "control_id": "A.4.5",
+   "objective": "A.4",
+   "objective_title": "Resources for AI systems",
+   "title": "System and computing resources",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.4.5",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.4.6",
+   "control_id": "A.4.6",
+   "objective": "A.4",
+   "objective_title": "Resources for AI systems",
+   "title": "Human resources",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.4.6",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.5.2",
+   "control_id": "A.5.2",
+   "objective": "A.5",
+   "objective_title": "Assessing impacts of AI systems",
+   "title": "AI system impact assessment process",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.5.2",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.5.3",
+   "control_id": "A.5.3",
+   "objective": "A.5",
+   "objective_title": "Assessing impacts of AI systems",
+   "title": "Documentation of AI system impact assessments",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.5.3",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.5.4",
+   "control_id": "A.5.4",
+   "objective": "A.5",
+   "objective_title": "Assessing impacts of AI systems",
+   "title": "Assessing AI system impact on individuals or groups of individuals",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.5.4",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.5.5",
+   "control_id": "A.5.5",
+   "objective": "A.5",
+   "objective_title": "Assessing impacts of AI systems",
+   "title": "Assessing societal impacts of AI systems",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.5.5",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.6.1.2",
+   "control_id": "A.6.1.2",
+   "objective": "A.6",
+   "objective_title": "AI system life cycle",
+   "title": "Objectives for responsible development of AI system",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.6.1.2",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.6.1.3",
+   "control_id": "A.6.1.3",
+   "objective": "A.6",
+   "objective_title": "AI system life cycle",
+   "title": "Processes for responsible AI system design and development",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.6.1.3",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.6.2.2",
+   "control_id": "A.6.2.2",
+   "objective": "A.6",
+   "objective_title": "AI system life cycle",
+   "title": "AI system requirements and specification",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.6.2.2",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.6.2.3",
+   "control_id": "A.6.2.3",
+   "objective": "A.6",
+   "objective_title": "AI system life cycle",
+   "title": "Documentation of AI system design and development",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.6.2.3",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.6.2.4",
+   "control_id": "A.6.2.4",
+   "objective": "A.6",
+   "objective_title": "AI system life cycle",
+   "title": "AI system verification and validation",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.6.2.4",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.6.2.5",
+   "control_id": "A.6.2.5",
+   "objective": "A.6",
+   "objective_title": "AI system life cycle",
+   "title": "AI system deployment",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.6.2.5",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.6.2.6",
+   "control_id": "A.6.2.6",
+   "objective": "A.6",
+   "objective_title": "AI system life cycle",
+   "title": "AI system operation and monitoring",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.6.2.6",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.6.2.7",
+   "control_id": "A.6.2.7",
+   "objective": "A.6",
+   "objective_title": "AI system life cycle",
+   "title": "AI system technical documentation",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.6.2.7",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.6.2.8",
+   "control_id": "A.6.2.8",
+   "objective": "A.6",
+   "objective_title": "AI system life cycle",
+   "title": "AI system recording of event logs",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.6.2.8",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.7.2",
+   "control_id": "A.7.2",
+   "objective": "A.7",
+   "objective_title": "Data for AI systems",
+   "title": "Data for development and enhancement of AI system",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.7.2",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.7.3",
+   "control_id": "A.7.3",
+   "objective": "A.7",
+   "objective_title": "Data for AI systems",
+   "title": "Acquisition of data",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.7.3",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.7.4",
+   "control_id": "A.7.4",
+   "objective": "A.7",
+   "objective_title": "Data for AI systems",
+   "title": "Quality of data for AI systems",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.7.4",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.7.5",
+   "control_id": "A.7.5",
+   "objective": "A.7",
+   "objective_title": "Data for AI systems",
+   "title": "Data provenance",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.7.5",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.7.6",
+   "control_id": "A.7.6",
+   "objective": "A.7",
+   "objective_title": "Data for AI systems",
+   "title": "Data preparation",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.7.6",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.8.2",
+   "control_id": "A.8.2",
+   "objective": "A.8",
+   "objective_title": "Information for interested parties of AI systems",
+   "title": "System documentation and information for users",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.8.2",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.8.3",
+   "control_id": "A.8.3",
+   "objective": "A.8",
+   "objective_title": "Information for interested parties of AI systems",
+   "title": "External reporting",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.8.3",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.8.4",
+   "control_id": "A.8.4",
+   "objective": "A.8",
+   "objective_title": "Information for interested parties of AI systems",
+   "title": "Communication of incidents",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.8.4",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.8.5",
+   "control_id": "A.8.5",
+   "objective": "A.8",
+   "objective_title": "Information for interested parties of AI systems",
+   "title": "Information for interested parties",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.8.5",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.9.2",
+   "control_id": "A.9.2",
+   "objective": "A.9",
+   "objective_title": "Use of AI systems",
+   "title": "Processes for responsible use of AI systems",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.9.2",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.9.3",
+   "control_id": "A.9.3",
+   "objective": "A.9",
+   "objective_title": "Use of AI systems",
+   "title": "Objectives for responsible use of AI system",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.9.3",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.9.4",
+   "control_id": "A.9.4",
+   "objective": "A.9",
+   "objective_title": "Use of AI systems",
+   "title": "Intended use of the AI system",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.9.4",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.10.2",
+   "control_id": "A.10.2",
+   "objective": "A.10",
+   "objective_title": "Third-party and customer relationships",
+   "title": "Allocating responsibilities",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.10.2",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.10.3",
+   "control_id": "A.10.3",
+   "objective": "A.10",
+   "objective_title": "Third-party and customer relationships",
+   "title": "Suppliers",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.10.3",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  },
+  {
+   "id": "ISO42001-A.10.4",
+   "control_id": "A.10.4",
+   "objective": "A.10",
+   "objective_title": "Third-party and customer relationships",
+   "title": "Customers",
+   "control": null,
+   "citation": "ISO/IEC 42001:2023, Annex A, A.10.4",
+   "audit_procedure": [],
+   "typical_evidence": [],
+   "audit_procedure_source": null
+  }
+ ]
+}
